@@ -2,43 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="de55bb22-4e78-42f8-954f-6a84387e0fb3" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kode/data/i18n/en/about.html" afterPath="$PROJECT_DIR$/kode/data/i18n/en/about.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kode/controller/api.class.php" afterPath="$PROJECT_DIR$/kode/controller/api.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kode/controller/app.class.php" afterPath="$PROJECT_DIR$/kode/controller/app.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kode/lib/function/common.function.php" afterPath="$PROJECT_DIR$/kode/lib/function/common.function.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kode/config/config.php" afterPath="$PROJECT_DIR$/kode/config/config.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kode/static/js/lib/cmp4/config.xml" afterPath="$PROJECT_DIR$/kode/static/js/lib/cmp4/config.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kode/controller/desktop.class.php" afterPath="$PROJECT_DIR$/kode/controller/desktop.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kode/data/i18n/en/edit.html" afterPath="$PROJECT_DIR$/kode/data/i18n/en/edit.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kode/template/editor/edit.php" afterPath="$PROJECT_DIR$/kode/template/editor/edit.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kode/controller/editor.class.php" afterPath="$PROJECT_DIR$/kode/controller/editor.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kode/template/editor/editor.php" afterPath="$PROJECT_DIR$/kode/template/editor/editor.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kode/controller/explorer.class.php" afterPath="$PROJECT_DIR$/kode/controller/explorer.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kode/controller/fav.class.php" afterPath="$PROJECT_DIR$/kode/controller/fav.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kode/lib/function/file.function.php" afterPath="$PROJECT_DIR$/kode/lib/function/file.function.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kode/controller/group.class.php" afterPath="$PROJECT_DIR$/kode/controller/group.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kode/data/i18n/en/help.html" afterPath="$PROJECT_DIR$/kode/data/i18n/en/help.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kode/template/desktop/index.php" afterPath="$PROJECT_DIR$/kode/template/desktop/index.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kode/template/explorer/index.php" afterPath="$PROJECT_DIR$/kode/template/explorer/index.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kode/template/setting/index.php" afterPath="$PROJECT_DIR$/kode/template/setting/index.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kode/static/js/lib/artDialog/jquery-artDialog.js" afterPath="$PROJECT_DIR$/kode/static/js/lib/artDialog/jquery-artDialog.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kode/static/js/lib/jquery-lib.js" afterPath="$PROJECT_DIR$/kode/static/js/lib/jquery-lib.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kode/static/style/login.css" afterPath="$PROJECT_DIR$/kode/static/style/login.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kode/template/user/login.html" afterPath="$PROJECT_DIR$/kode/template/user/login.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kode/static/js/app/src/editor/main.js" afterPath="$PROJECT_DIR$/kode/static/js/app/src/editor/main.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kode/static/js/app/src/explorer/main.js" afterPath="$PROJECT_DIR$/kode/static/js/app/src/explorer/main.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kode/data/i18n/en/main.php" afterPath="$PROJECT_DIR$/kode/data/i18n/en/main.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kode/data/i18n/zh_CN/main.php" afterPath="$PROJECT_DIR$/kode/data/i18n/zh_CN/main.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kode/data/i18n/zh_TW/main.php" afterPath="$PROJECT_DIR$/kode/data/i18n/zh_TW/main.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kode/controller/member.class.php" afterPath="$PROJECT_DIR$/kode/controller/member.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kode/lib/class/pclzip.class.php" afterPath="$PROJECT_DIR$/kode/lib/class/pclzip.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kode/controller/setting.class.php" afterPath="$PROJECT_DIR$/kode/controller/setting.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kode/config/setting.php" afterPath="$PROJECT_DIR$/kode/config/setting.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kode/controller/user.class.php" afterPath="$PROJECT_DIR$/kode/controller/user.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kode/static/js/lib/util.js" afterPath="$PROJECT_DIR$/kode/static/js/lib/util.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kode/controller/util.php" afterPath="$PROJECT_DIR$/kode/controller/util.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kode/config/version.php" afterPath="$PROJECT_DIR$/kode/config/version.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kode/static/js/lib/webuploader/webuploader-min.js" afterPath="$PROJECT_DIR$/kode/static/js/lib/webuploader/webuploader-min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/kode/static/js/lib/seajs/sea.js.map" />
+      <change type="DELETED" beforePath="Z:\users\lijiyang\appstore\uploadserver\develop\kode\kode\.idea\.name" afterPath="" />
+      <change type="DELETED" beforePath="Z:\users\lijiyang\appstore\uploadserver\develop\kode\kode\.idea\KODExplorer-master.iml" afterPath="" />
+      <change type="DELETED" beforePath="Z:\users\lijiyang\appstore\uploadserver\develop\kode\kode\.idea\codeStyleSettings.xml" afterPath="" />
+      <change type="DELETED" beforePath="Z:\users\lijiyang\appstore\uploadserver\develop\kode\kode\.idea\encodings.xml" afterPath="" />
+      <change type="DELETED" beforePath="Z:\users\lijiyang\appstore\uploadserver\develop\kode\kode\.idea\misc.xml" afterPath="" />
+      <change type="DELETED" beforePath="Z:\users\lijiyang\appstore\uploadserver\develop\kode\kode\.idea\modules.xml" afterPath="" />
+      <change type="DELETED" beforePath="Z:\users\lijiyang\appstore\uploadserver\develop\kode\kode\.idea\scopes\scope_settings.xml" afterPath="" />
+      <change type="DELETED" beforePath="Z:\users\lijiyang\appstore\uploadserver\develop\kode\kode\.idea\vcs.xml" afterPath="" />
+      <change type="DELETED" beforePath="Z:\users\lijiyang\appstore\uploadserver\develop\kode\kode\.idea\workspace.xml" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kode/data/User/admin/data/config.php" afterPath="$PROJECT_DIR$/kode/data/User/admin/data/config.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="kode.iws" />
@@ -62,76 +36,41 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="test.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/kode/test.php">
+      <file leaf-file-name="Gruntfile.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/kode/static/js/Gruntfile.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="2" selection-start="107" selection-end="107" vertical-scroll-proportion="-6.107143" vertical-offset="0" max-vertical-offset="285">
+            <state line="16" column="26" selection-start="540" selection-end="540" vertical-scroll-proportion="0.0" vertical-offset="918" max-vertical-offset="1501">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CMPlayer.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/kode/static/js/_dev/common/CMPlayer.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="125" column="37" selection-start="3550" selection-end="3550" vertical-scroll-proportion="0.0" vertical-offset="861" max-vertical-offset="2755">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="main.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/kode/static/js/_dev/src/app/main.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="266">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="page.js" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/kode/static/js/_dev/src/app/page.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="12" column="25" selection-start="346" selection-end="346" vertical-scroll-proportion="0.34131736" vertical-offset="0" max-vertical-offset="2565">
               <folding>
-                <element signature="e#6#88#0" expanded="true" />
+                <marker date="1404097140350" expanded="true" signature="2677:2815" placeholder="..." />
+                <marker date="1404097140350" expanded="false" signature="2855:2866" placeholder="..." />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/kode/index.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="2" column="0" selection-start="40" selection-end="40" vertical-scroll-proportion="-1.3571428" vertical-offset="0" max-vertical-offset="228">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Application.class.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/kode/lib/core/Application.class.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="87" column="0" selection-start="2001" selection-end="2001" vertical-scroll-proportion="-15.535714" vertical-offset="1123" max-vertical-offset="1729">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="version.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/kode/config/version.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="133">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="setting.php" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/kode/config/setting.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="988">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="user.class.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/kode/controller/user.class.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="92" column="0" selection-start="3077" selection-end="3077" vertical-scroll-proportion="-7.214286" vertical-offset="1451" max-vertical-offset="4807">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="login.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/kode/template/user/login.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="10.035714" vertical-offset="281" max-vertical-offset="893">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Controller.class.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/kode/lib/core/Controller.class.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="75" column="0" selection-start="1395" selection-end="1395" vertical-scroll-proportion="-15.535714" vertical-offset="895" max-vertical-offset="1501">
-              <folding />
             </state>
           </provider>
         </entry>
@@ -150,6 +89,7 @@
     <option name="changedFiles">
       <list>
         <option value="$PROJECT_DIR$/kode/test.php" />
+        <option value="$PROJECT_DIR$/kode/static/js/app/src/app/main.js" />
       </list>
     </option>
   </component>
@@ -184,29 +124,72 @@
             <id />
           </State>
           <State>
-            <id>GeneralJavaScript</id>
+            <id>Bitwise operation issuesJavaScript</id>
           </State>
           <State>
-            <id>GeneralPHP</id>
+            <id>CSS</id>
+          </State>
+          <State>
+            <id>Code style issuesJavaScript</id>
+          </State>
+          <State>
+            <id>Control FlowPHP</id>
+          </State>
+          <State>
+            <id>Control flow issuesJavaScript</id>
+          </State>
+          <State>
+            <id>Cucumber</id>
+          </State>
+          <State>
+            <id>Error handlingJavaScript</id>
+          </State>
+          <State>
+            <id>GeneralJavaScript</id>
           </State>
           <State>
             <id>HTML</id>
           </State>
           <State>
+            <id>Invalid elementsCSS</id>
+          </State>
+          <State>
             <id>JavaScript</id>
+          </State>
+          <State>
+            <id>JavaScript function metricsJavaScript</id>
+          </State>
+          <State>
+            <id>Naming conventionsJavaScript</id>
           </State>
           <State>
             <id>PHP</id>
           </State>
           <State>
+            <id>PHPDocPHP</id>
+          </State>
+          <State>
+            <id>Potentially confusing code constructsJavaScript</id>
+          </State>
+          <State>
+            <id>Probable bugsJavaScript</id>
+          </State>
+          <State>
+            <id>RELAX NG</id>
+          </State>
+          <State>
             <id>SQL</id>
           </State>
-        </expanded-state>
-        <selected-state>
           <State>
-            <id>CoffeeScript</id>
+            <id>Type compatibilityPHP</id>
           </State>
-        </selected-state>
+          <State>
+            <id>XML</id>
+          </State>
+          <State>
+            <id>XPath</id>
+          </State>
+        </expanded-state>
       </profile-state>
     </entry>
   </component>
@@ -272,11 +255,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="template" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="user" />
+              <option name="myItemId" value="static" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -294,7 +273,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="template" />
+              <option name="myItemId" value="static" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -312,7 +295,15 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="lib" />
+              <option name="myItemId" value="static" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -330,29 +321,19 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="lib" />
+              <option name="myItemId" value="static" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="core" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="kode" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="kode" />
+              <option name="myItemId" value="js" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="kode" />
+              <option name="myItemId" value="app" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="controller" />
+              <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -370,7 +351,57 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="config" />
+              <option name="myItemId" value="static" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="explorer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="kode" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="kode" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="kode" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="static" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -380,8 +411,8 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="X:/html/test/elFinder" />
-    <property name="options.lastSelected" value="Configurable.PHP.Debug" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="options.lastSelected" value="preferences.keymap" />
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
@@ -389,6 +420,16 @@
     <property name="FullScreen" value="false" />
     <property name="recentsLimit" value="5" />
     <property name="restartRequiresConfirmation" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.date" value="false" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
+    <property name="WebServerToolWindowPanel.toolwindow.highlight.symlinks" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.highlight.mappings" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="Z:\users\lijiyang\appstore\uploadserver\develop\kode\kode\static\js\lib\seajs" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration default="true" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
@@ -433,6 +474,11 @@
       <created>1404097375963</created>
       <updated>1404097375963</updated>
     </task>
+    <task id="LOCAL-00001" summary="upgrade to kode 2.51">
+      <created>1404185252011</created>
+      <updated>1404185252011</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -459,26 +505,49 @@
     <frame x="-4" y="-4" width="1448" height="844" extended-state="0" />
     <editor active="false" />
     <layout>
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32756132" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32756132" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4199134" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.046176046" sideWeight="0.53290415" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3982684" sideWeight="0.46709585" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32900432" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3297568" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24964234" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2274678" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3297568" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2160229" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.28427127" sideWeight="0.53290415" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3982684" sideWeight="0.46709585" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.11976912" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
     </layout>
+    <layout-to-restore>
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32756132" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32756132" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4199134" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3297568" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3297568" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.28427127" sideWeight="0.53290415" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3982684" sideWeight="0.46709585" order="9" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32900432" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24964234" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24892704" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+    </layout-to-restore>
   </component>
   <component name="Vcs.Log.UiProperties">
     <option name="RECENTLY_FILTERED_USER_GROUPS">
@@ -492,59 +561,50 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
+    <MESSAGE value="upgrade to kode 2.51" />
+    <option name="LAST_COMMIT_MESSAGE" value="upgrade to kode 2.51" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/kode/index.php</url>
+          <line>5</line>
+          <option name="timeStamp" value="71" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/kode/lib/core/Application.class.php</url>
+          <line>86</line>
+          <option name="timeStamp" value="72" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/kode/lib/core/Application.class.php</url>
+          <line>61</line>
+          <option name="timeStamp" value="74" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/kode/controller/explorer.class.php</url>
+          <line>22</line>
+          <option name="timeStamp" value="77" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/kode/controller/explorer.class.php</url>
+          <line>30</line>
+          <option name="timeStamp" value="80" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/kode/controller/explorer.class.php</url>
+          <line>31</line>
+          <option name="timeStamp" value="81" />
+        </line-breakpoint>
+      </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="69" />
+      <option name="time" value="82" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/kode/test.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="2" selection-start="107" selection-end="107" vertical-scroll-proportion="0.0" vertical-offset="171" max-vertical-offset="285">
-          <folding>
-            <element signature="e#6#88#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/kode/test.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="10" selection-start="79" selection-end="79" vertical-scroll-proportion="0.0" vertical-offset="95" max-vertical-offset="285">
-          <folding>
-            <element signature="e#6#88#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/kode/template/app/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="14" selection-start="796" selection-end="796" vertical-scroll-proportion="0.32554516" vertical-offset="0" max-vertical-offset="1102" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/kode/template/desktop/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="81" column="17" selection-start="5037" selection-end="5037" vertical-scroll-proportion="2.4467409" vertical-offset="0" max-vertical-offset="2109" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/kode/lib/class/pclzip.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="15" selection-start="1482" selection-end="1482" vertical-scroll-proportion="-5.1955485" vertical-offset="3477" max-vertical-offset="107844" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/kode/info/exclude">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="0" selection-start="240" selection-end="240" vertical-scroll-proportion="0.17014925" vertical-offset="0" max-vertical-offset="670" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/kode/hooks/pre-applypatch.sample">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="670" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/kode/hooks/pre-rebase.sample">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3325" />
@@ -601,30 +661,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/kode/lib/function/web.function.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="118" column="0" selection-start="2735" selection-end="2735" vertical-scroll-proportion="-0.5492958" vertical-offset="2342" max-vertical-offset="9842">
-          <folding />
-        </state>
+        <state line="118" column="0" selection-start="2735" selection-end="2735" vertical-scroll-proportion="-0.5492958" vertical-offset="2342" max-vertical-offset="9842" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/kode/lib/function/common.function.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="274" column="9" selection-start="5633" selection-end="5633" vertical-scroll-proportion="0.44444445" vertical-offset="4959" max-vertical-offset="13490">
-          <folding>
-            <marker date="1399821542000" expanded="true" signature="-1:-1" placeholder="..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/kode/controller/util.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="77" column="7" selection-start="2388" selection-end="2388" vertical-scroll-proportion="3.853521" vertical-offset="0" max-vertical-offset="1501">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/kode/config/config.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="52" column="7" selection-start="2096" selection-end="2096" vertical-scroll-proportion="0.3721973" vertical-offset="810" max-vertical-offset="1577">
           <folding />
         </state>
       </provider>
@@ -636,74 +685,254 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/kode/test.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="2" selection-start="107" selection-end="107" vertical-scroll-proportion="-6.107143" vertical-offset="0" max-vertical-offset="285">
-          <folding>
-            <element signature="e#6#88#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/kode/data/i18n/en/main.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="0" selection-start="6" selection-end="6" vertical-scroll-proportion="0.0785124" vertical-offset="0" max-vertical-offset="6840">
-          <folding />
-        </state>
+        <state line="1" column="0" selection-start="6" selection-end="6" vertical-scroll-proportion="0.0785124" vertical-offset="0" max-vertical-offset="6840" />
       </provider>
     </entry>
     <entry file="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/com/jetbrains/php/lang/psi/stubs/data/standard_8.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="854" column="9" selection-start="27691" selection-end="27691" vertical-scroll-proportion="0.37238494" vertical-offset="16137" max-vertical-offset="20938">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/kode/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="0" selection-start="40" selection-end="40" vertical-scroll-proportion="-1.3571428" vertical-offset="0" max-vertical-offset="228">
-          <folding />
-        </state>
+        <state line="854" column="9" selection-start="27691" selection-end="27691" vertical-scroll-proportion="0.37238494" vertical-offset="16137" max-vertical-offset="20938" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/kode/template/user/login.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="10.035714" vertical-offset="281" max-vertical-offset="874">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/kode/lib/core/Controller.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="75" column="0" selection-start="1395" selection-end="1395" vertical-scroll-proportion="-15.535714" vertical-offset="895" max-vertical-offset="1501">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.47386172" vertical-offset="281" max-vertical-offset="893" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/kode/controller/user.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="92" column="0" selection-start="3077" selection-end="3077" vertical-scroll-proportion="-7.214286" vertical-offset="1451" max-vertical-offset="4807">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/kode/lib/core/Application.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="87" column="0" selection-start="2001" selection-end="2001" vertical-scroll-proportion="-15.535714" vertical-offset="1123" max-vertical-offset="1729">
+        <state line="92" column="0" selection-start="3077" selection-end="3077" vertical-scroll-proportion="0.33333334" vertical-offset="1451" max-vertical-offset="4807">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/kode/config/version.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="634">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="634" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/kode/config/setting.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="988">
+        <state line="18" column="7" selection-start="1040" selection-end="1040" vertical-scroll-proportion="0.41652614" vertical-offset="0" max-vertical-offset="988">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kode/readme.txt">
+      <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="17" selection-start="157" selection-end="157" vertical-scroll-proportion="-10.03125" vertical-offset="6213" max-vertical-offset="6821" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kode/test.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="2" selection-start="107" selection-end="107" vertical-scroll-proportion="0.28217822" vertical-offset="0" max-vertical-offset="606" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kode/template/app/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="25" column="19" selection-start="1615" selection-end="1615" vertical-scroll-proportion="-0.034653466" vertical-offset="496" max-vertical-offset="1102">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kode/lib/function/file.function.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="646" column="38" selection-start="17371" selection-end="17371" vertical-scroll-proportion="0.26950353" vertical-offset="12065" max-vertical-offset="13509">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kode/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="0" selection-start="175" selection-end="175" vertical-scroll-proportion="0.17117117" vertical-offset="0" max-vertical-offset="555">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kode/lib/core/Application.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="63" column="0" selection-start="1447" selection-end="1447" vertical-scroll-proportion="0.32972974" vertical-offset="919" max-vertical-offset="1729">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kode/lib/core/Controller.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="72" column="23" selection-start="1331" selection-end="1331" vertical-scroll-proportion="0.5412844" vertical-offset="1037" max-vertical-offset="1501">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kode/controller/explorer.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="34" column="19" selection-start="1169" selection-end="1169" vertical-scroll-proportion="0.36396396" vertical-offset="349" max-vertical-offset="9975">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kode/static/js/lib/seajs/sea.js.map">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="599" />
+      </provider>
+      <provider editor-type-id="sourcemapFileViewerProvider">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kode/controller/member.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="30" column="10" selection-start="760" selection-end="760" vertical-scroll-proportion="-4.75" vertical-offset="342" max-vertical-offset="1881">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kode/static/js/app/src/explorer/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="653">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kode/static/js/app/src/setting/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="41" selection-start="41" selection-end="41" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="597" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kode/static/js/_dev/src/desktop/ui.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="105" column="12" selection-start="3312" selection-end="3312" vertical-scroll-proportion="0.0" vertical-offset="1426" max-vertical-offset="6574">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kode/static/js/app/src/edit/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="570" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kode/static/js/_dev/tpl/fileinfo.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="20" selection-start="505" selection-end="505" vertical-scroll-proportion="-2.813036" vertical-offset="1906" max-vertical-offset="2489">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kode/static/js/_dev/tpl/search.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="19" selection-start="959" selection-end="959" vertical-scroll-proportion="-0.43396226" vertical-offset="500" max-vertical-offset="1083">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kode/config/config.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="34" column="7" selection-start="1529" selection-end="1529" vertical-scroll-proportion="0.34796238" vertical-offset="329" max-vertical-offset="1463">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kode/static/js/app/src/desktop/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="570">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kode/static/js/app/src/app/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="324" column="3" selection-start="17664" selection-end="17664" vertical-scroll-proportion="-109.92857" vertical-offset="0" max-vertical-offset="8151">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kode/static/js/lib/util.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-16.8" vertical-offset="9576" max-vertical-offset="10146">
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kode/static/js/_dev/update/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="33" selection-start="875" selection-end="875" vertical-scroll-proportion="-1.0929824" vertical-offset="851" max-vertical-offset="5073">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kode/static/js/_dev/common/CMPlayer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="125" column="37" selection-start="3550" selection-end="3550" vertical-scroll-proportion="0.0" vertical-offset="861" max-vertical-offset="2755">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kode/static/js/_dev/src/app/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="561">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kode/static/js/lib/webuploader/webuploader-min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="570" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kode/static/js/lib/seajs/sea.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="570">
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kode/static/js/_dev/src/app/page.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="25" selection-start="346" selection-end="346" vertical-scroll-proportion="0.34131736" vertical-offset="0" max-vertical-offset="2565">
+          <folding>
+            <marker date="1404097140350" expanded="true" signature="2677:2815" placeholder="..." />
+            <marker date="1404097140350" expanded="false" signature="2855:2866" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kode/static/js/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="583">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kode/static/js/Gruntfile.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="26" selection-start="540" selection-end="540" vertical-scroll-proportion="0.0" vertical-offset="918" max-vertical-offset="1501">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kode/static/js/readme.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="0" selection-start="73" selection-end="73" vertical-scroll-proportion="0.1303602" vertical-offset="0" max-vertical-offset="589">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kode/template/common/navbar.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="35" selection-start="191" selection-end="191" vertical-scroll-proportion="0.122522525" vertical-offset="8" max-vertical-offset="874">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kode/template/explorer/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="6" selection-start="172" selection-end="172" vertical-scroll-proportion="0.0701107" vertical-offset="0" max-vertical-offset="3477">
           <folding />
         </state>
       </provider>
