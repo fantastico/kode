@@ -122,6 +122,16 @@ function get_path_ext($path){
 	$ext = end($arr);
 	return strtolower($ext);
 }
+/**
+ * 判断文件夹是否可写
+ */
+function path_writable($path) {	
+	$file = $path.'/test'.time().'.txt';
+	$dir  = $path.'/test'.time();
+	if(@is_writable($path) && @touch($file) && @unlink($file)) return true;
+	if(@mkdir($dir,0777) && @rmdir($dir)) return true;
+	return false;
+}
 
 /**
  * 获取扩展名
@@ -146,7 +156,6 @@ function get_path_same_next($path,$name,$type){
 	}
 	return $path.$name;
 }
-
 /**
  * 获取文件夹详细信息,文件夹属性时调用，包含子文件夹数量，文件数量，总大小
  */
@@ -650,11 +659,12 @@ function get_post_max(){
  */
 function upload($fileInput, $path = './'){
 	global $config,$L;
-	if (!isset($_FILES[$fileInput])) show_json($L['upload_error_null'],false);
-
 	$file = $_FILES[$fileInput];
+	if (!isset($file)) show_json($L['upload_error_null'],false);
+	
 	$file_name = iconv_system($file['name']);
 	$info = _upload($file['tmp_name'],$file['size'],$path.$file_name);
+	if ($info['data']) $info['data'] = $L['move_error'];
 	show_json($info['data'],$info['code']);
 }
 function _upload($tmp_name,$size,$save_path){

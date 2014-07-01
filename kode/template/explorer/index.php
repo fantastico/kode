@@ -8,12 +8,9 @@
 	<link href="<?php echo STATIC_PATH;?>js/lib/webuploader/webuploader.css" rel="stylesheet"/>
 	<link href="<?php echo STATIC_PATH;?>style/bootstrap.css" rel="stylesheet"/>	    
 	<link href="<?php echo STATIC_PATH;?>style/font-awesome/style.css" rel="stylesheet"/>
-	<?php if(STATIC_LESS == 'css'){ ?>
+	
 	<link href="<?php echo STATIC_PATH;?>style/skin/<?php echo $config['user']['theme'];?>app_explorer.css" rel="stylesheet" id='link_css_list'/>
-	<?php }else{//less_compare_online ?>
-	<link rel="stylesheet/less" type="text/css" href="<?php echo STATIC_PATH;?>style/skin/<?php echo $config['user']['theme'];?>app_explorer.less"/>
-	<script src="<?php echo STATIC_PATH;?>js/lib/less-1.4.2.min.js"></script>	
-	<?php } ?>
+	
 </head>
 
 <?php if($is_frame){?>
@@ -175,7 +172,7 @@
 		base: "<?php echo STATIC_PATH;?>js/",
 		preload: ["lib/jquery-1.8.0.min"]
 	});
-	seajs.use("<?php echo STATIC_JS;?>/src/explorer/main");
+	seajs.use("app/src/explorer/main");
 </script>
 </body>
 </html>

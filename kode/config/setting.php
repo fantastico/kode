@@ -39,7 +39,7 @@ $config['system_file'] = array(
 $config['role_setting'] = array(
 	'explorer'	=> array(
 		'mkdir','mkfile','pathRname','pathDelete','zip','unzip','pathCopy',
-		'pathCute','pathCuteDrag','clipboard','pathPast','pathInfo',
+		'pathCute','pathCuteDrag','pathCopyDrag','clipboard','pathPast','pathInfo',
 		'pathInfoMuti','serverDownload','fileUpload','search'),
 	'app'		=> array('user_app','add','edit','del'),//
 	'user'		=> array('changePassword'),//可以设立公用账户

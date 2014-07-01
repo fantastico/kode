@@ -8,12 +8,9 @@
 	<link href="<?php echo STATIC_PATH;?>style/font-awesome/style.css" rel="stylesheet"/>
 	<link href="<?php echo STATIC_PATH;?>js/lib/webuploader/webuploader.css" rel="stylesheet"/>    
 	<link href="<?php echo STATIC_PATH;?>js/lib/picasa/style/style.css" rel="stylesheet"/>
-	<?php if(STATIC_LESS == 'css'){ ?>
+	
 	<link href="<?php echo STATIC_PATH;?>style/skin/<?php echo $config['user']['theme'];?>app_desktop.css" rel="stylesheet" id='link_css_list'/>
-	<?php }else{//less_compare_online ?>
-	<link rel="stylesheet/less" type="text/css" href="<?php echo STATIC_PATH;?>style/skin/<?php echo $config['user']['theme'];?>app_desktop.less"/>
-	<script src="<?php echo STATIC_PATH;?>js/lib/less-1.4.2.min.js"></script>   
-	<?php } ?>
+	
 	<style type="text/css" media="screen">
 	.desktop{
 		background:#222 url('<?php echo $wall;?>');
@@ -100,7 +97,7 @@
 		base: "<?php echo STATIC_PATH;?>js/",
 		preload: ["lib/jquery-1.8.0.min"]
 	});
-	seajs.use("<?php echo STATIC_JS;?>/src/desktop/main");
+	seajs.use("app/src/desktop/main");
 </script>
 </body>
 </html>

@@ -176,6 +176,8 @@ class user extends Controller
                 $key = ST.':'.ACT;
                 $group  = new fileCache($this->config['system_file']['group']);
                 $GLOBALS['auth'] = $auth   = $group->get($this->user['role']);
+
+                $auth['pathCopyDrag'] = $auth['pathCuteDrag'];
                 if ($auth[$key] !== 1) {
                     show_json($this->L['no_permission'],false);
                 }
