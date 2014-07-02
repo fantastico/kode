@@ -26,6 +26,7 @@ module.exports = function (grunt) {
                     idleading:'app/'//前缀
                 },
                 files:[{
+                    expand: true,
                     cwd:'_dev/',
                     src:'**/*.js',
                     filter:'isFile',
