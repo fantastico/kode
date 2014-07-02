@@ -172,7 +172,7 @@
 		base: "<?php echo STATIC_PATH;?>js/",
 		preload: ["lib/jquery-1.8.0.min"]
 	});
-	seajs.use("app/src/explorer/main");
+	seajs.use("<?php echo STATIC_JS;?>/src/explorer/main");
 </script>
 </body>
 </html>
