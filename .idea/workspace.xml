@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="de55bb22-4e78-42f8-954f-6a84387e0fb3" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kode/static/js/Gruntfile.js" afterPath="$PROJECT_DIR$/kode/static/js/Gruntfile.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kode/static/js/app/src/editor/main.js" afterPath="$PROJECT_DIR$/kode/static/js/app/src/editor/main.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kode/static/js/app/src/explorer/main.js" afterPath="$PROJECT_DIR$/kode/static/js/app/src/explorer/main.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kode/static/js/package.json" afterPath="$PROJECT_DIR$/kode/static/js/package.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/kode/.gitignore" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/kode/readme.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="kode.iws" />
@@ -29,10 +27,37 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Gruntfile.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="index.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/kode/template/app/index.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="25" column="19" selection-start="1615" selection-end="1615" vertical-scroll-proportion="-0.89285713" vertical-offset="450" max-vertical-offset="1102">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Gruntfile.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/kode/static/js/Gruntfile.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="61" column="10" selection-start="1801" selection-end="1801" vertical-scroll-proportion="0.40429044" vertical-offset="914" max-vertical-offset="1520">
+            <state line="61" column="10" selection-start="1801" selection-end="1801" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1520">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/kode/template/explorer/index.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="7" column="43" selection-start="494" selection-end="494" vertical-scroll-proportion="33.083332" vertical-offset="2912" max-vertical-offset="3477">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="readme.txt" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/kode/static/js/readme.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="15" column="47" selection-start="378" selection-end="378" vertical-scroll-proportion="0.4305136" vertical-offset="0" max-vertical-offset="662">
               <folding />
             </state>
           </provider>
@@ -57,6 +82,7 @@
         <option value="$PROJECT_DIR$/kode/static/js/.gitignore" />
         <option value="$PROJECT_DIR$/kode/static/js/package.json" />
         <option value="$PROJECT_DIR$/kode/static/js/Gruntfile.js" />
+        <option value="$PROJECT_DIR$/kode/.gitignore" />
       </list>
     </option>
   </component>
@@ -220,7 +246,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="static" />
+              <option name="myItemId" value="template" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -238,37 +264,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="static" />
+              <option name="myItemId" value="template" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="kode" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="kode" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="kode" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="static" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="node_modules" />
+              <option name="myItemId" value="explorer" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -286,11 +286,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="static" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
+              <option name="myItemId" value="template" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -315,18 +311,6 @@
               <option name="myItemId" value="static" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -347,52 +331,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="editor" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="kode" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="kode" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="kode" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="static" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -478,7 +416,11 @@
       <created>1404211190549</created>
       <updated>1404211190549</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="grunt setting">
+      <created>1404268148553</created>
+      <updated>1404268148553</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -564,7 +506,8 @@
     <MESSAGE value="upgrade to kode 2.51" />
     <MESSAGE value="remove .idea directory in kode" />
     <MESSAGE value="git ignore node_modules" />
-    <option name="LAST_COMMIT_MESSAGE" value="git ignore node_modules" />
+    <MESSAGE value="grunt setting" />
+    <option name="LAST_COMMIT_MESSAGE" value="grunt setting" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -664,32 +607,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/kode/config/version.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="634" />
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="634">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/kode/config/setting.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="18" column="7" selection-start="1040" selection-end="1040" vertical-scroll-proportion="0.41652614" vertical-offset="0" max-vertical-offset="988">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/kode/readme.txt">
-      <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="17" selection-start="157" selection-end="157" vertical-scroll-proportion="-10.03125" vertical-offset="6213" max-vertical-offset="6821" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/kode/test.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="2" selection-start="107" selection-end="107" vertical-scroll-proportion="0.28217822" vertical-offset="0" max-vertical-offset="606" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/kode/template/app/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="19" selection-start="1615" selection-end="1615" vertical-scroll-proportion="-0.034653466" vertical-offset="496" max-vertical-offset="1102">
           <folding />
         </state>
       </provider>
@@ -866,23 +791,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/kode/template/explorer/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="6" selection-start="172" selection-end="172" vertical-scroll-proportion="0.0701107" vertical-offset="0" max-vertical-offset="3477">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/kode/static/js/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="14" selection-start="14" selection-end="14" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="666">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/kode/static/js/readme.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="0" selection-start="217" selection-end="217" vertical-scroll-proportion="0.34441087" vertical-offset="0" max-vertical-offset="662">
           <folding />
         </state>
       </provider>
@@ -950,7 +861,52 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/kode/static/js/Gruntfile.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="61" column="10" selection-start="1801" selection-end="1801" vertical-scroll-proportion="0.40429044" vertical-offset="914" max-vertical-offset="1520">
+        <state line="61" column="10" selection-start="1801" selection-end="1801" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1520">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kode/template/explorer/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="43" selection-start="494" selection-end="494" vertical-scroll-proportion="33.083332" vertical-offset="2912" max-vertical-offset="3477">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kode/template/app/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="25" column="19" selection-start="1615" selection-end="1615" vertical-scroll-proportion="-0.89285713" vertical-offset="450" max-vertical-offset="1102">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kode/readme.txt">
+      <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="340" column="9" selection-start="7737" selection-end="7737" vertical-scroll-proportion="10.157232" vertical-offset="0" max-vertical-offset="6821">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kode/test.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="2" selection-start="107" selection-end="107" vertical-scroll-proportion="0.119873814" vertical-offset="0" max-vertical-offset="634">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kode/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="662">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/kode/static/js/readme.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="47" selection-start="378" selection-end="378" vertical-scroll-proportion="0.4305136" vertical-offset="0" max-vertical-offset="662">
           <folding />
         </state>
       </provider>
