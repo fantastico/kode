@@ -1,0 +1,2 @@
+Cannot bind/listen socket - [98] Address already in use.
+Couldn't create FastCGI listen socket on port 3344
