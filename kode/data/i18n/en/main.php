@@ -77,6 +77,7 @@ $L = array(
 	"remove"                     =>	"Delete",
 	"info"                       =>	"get info",
 	"list_type"                  =>	"View",
+	"list_apk"                   =>	"apk",
 	"list_icon"                  =>	"icons",
 	"list_list"                  =>	"list",
 	"sort_up"                    =>	"asc",

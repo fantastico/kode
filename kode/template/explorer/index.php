@@ -115,9 +115,12 @@
 					</div>
 					<div class="tools-right">
 						<div class="btn-group btn-group-sm">
+						  <button id='set_apk' title="<?php echo $L['list_apk'];?>" type="button" class="btn btn-default">
+                                <i class="font-icon icon-th"></i>
+                          </button>
 						  <button id='set_icon' title="<?php echo $L['list_icon'];?>" type="button" class="btn btn-default">
-						  	<i class="font-icon icon-th"></i>
-						  </button>
+                                <i class="font-icon icon-th"></i>
+                          </button>
 						  <button id='set_list' title="<?php echo $L['list_list'];?>" type="button" class="btn btn-default">
 						  	<i class="font-icon icon-list"></i>
 						  </button>

@@ -184,6 +184,7 @@ define(function(require, exports) {
 			Global.frameLeftWidth = $('.frame-left').width();
 		};
 	};
+
 	var _bindHotKey = function(){
 		var cmmand = 91;
 		Global.ctrlKey = false;
@@ -456,9 +457,15 @@ define(function(require, exports) {
 					_setListType('list');
 				}
 				break;
+			case 'set_apk':
+				if(!$('#set_apk').hasClass('active')){
+					_setListType('apk');
+				}
+				break;
 			default:break;
 		}
 	};
+
 	return{	
 		f5:_f5,
 		f5_callback:_f5_callback,

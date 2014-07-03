@@ -78,6 +78,7 @@ $L= array(
 	"remove"                     =>	"刪除",
 	"info"                       =>	"屬性",
 	"list_type"                  =>	"查看",
+    "list_apk"                   =>	"只顯示apk",
 	"list_icon"                  =>	"圖示排列",
 	"list_list"                  =>	"列表排列",
 	"sort_up"                    =>	"遞增",
