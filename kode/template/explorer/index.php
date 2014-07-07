@@ -81,7 +81,7 @@
 						    <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
 						      <i class="font-icon icon-tasks"></i>more&nbsp;<span class="caret"></span>	      
 						    </button>
-						    <ul class="dropdown-menu pull-right drop-menu-action">
+						    <ul class="dropdown-menu pull-right drop-menu-action fadein">
 						    	<li id="open"><a href='javascript:;'>
 						    	<i class="font-icon icon-folder-open-alt"></i><?php echo $L['open'];?></a></li>
 
@@ -115,12 +115,9 @@
 					</div>
 					<div class="tools-right">
 						<div class="btn-group btn-group-sm">
-						  <button id='set_apk' title="<?php echo $L['list_apk'];?>" type="button" class="btn btn-default">
-                                <i class="font-icon icon-th"></i>
-                          </button>
 						  <button id='set_icon' title="<?php echo $L['list_icon'];?>" type="button" class="btn btn-default">
-                                <i class="font-icon icon-th"></i>
-                          </button>
+						  	<i class="font-icon icon-th"></i>
+						  </button>
 						  <button id='set_list' title="<?php echo $L['list_list'];?>" type="button" class="btn btn-default">
 						  	<i class="font-icon icon-list"></i>
 						  </button>
@@ -128,7 +125,7 @@
 						    <button id="set_theme" title="<?php echo $L['setting_theme'];?>" type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
 						      <i class="font-icon icon-dashboard"></i>&nbsp;&nbsp;<span class="caret"></span>
 						    </button>
-						    <ul class="dropdown-menu pull-right dropdown-menu-theme">
+						    <ul class="dropdown-menu pull-right dropdown-menu-theme fadein">
 							    <?php 
 									$tpl="<li class='list {this}' theme='{0}'><a href='javascript:void(0);'>{1}</a></li>\n";
 									echo getTplList(',',':',$config['setting_all']['themeall'],$tpl,$config['user']['theme'],'this');
@@ -175,7 +172,7 @@
 		base: "<?php echo STATIC_PATH;?>js/",
 		preload: ["lib/jquery-1.8.0.min"]
 	});
-	seajs.use("<?php echo STATIC_JS;?>/src/explorer/main");
+	seajs.use("app/src/explorer/main");
 </script>
 </body>
 </html>

@@ -6,7 +6,6 @@
 * @license http://kalcaddle.com/tools/licenses/license.txt
 */
 
-
 date_default_timezone_set('PRC');
 @ini_set('session.cache_expire',600);
 @set_time_limit(600);//30min pathInfoMuti,search,upload,download... 
@@ -31,10 +30,10 @@ define('USER_SYSTEM',   DATA_PATH .'system/');      //用户数据存储目录
 define('LANGUAGE_PATH', DATA_PATH .'i18n/');        //多语言目录
 define('PUBLIC_PATH',   DATA_PATH .'public/');      //公共共享目录 读写权限跟随用户目录的读写权限
 
-define('STATIC_JS',"_dev");//_dev app  js编译||开发状态
+define('STATIC_JS','app');//_dev app  js编译||开发状态
 define('STATIC_PATH',"./static/");//静态文件目录
-//define('STATIC_PATH','http://static.kalcaddle.com/static/');
 define('STATIC_LESS','css');
+//define('STATIC_PATH','http://static.kalcaddle.com/static/');
 
 include(FUNCTION_DIR.'web.function.php');
 include(FUNCTION_DIR.'file.function.php');

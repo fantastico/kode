@@ -15,7 +15,9 @@ define(function(require, exports, module) {
 
         pageApp     : "explorer",
         treeAjaxURL : "index.php?explorer/treeList&app=explorer",//树目录请求
-        AnimateTime:200             // 动画时间设定
+        AnimateTime:200,             // 动画时间设定
+
+        ApkMode: false               // Apk模式
     };
     Global = {
         fileListAll:'',             // 当前路径下文件对象集合,缓存起来便于全局使用

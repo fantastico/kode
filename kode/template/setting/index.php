@@ -45,7 +45,7 @@ http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 		base: "<?php echo STATIC_PATH;?>js/",
 		preload: ["lib/jquery-1.8.0.min"]
 	});
-	seajs.use('<?php echo STATIC_JS;?>/src/setting/main');
+	seajs.use('app/src/setting/main');
 </script>
 </body>
 </html>
