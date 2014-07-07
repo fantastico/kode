@@ -1,6 +1,6 @@
-define(function(require, exports) {
+define(function (require, exports) {
     return{
-        html:"<div class='appbox'>\
+        html: "<div class='appbox'>\
           <div class='appline name'>\
               <div class='left'>{{LNG.name}}</div>\
               <div class='right'><input type='text' name='name' value='{{data.name}}'/></div>\

@@ -1,31 +1,35 @@
-<?php 
-/*
-* @link http://www.kalcaddle.com/
-* @author warlee | e-mail:kalcaddle@qq.com
-* @copyright warlee 2014.(Shanghai)Co.,Ltd
-* @license http://kalcaddle.com/tools/licenses/license.txt
-*/
+<?php
 
-class desktop extends Controller{
-    function __construct() {
-        parent::__construct();
-        $this->tpl = TEMPLATE.'desktop/';	
-    }
+    /*
+    * @link http://www.kalcaddle.com/
+    * @author warlee | e-mail:kalcaddle@qq.com
+    * @copyright warlee 2014.(Shanghai)Co.,Ltd
+    * @license http://kalcaddle.com/tools/licenses/license.txt
+    */
 
-    public function index() {
-        $wall = $this->config['user']['wall'];
-        if(strlen($wall)>3){
-            $this->assign('wall',$wall);
-        }else{
-            $this->assign('wall',STATIC_PATH.'images/wall_page/'.$wall.'.jpg');
+    class desktop extends Controller
+    {
+        function __construct()
+        {
+            parent::__construct();
+            $this->tpl = TEMPLATE . 'desktop/';
         }
 
-        if (!is_dir(MYHOME.'desktop/')) {
-            mkdir(MYHOME.'desktop/');
-        }
+        public function index()
+        {
+            $wall = $this->config['user']['wall'];
+            if (strlen($wall) > 3) {
+                $this->assign('wall', $wall);
+            } else {
+                $this->assign('wall', STATIC_PATH . 'images/wall_page/' . $wall . '.jpg');
+            }
 
-        $upload_max = get_post_max();   
-        $this->assign('upload_max',$upload_max);  
-        $this->display('index.php');
+            if (!is_dir(MYHOME . 'desktop/')) {
+                mkdir(MYHOME . 'desktop/');
+            }
+
+            $upload_max = get_post_max();
+            $this->assign('upload_max', $upload_max);
+            $this->display('index.php');
+        }
     }
-}

@@ -1,4 +1,4 @@
-define(function(require, exports) {
+define(function (require, exports) {
     var search_init = "<div class='do_search'>\
         <div class='search_header'>\
            <div class='s_br'>\
@@ -25,28 +25,28 @@ define(function(require, exports) {
             </table>\
         </div>\
     </div>";
-    var list = 
-    "{{each folderlist as v i}}\
-        <tr class='list folder' data-path='{{v.path}}{{v.name}}' data-type='folder' data-size='0'>\
-            <td class='name'><a href='javascript:void(0);' title='{{LNG.open}}{{v.name}}'>{{v.name}}</a></td>\
-            <td class='type'>{{LNG.folder}}</td>\
-            <td class='size'>0</td>\
-            <td class='path'><a href='javascript:void(0);' title='{{LNG.goto}}{{v.path}}'>{{v.path}}</a></td>\
-        </tr>\
-    {{/each}}\
-    {{each filelist as v i}}\
-        <tr class='list file'\
-            data-path='{{v.path}}{{v.name}}' \
-            data-type='{{v.ext}}' \
-            data-size='{{v.size}}'>\
-            <td class='name'><a href='javascript:void(0);' title='{{LNG.open}}{{v.name}}'>{{v.name}}</a></td>\
-            <td class='type'>{{v.ext}}</td>\
-            <td class='size'>{{v.size_friendly}}</td>\
-            <td class='path'><a href='javascript:void(0);' title='{{LNG.goto}}{{v.path}}'>{{v.path}}</a></td>\
-        </tr>\
-    {{/each}}";
+    var list =
+        "{{each folderlist as v i}}\
+            <tr class='list folder' data-path='{{v.path}}{{v.name}}' data-type='folder' data-size='0'>\
+                <td class='name'><a href='javascript:void(0);' title='{{LNG.open}}{{v.name}}'>{{v.name}}</a></td>\
+                <td class='type'>{{LNG.folder}}</td>\
+                <td class='size'>0</td>\
+                <td class='path'><a href='javascript:void(0);' title='{{LNG.goto}}{{v.path}}'>{{v.path}}</a></td>\
+            </tr>\
+        {{/each}}\
+        {{each filelist as v i}}\
+            <tr class='list file'\
+                data-path='{{v.path}}{{v.name}}' \
+                data-type='{{v.ext}}' \
+                data-size='{{v.size}}'>\
+                <td class='name'><a href='javascript:void(0);' title='{{LNG.open}}{{v.name}}'>{{v.name}}</a></td>\
+                <td class='type'>{{v.ext}}</td>\
+                <td class='size'>{{v.size_friendly}}</td>\
+                <td class='path'><a href='javascript:void(0);' title='{{LNG.goto}}{{v.path}}'>{{v.path}}</a></td>\
+            </tr>\
+        {{/each}}";
     return{
-        html:search_init,
-        list:list
+        html: search_init,
+        list: list
     }
 });

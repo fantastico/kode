@@ -4,9 +4,11 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<link href="<?php echo STATIC_PATH;?>style/font-awesome/style.css" rel="stylesheet"/>
 	<?php if(STATIC_LESS == 'css'){ ?>
-	<link href="<?php echo STATIC_PATH;?>style/skin/<?php echo $config['user']['theme'];?>app_setting.css" rel="stylesheet" id='link_css_list'/>
+	<link href="<?php echo STATIC_PATH;?>style/skin/<?php echo $config['user']['theme'];?>app_setting.css
+    " rel="stylesheet" id='link_css_list'/>
 	<?php }else{//less_compare_online ?>
-	<link rel="stylesheet/less" type="text/css" href="<?php echo STATIC_PATH;?>style/skin/<?php echo $config['user']['theme'];?>app_setting.less"/>
+	<link rel="stylesheet/less" type="text/css
+    " href="<?php echo STATIC_PATH;?>style/skin/<?php echo $config['user']['theme'];?>app_setting.less"/>
 	<script src="<?php echo STATIC_PATH;?>js/lib/less-1.4.2.min.js"></script>   
 	<?php } ?>
 </head>
@@ -35,17 +37,17 @@
 <script type="text/javascript">
     var LNG = <?php echo json_encode($L);?>;
 	var G = {
-		is_root 	: <?php echo  $GLOBALS['is_root'];?>,
+		is_root 	: <?php echo $GLOBALS['is_root'];?>,
 		web_root 	: "<?php echo $GLOBALS['web_root'];?>",
 		web_host 	: "<?php echo HOST;?>",
 		static_path : "<?php echo STATIC_PATH;?>",
-        basic_path  : "<?php echo BASIC_PATH;?>"
+        basic_path  : "<?php echo BASIC_PATH;?>",
     };
 	seajs.config({
 		base: "<?php echo STATIC_PATH;?>js/",
 		preload: ["lib/jquery-1.8.0.min"]
-	});
-	seajs.use('<?php echo STATIC_JS;?>/src/app/main');
-</script>
+    });
+    seajs.use('<?php echo STATIC_JS;?>/src/app/main');
+    </script>
 </body>
 </html>

@@ -50,213 +50,219 @@ var dialog_tpl_html = "<div class='update_box'>\
         </div>\
     </div>\
 </div>";
-define(function(require, exports) {
-	var server_version = '2.1';
-	var local_version  = G.version;
-	var readmore_href  = 'http://kalcaddle.com/download.html';
-	var current_version_file = 'http://static.kalcaddle.com/download/update/2.0-2.1.zip';
-	var status_href = 'http://kalcaddle.com/tools/state/index.php';
-	
-	var kod_user_online = 'kod_user_online';//在线统计cookie标示
-	var time = function(){var date = new Date();return parseInt(date.getTime()/1000);}
-	var _download = function(from,to,callback){
-		$.ajax({
-			url:'./index.php?explorer/serverDownload&save_path='+to
-				 +'&url='+urlEncode2(from),
-			dataType:'json',
-			success:function(data){
-				if (typeof (callback) == 'function') callback(data);
-			}
-		});
-	};
-	var _unzip = function(file,unzip_to,callback){
-		$.ajax({
-			url:'index.php?explorer/unzip&path_to='+urlEncode(unzip_to)
-				+'&path='+urlEncode(file),
-			success:function(data){
-				if (typeof (callback) == 'function') callback(data);
-			}
-		});
-	};
-	var _remove = function(param,callback){
-		$.ajax({
-			url: 'index.php?explorer/pathDelete',
-			type:'POST',
-			dataType:'json',
-			data:param,
-			success:function(data){
-				if (typeof (callback) == 'function') callback(data);
-			},
-		});
-	};
-	//自动更新
-	var update = function(){
-		if (G.is_root !=1) return;
-		var id = 'check_version_dialog',
-			$button = $('.'+id).find('.update_click'),
-			$press  = $('.'+id).find('.progress'),
-			$tips 	= $('.'+id).find('.ver_tips');
-		var new_file = current_version_file,
-			save_to  = G.basic_path+'data/',
-			unzip_to = G.basic_path;
-		$tips.removeClass('ignore').html(LNG.update_downloading);
-		$button.addClass('hidden');
-		$press.removeClass('hidden').fadeIn(300);
+define(function (require, exports) {
+    var server_version = '2.1';
+    var local_version = G.version;
+    var readmore_href = 'http://kalcaddle.com/download.html';
+    var current_version_file = 'http://static.kalcaddle.com/download/update/2.0-2.1.zip';
+    var status_href = 'http://kalcaddle.com/tools/state/index.php';
 
-		_download(new_file,save_to,function(data){
-			if (data.code) {
-				var zipfile = data.info;
-				var remove = 'list=[{"type":"file","path":"'+urlEncode(zipfile)+'"}]';
-				_unzip(zipfile,G.basic_path,function(data){
-					if (data.code) {//更新成功
-						_remove(remove,function(){//删除下载的安装包
-							Cookie.del(kod_user_online);
-							$press.addClass('hidden');
-							$tips.html(LNG.update_success);
-							$button.removeClass('hidden')
-								.unbind('click')
-								.removeClass('update_click')
-								.addClass('this')
-								.html(LNG.update_success);
-							setTimeout(function(){//更新完自动刷新
-								FrameCall.goRefresh();
-							},2000);
-						});
-						return;
-					}
-					//解压失败
-					$press.addClass('hidden');
-					$tips.html(LNG.update_unzip_fail);
-					$button.removeClass('hidden').html(LNG.update_auto_update);
-				});
-				return;
-			}
-			//解压失败
-			$press.addClass('hidden');
-			$tips.html(LNG.update_download_fail);
-			$button.removeClass('hidden').html(LNG.update_auto_update);			
-		});
-	};
+    var kod_user_online = 'kod_user_online';//在线统计cookie标示
+    var time = function () {
+        var date = new Date();
+        return parseInt(date.getTime() / 1000);
+    }
+    var _download = function (from, to, callback) {
+        $.ajax({
+            url: './index.php?explorer/serverDownload&save_path=' + to
+                + '&url=' + urlEncode2(from),
+            dataType: 'json',
+            success: function (data) {
+                if (typeof (callback) == 'function') callback(data);
+            }
+        });
+    };
+    var _unzip = function (file, unzip_to, callback) {
+        $.ajax({
+            url: 'index.php?explorer/unzip&path_to=' + urlEncode(unzip_to)
+                + '&path=' + urlEncode(file),
+            success: function (data) {
+                if (typeof (callback) == 'function') callback(data);
+            }
+        });
+    };
+    var _remove = function (param, callback) {
+        $.ajax({
+            url: 'index.php?explorer/pathDelete',
+            type: 'POST',
+            dataType: 'json',
+            data: param,
+            success: function (data) {
+                if (typeof (callback) == 'function') callback(data);
+            },
+        });
+    };
+    //自动更新
+    var update = function () {
+        if (G.is_root != 1) return;
+        var id = 'check_version_dialog',
+            $button = $('.' + id).find('.update_click'),
+            $press = $('.' + id).find('.progress'),
+            $tips = $('.' + id).find('.ver_tips');
+        var new_file = current_version_file,
+            save_to = G.basic_path + 'data/',
+            unzip_to = G.basic_path;
+        $tips.removeClass('ignore').html(LNG.update_downloading);
+        $button.addClass('hidden');
+        $press.removeClass('hidden').fadeIn(300);
 
-	var init_language = function(){
-		var type = 'en';
-		if (LNG.config.type =='zh_CN') type = 'zh_CN';
-		var L = {
-			'en':{
-				'update_downloading':'Downloading...',
-				'update_download_fail':'Download failed',
-				'update_unzip_fail':'Unzip update failed',
-				'update_doing':'Updating',
-				'update_title':"Update",
-				'update_success':"Update successful",
-				'update_fail':"Update failed",
-				'update_auto_update':"Update Now",
-				'update_is_new':"Aredy is the newest",
-				'update_version_newest':"Newest Version",
-				'update_version_local':"Current Version",
-				'update_ignore':"Ignore",		
-				'update_readmore':"Read more",
-				'update_whats_new':"What's New",
-				'update_info':"1.muti user<br/>2.drag upload<br/>3.zip/unzip<br/>4.all path support<br/>5.New editor<br/>"
-			},
-			'zh_CN':{
-				'update_downloading':'下载中...',
-				'update_download_fail':'下载失败',
-				'update_unzip_fail':'解压覆盖失败',
-				'update_doing':'更新中...',
-				'update_title':"更新提示",
-				'update_success':"更新成功！",
-				'update_fail':"更新失败！",
-				'update_auto_update':"自动更新",
-				'update_is_new':"已经是最新版",
-				'update_version_newest':"最新版本",
-				'update_version_local':"当前版本",
-				'update_ignore':"暂时忽略",
-				'update_readmore':"查看更多",
-				'update_whats_new':"更新说明",
-				'update_info':"1.文件夹拖拽完美实现<br/>2.文件夹拖拽上传<br/>3.解压缩优化<br/>4.非服务器路径预览&下载支持<br/>5.树目录中文问题修复<br/>"
-			}
-		};
-		for (var key in L[type]) {
-			LNG[key] = L[type][key];
-		}
-	};
+        _download(new_file, save_to, function (data) {
+            if (data.code) {
+                var zipfile = data.info;
+                var remove = 'list=[{"type":"file","path":"' + urlEncode(zipfile) + '"}]';
+                _unzip(zipfile, G.basic_path, function (data) {
+                    if (data.code) {//更新成功
+                        _remove(remove, function () {//删除下载的安装包
+                            Cookie.del(kod_user_online);
+                            $press.addClass('hidden');
+                            $tips.html(LNG.update_success);
+                            $button.removeClass('hidden')
+                                .unbind('click')
+                                .removeClass('update_click')
+                                .addClass('this')
+                                .html(LNG.update_success);
+                            setTimeout(function () {//更新完自动刷新
+                                FrameCall.goRefresh();
+                            }, 2000);
+                        });
+                        return;
+                    }
+                    //解压失败
+                    $press.addClass('hidden');
+                    $tips.html(LNG.update_unzip_fail);
+                    $button.removeClass('hidden').html(LNG.update_auto_update);
+                });
+                return;
+            }
+            //解压失败
+            $press.addClass('hidden');
+            $tips.html(LNG.update_download_fail);
+            $button.removeClass('hidden').html(LNG.update_auto_update);
+        });
+    };
 
-	//自动检查版本，自动更新
-	var check_version = function(display){
-		var ver_new = parseFloat(server_version),
-			ver_local = parseFloat(local_version),
-			key_timeout = 'kod_update_ignore_timeout',
-			has_new = false;
-		if (ver_new > ver_local) has_new=true;
-		//对话框显示
-		var show_dialog = function(){
-			var id = 'check_version_dialog';
-			if ($('.'+id).length==0) {
-				init_language();
-				var render = template.compile(dialog_tpl_html);
-				var html = dialog_tpl_css+render({
-						loading_img:G.static_path+'/images/loading_simple.gif',
-						LNG:LNG,has_new:has_new,
-						readmore_href:readmore_href,
-						ver_new:server_version,ver_local:local_version});				
-				art.dialog.through({
-					id:id,
-					simple:true,
-					top:'50%',
-					resize:false,
-					width:330,
-					title:LNG.update_title,
-					padding:'0',
-					fixed:true,
-					content:html
-				});
-				$('.'+id)
-					.hide()
-					.fadeIn(600)
-					.find('.update_click').unbind('click').bind('click',function(){
-						update();
-						Cookie.del(key_timeout);
-				});
-				$('.'+id).find('.ignore').die('click').live('click',function(){
-					//设置cookie一年有效,5天后检查;
-					Cookie.set(key_timeout,time()+3600*24*5,24*365);
-					art.dialog.list[id].close();
-				});
-			}			
-		};
+    var init_language = function () {
+        var type = 'en';
+        if (LNG.config.type == 'zh_CN') type = 'zh_CN';
+        var L = {
+            'en': {
+                'update_downloading': 'Downloading...',
+                'update_download_fail': 'Download failed',
+                'update_unzip_fail': 'Unzip update failed',
+                'update_doing': 'Updating',
+                'update_title': "Update",
+                'update_success': "Update successful",
+                'update_fail': "Update failed",
+                'update_auto_update': "Update Now",
+                'update_is_new': "Aredy is the newest",
+                'update_version_newest': "Newest Version",
+                'update_version_local': "Current Version",
+                'update_ignore': "Ignore",
+                'update_readmore': "Read more",
+                'update_whats_new': "What's New",
+                'update_info': "1.muti user<br/>2.drag upload<br/>3.zip/unzip<br/>4.all path support<br/>5.New editor<br/>"
+            },
+            'zh_CN': {
+                'update_downloading': '下载中...',
+                'update_download_fail': '下载失败',
+                'update_unzip_fail': '解压覆盖失败',
+                'update_doing': '更新中...',
+                'update_title': "更新提示",
+                'update_success': "更新成功！",
+                'update_fail': "更新失败！",
+                'update_auto_update': "自动更新",
+                'update_is_new': "已经是最新版",
+                'update_version_newest': "最新版本",
+                'update_version_local': "当前版本",
+                'update_ignore': "暂时忽略",
+                'update_readmore': "查看更多",
+                'update_whats_new': "更新说明",
+                'update_info': "1.文件夹拖拽完美实现<br/>2.文件夹拖拽上传<br/>3.解压缩优化<br/>4.非服务器路径预览&下载支持<br/>5.树目录中文问题修复<br/>"
+            }
+        };
+        for (var key in L[type]) {
+            LNG[key] = L[type][key];
+        }
+    };
 
-		if (display) show_dialog();
-		if (has_new && //第一次
-			(Cookie.get(key_timeout) == undefined ||
-			 Cookie.get(key_timeout) <= time())) {
-			show_dialog();
-		}
-	};
-	var user_state = function(){
-		//登陆状态,每个月统计一次
-		if (Cookie.get(kod_user_online) != undefined) return;
-		var url = status_href+'?is_root='+G.is_root
-				  +'&host='+urlEncode(G.app_host)+'&version='+local_version;
-		require.async(url,function(){
-			Cookie.set(kod_user_online,'check-at-'+time(),24*5);
-		});
-	};
-	//入口函数,没有参数则默认检查版本
-	var todo = function(action) {
-		switch(action){
-			case undefined:
-				//自动检查版本,有更新才跳出对话框
-				if (G.is_root == 1) {
-					check_version(false);
-				}
-				user_state();
-				break;
-			case 'check':check_version(true);break;//检查版本,显示版本信息
-			default:break;
-		}
-	};
-	return {
-		todo:todo
-	};
+    //自动检查版本，自动更新
+    var check_version = function (display) {
+        var ver_new = parseFloat(server_version),
+            ver_local = parseFloat(local_version),
+            key_timeout = 'kod_update_ignore_timeout',
+            has_new = false;
+        if (ver_new > ver_local) has_new = true;
+        //对话框显示
+        var show_dialog = function () {
+            var id = 'check_version_dialog';
+            if ($('.' + id).length == 0) {
+                init_language();
+                var render = template.compile(dialog_tpl_html);
+                var html = dialog_tpl_css + render({
+                    loading_img: G.static_path + '/images/loading_simple.gif',
+                    LNG: LNG, has_new: has_new,
+                    readmore_href: readmore_href,
+                    ver_new: server_version, ver_local: local_version});
+                art.dialog.through({
+                    id: id,
+                    simple: true,
+                    top: '50%',
+                    resize: false,
+                    width: 330,
+                    title: LNG.update_title,
+                    padding: '0',
+                    fixed: true,
+                    content: html
+                });
+                $('.' + id)
+                    .hide()
+                    .fadeIn(600)
+                    .find('.update_click').unbind('click').bind('click', function () {
+                        update();
+                        Cookie.del(key_timeout);
+                    });
+                $('.' + id).find('.ignore').die('click').live('click', function () {
+                    //设置cookie一年有效,5天后检查;
+                    Cookie.set(key_timeout, time() + 3600 * 24 * 5, 24 * 365);
+                    art.dialog.list[id].close();
+                });
+            }
+        };
+
+        if (display) show_dialog();
+        if (has_new && //第一次
+            (Cookie.get(key_timeout) == undefined ||
+                Cookie.get(key_timeout) <= time())) {
+            show_dialog();
+        }
+    };
+    var user_state = function () {
+        //登陆状态,每个月统计一次
+        if (Cookie.get(kod_user_online) != undefined) return;
+        var url = status_href + '?is_root=' + G.is_root
+            + '&host=' + urlEncode(G.app_host) + '&version=' + local_version;
+        require.async(url, function () {
+            Cookie.set(kod_user_online, 'check-at-' + time(), 24 * 5);
+        });
+    };
+    //入口函数,没有参数则默认检查版本
+    var todo = function (action) {
+        switch (action) {
+            case undefined:
+                //自动检查版本,有更新才跳出对话框
+                if (G.is_root == 1) {
+                    check_version(false);
+                }
+                user_state();
+                break;
+            case 'check':
+                check_version(true);
+                break;//检查版本,显示版本信息
+            default:
+                break;
+        }
+    };
+    return {
+        todo: todo
+    };
 });
