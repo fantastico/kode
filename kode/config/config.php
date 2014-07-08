@@ -39,8 +39,13 @@
     define('STATIC_LESS', 'css');
 //define('STATIC_PATH','http://static.kalcaddle.com/static/');
 
+    define('REPO_PATH', '/home/public/users/lijiyang/appstore/repo/repo/'); //Repo路径
+    define('ICON_PATH', "${REPO_PATH}icons/"); //APP图标路径
+
+
     include(FUNCTION_DIR . 'web.function.php');
     include(FUNCTION_DIR . 'file.function.php');
+    include(FUNCTION_DIR . 'database.function.php');
     include(CLASS_DIR . 'fileCache.class.php');
     include(CONTROLLER_DIR . 'util.php');
 

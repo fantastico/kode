@@ -628,6 +628,12 @@
         //获取文件列表&哦exe文件json解析
         private function path($dir, $list_file = true, $check_children = false)
         {
+            //apk模式下，只显示apk文件
+            if(isset($this->in['apkMode'])){
+                $list = app_list();
+                return $list;
+            }
+
             $list = path_list($dir, $list_file, $check_children);
             foreach ($list['filelist'] as $key => &$val) {
                 if ($val['ext'] == 'oexe') {
@@ -635,10 +641,6 @@
                     $json = json_decode(file_get_contents($path), true);
                     if (is_array($json)) $list['filelist'][$key] = array_merge($val, $json);
                 }
-            }
-            //apk模式下，只显示apk文件
-            if(isset($this->in['apkMode'])){
-                $a=1;
             }
             _DIR_OUT($list);
             return $list;

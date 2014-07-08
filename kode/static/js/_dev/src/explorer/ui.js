@@ -5,6 +5,82 @@ define(function (require, exports) {
     var MyPicasa = new Picasa();
     PicasaOpen = false;//全局变量，用于标记是否有幻灯片播放
 
+/*******************************************************************************************************************************************************************************************/
+    /* added by ken li */
+/*******************************************************************************************************************************************************************************************/
+    //APK列表数据填充
+    function showAPK(isFade){
+        var html = "";//填充的数据
+        var applist = G.json_data['applist'];
+
+        //app排序
+        //如果排序字段为size或ext时，文件夹排序方式按照文件名排序
+        /*
+         if (G.sort_field == 'size' || G.sort_field == 'ext') {
+         applist = applist.sort(_sortBy(G.sort_field, G.sort_order));
+         }
+         applist = applist.sort(_sortBy(G.sort_field, G.sort_order));
+         */
+
+        G.json_data['applist'] = applist; //同步到页面数据
+        var app_function = '_getAppBox';
+        var app_html = '';
+        /*    if (G.list_type == 'list') {
+         app_function = '_getFileBoxList';
+         }*/
+        for (var i in applist) {
+            app_html += this[app_function](applist[i]);
+        }
+
+        //显示html
+        if (app_html == '') app_html = '<div style="text-align:center;color:#aaa;">' + LNG.path_null + '</div>'
+        app_html += "<div style='clear:both'></div>";
+        //填充到dom中-----------------------------------
+        if (isFade) {//动画显示,
+            $(Config.FileBoxSelector)
+                .hide()
+                .html(app_html)
+                .fadeIn(Config.AnimateTime);
+        } else {
+            $(Config.FileBoxSelector).html(app_html);
+        }
+        if (G.list_type == 'list') {//列表奇偶行css设置
+            $(Config.FileBoxSelector + " .file:nth-child(2n)").addClass('file2');
+        }
+        _ajaxLive();
+    }
+
+    //图标样式，文件模版填充
+    this._getAppBox = function (app) {
+        var html = "";
+        var filePath = core.path2url(Config.ICON_PATH + app['icon']);
+        var thumbPath = 'index.php?explorer/image&path=' + urlEncode(Config.ICON_PATH + app['icon']);
+        var app_name = getName(app);
+        var size = getSize(app);
+        html += "<div class='file fileBox menufile' data-name='" + app_name + "' title='"
+            + LNG.name + ':' + app_name + "&#10;" + LNG.size + ':' + size + "&#10;"
+            + LNG.modify_time + ':' + app['added'] + "'>";
+        html += "<div picasa='" + filePath + "' thumb='" + thumbPath + "' class='picasaImage picture ico' filetype='apk'"
+            + "><img data-original='" + thumbPath + "'/></div>";
+        html += "<div id='" + app_name + "' class='titleBox'><span class='title' title='" + LNG.double_click_rename + "'>" + app_name + "</span></div></div>";
+        return html;
+    }
+
+    function getName(app){
+        var names = app['name'];
+        return names['default'];
+    }
+
+    function getSize(app){
+        var pkg = app['package'];
+        return pkg['size'];
+    }
+/*******************************************************************************************************************************************************************************************/
+    /* end */
+/*******************************************************************************************************************************************************************************************/
+
+
+
     var _ajaxLive = function () {
         fileLight.init();
         ui.setStyle();
@@ -415,8 +491,15 @@ define(function (require, exports) {
         html += "</div>";
         return html;
     };
+
     //文件列表数据填充
     var _mainSetData = function (isFade) {
+        //apk模式
+        if(Config.ApkMode != undefined && Config.ApkMode){
+            showAPK(isFade);
+            return;
+        }
+
         var html = "";//填充的数据
         var folderlist = G.json_data['folderlist'];
         var filelist = G.json_data['filelist'];
@@ -529,19 +612,19 @@ define(function (require, exports) {
             case 'set_icon':
                 if (!$('#set_icon').hasClass('active')) {
                     _setListType('icon');
-                    Global.ApkMode = false;
+                    Config.ApkMode = false;
                 }
                 break;
             case 'set_list':
                 if (!$('#set_list').hasClass('active')) {
                     _setListType('list');
-                    Global.ApkMode = false;
+                    Config.ApkMode = false;
                 }
                 break;
             case 'set_apk':
                 if (!$('#set_apk').hasClass('active')) {
                     _setListType('apk');
-                    Global.ApkMode = false;
+                    Config.ApkMode = true;
                 }
                 break;
             default:
