@@ -1,0 +1,1 @@
+<?php exit;?>{"kod":{"name":"kod","path":"D:\/WWW\/www\/kod"},"config":{"name":"config","path":"D:\/WWW\/tools\/eXtplorer\/config"},"0.000":{"name":"0.000","path":"D:\/WWW\/0.000\/"}}
