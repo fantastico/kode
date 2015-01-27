@@ -353,5 +353,6 @@
         "button_del" => "delete",
         "button_save_edit" => "save",
         "button_save_submit" => "save and send",
-        "button_select_all" => "Select / unselect all"
+        "button_select_all" => "Select / unselect all",
+
     );

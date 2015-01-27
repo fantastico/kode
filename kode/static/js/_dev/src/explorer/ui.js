@@ -5,82 +5,6 @@ define(function (require, exports) {
     var MyPicasa = new Picasa();
     PicasaOpen = false;//全局变量，用于标记是否有幻灯片播放
 
-/*******************************************************************************************************************************************************************************************/
-    /* added by ken li */
-/*******************************************************************************************************************************************************************************************/
-    //APK列表数据填充
-    function showAPK(isFade){
-        var html = "";//填充的数据
-        var applist = G.json_data['applist'];
-
-        //app排序
-        //如果排序字段为size或ext时，文件夹排序方式按照文件名排序
-        /*
-         if (G.sort_field == 'size' || G.sort_field == 'ext') {
-         applist = applist.sort(_sortBy(G.sort_field, G.sort_order));
-         }
-         applist = applist.sort(_sortBy(G.sort_field, G.sort_order));
-         */
-
-        G.json_data['applist'] = applist; //同步到页面数据
-        var app_function = '_getAppBox';
-        var app_html = '';
-        /*    if (G.list_type == 'list') {
-         app_function = '_getFileBoxList';
-         }*/
-        for (var i in applist) {
-            app_html += this[app_function](applist[i]);
-        }
-
-        //显示html
-        if (app_html == '') app_html = '<div style="text-align:center;color:#aaa;">' + LNG.path_null + '</div>'
-        app_html += "<div style='clear:both'></div>";
-        //填充到dom中-----------------------------------
-        if (isFade) {//动画显示,
-            $(Config.FileBoxSelector)
-                .hide()
-                .html(app_html)
-                .fadeIn(Config.AnimateTime);
-        } else {
-            $(Config.FileBoxSelector).html(app_html);
-        }
-        if (G.list_type == 'list') {//列表奇偶行css设置
-            $(Config.FileBoxSelector + " .file:nth-child(2n)").addClass('file2');
-        }
-        _ajaxLive();
-    }
-
-    //图标样式，文件模版填充
-    this._getAppBox = function (app) {
-        var html = "";
-        var filePath = core.path2url(Config.ICON_PATH + app['icon']);
-        var thumbPath = 'index.php?explorer/image&path=' + urlEncode(Config.ICON_PATH + app['icon']);
-        var app_name = getName(app);
-        var size = getSize(app);
-        html += "<div class='file fileBox menufile' data-name='" + app_name + "' title='"
-            + LNG.name + ':' + app_name + "&#10;" + LNG.size + ':' + size + "&#10;"
-            + LNG.modify_time + ':' + app['added'] + "'>";
-        html += "<div picasa='" + filePath + "' thumb='" + thumbPath + "' class='picasaImage picture ico' filetype='apk'"
-            + "><img data-original='" + thumbPath + "'/></div>";
-        html += "<div id='" + app_name + "' class='titleBox'><span class='title' title='" + LNG.double_click_rename + "'>" + app_name + "</span></div></div>";
-        return html;
-    }
-
-    function getName(app){
-        var names = app['name'];
-        return names['default'];
-    }
-
-    function getSize(app){
-        var pkg = app['package'];
-        return pkg['size'];
-    }
-/*******************************************************************************************************************************************************************************************/
-    /* end */
-/*******************************************************************************************************************************************************************************************/
-
-
-
     var _ajaxLive = function () {
         fileLight.init();
         ui.setStyle();
@@ -494,12 +418,6 @@ define(function (require, exports) {
 
     //文件列表数据填充
     var _mainSetData = function (isFade) {
-        //apk模式
-        if(Config.ApkMode != undefined && Config.ApkMode){
-            showAPK(isFade);
-            return;
-        }
-
         var html = "";//填充的数据
         var folderlist = G.json_data['folderlist'];
         var filelist = G.json_data['filelist'];
@@ -558,12 +476,8 @@ define(function (require, exports) {
             _mainSetData(is_animate);
             ui.path.setSelectByFilename(select_arr);//不刷新数据的话，保持上次选中
         } else {//获取服务器数据
-            var apkMode = '';
-            if (Config.ApkMode != undefined && Config.ApkMode) {
-                apkMode = '&apkMode';
-            }
             $.ajax({
-                url: 'index.php?explorer/pathList' + apkMode + '&path=' + urlEncode(G.this_path),
+                url: 'index.php?explorer/pathList&path=' + urlEncode(G.this_path),
                 dataType: 'json',
                 beforeSend: function () {
                     $('.tools-left .msg').stop(true, true).fadeIn(100);
@@ -577,7 +491,11 @@ define(function (require, exports) {
                     }
                     G.json_data = data.data;
                     Global.historyStatus = G.json_data['history_status'];
-                    _mainSetData(is_animate);
+                    if(data.data.type){
+                        _mainSetAppData(is_animate);
+                    }else{
+                        _mainSetData(is_animate);
+                    }
                     ui.header.updateHistoryStatus();
                     ui.header.addressSet();//header地址栏更新
 
@@ -612,25 +530,153 @@ define(function (require, exports) {
             case 'set_icon':
                 if (!$('#set_icon').hasClass('active')) {
                     _setListType('icon');
-                    Config.ApkMode = false;
                 }
                 break;
             case 'set_list':
                 if (!$('#set_list').hasClass('active')) {
                     _setListType('list');
-                    Config.ApkMode = false;
                 }
                 break;
             case 'set_apk':
                 if (!$('#set_apk').hasClass('active')) {
                     _setListType('apk');
-                    Config.ApkMode = true;
                 }
                 break;
             default:
                 break;
         }
     };
+
+    /*****************************************************************************************************************
+     *  added by ken li START
+     **************************************************************************************************************/
+    //文件列表数据填充
+    var _mainSetAppData = function (isFade) {
+        var html = "";//填充的数据
+        if(G.json_data['type'] == 'repo'){
+            var repolist = G.json_data['repolist'];
+            repolist = repolist.sort(_sortBy(G.sort_field, G.sort_order));
+            G.json_data['repolist'] = repolist;//同步到页面数据
+            var repo_function = '_getRepoBox', repo_html = '';
+            if (G.list_type == 'list') {
+                repo_function = '_getRepoBoxList';
+            }
+            for (var i in repolist) {
+                repo_html += this[repo_function](repolist[i]);
+            }
+            //end排序方式重组json数据------
+            html = repo_html;
+            if (html == '') html = '<div style="text-align:center;color:#aaa;">' + LNG.path_null + '</div>'
+            html += "<div style='clear:both'></div>";
+        }
+
+        if(G.json_data['type'] == 'app'){
+            var applist = G.json_data['applist'];
+            applist = applist.sort(_sortBy(G.sort_field, G.sort_order));
+            G.json_data['applist'] = applist;//同步到页面数据
+            var app_function = '_getAppBox', app_html = '';
+            if (G.list_type == 'list') {
+                app_function = '_getAppBoxList';
+            }
+            for (var i in applist) {
+                app_html += this[app_function](applist[i]);
+            }
+            //end排序方式重组json数据------
+            html = app_html;
+            if (html == '') html = '<div style="text-align:center;color:#aaa;">' + LNG.path_null + '</div>'
+            html += "<div style='clear:both'></div>";
+        }
+
+        //填充到dom中-----------------------------------
+        if (isFade) {//动画显示,
+            $(Config.FileBoxSelector)
+                .hide()
+                .html(html)
+                .fadeIn(Config.AnimateTime);
+        } else {
+            $(Config.FileBoxSelector).html(html);
+        }
+        if (G.list_type == 'list') {//列表奇偶行css设置
+            $(Config.FileBoxSelector + " .file:nth-child(2n)").addClass('file2');
+        }
+        _ajaxLive();
+    };
+
+    //图标样式，REPO模版填充
+    this._getRepoBox = function (list) {
+        var html = "";
+        html += "<div class='file fileBox menufile' data-name='" + list['_id'] + "' title='"
+            + LNG.name + ':' + list['_id'] + "&#10;" + LNG.size + ':' + list.size_friendly + "&#10;"
+            + LNG.modify_time + ':' + list.mtime + "'>";
+
+        if(list.icon){
+            html += "<div picasa='" + list.icon + "' thumb='" + list.icon + "' class='picasaImage picture ico' filetype='"
+                + list['ext'] + "'><img data-original='" + list.icon + "'/></div>";
+        }else{
+            html += "<div class='folder ico' filetype='folder'></div>";
+        }
+        html += "<div id='" + list['_id'] + "' class='titleBox'><span class='title' title='" + LNG.double_click_rename
+            + "'>" + list['_id'] + "</span></div></div>";
+        return html;
+    }
+
+    //列表样式，APP模版填充
+    this._getRepoBoxList = function (list) {
+        var html = "";
+        var filePath = core.path2url(G.this_path + list['name']);
+        var thumbPath = 'index.php?explorer/image&path=' + urlEncode(G.this_path + list['name']);
+        html += "<div picasa='" + filePath + "' thumb='" + thumbPath + "' class='picasaImage file fileBox menufile' data-name='"
+            + list.name + "' title='" + LNG.name + ':' + list.name + "&#10;" + LNG.size + ':' + list.size_friendly + "&#10;"
+            + LNG.modify_time + ':' + list.mtime + "'>";
+
+        html += "	<div class='" + list['ext'] + " ico' filetype='" + list['ext'] + "'></div>";
+        html += "	<div id='" + list['name'] + "' class='titleBox'><span class='title' title='" + LNG.double_click_rename + "'>" + list['name'] + "</span></div>";
+        html += "	<div class='filetype'>" + list['ext'] + "  " + LNG.file + "</div>";
+        html += "	<div class='filesize'>" + list['size_friendly'] + "</div>";
+        html += "	<div class='filetime'>" + list['mtime'] + "</div>";
+        html += "	<div style='clear:both'></div>";
+        html += "</div>";
+        return html;
+    };
+
+    //图标样式，APP模版填充
+    this._getAppBox = function (list) {
+        var html = "";
+        //如果是图片，则显示缩略图
+        var filePath = core.path2url(G.this_path + list['name']);
+        var thumbPath = 'index.php?explorer/image&path=' + urlEncode(G.this_path + 'icons' + list['icon']);
+        html += "<div class='file fileBox menufile' data-name='" + list.name + "' title='"
+            + LNG.name + ':' + list.name + "&#10;" + LNG.size + ':' + list.size_friendly + "&#10;"
+            + LNG.modify_time + ':' + list.mtime + "'>";
+        html += "<div picasa='" + filePath + "' thumb='" + thumbPath + "' class='picasaImage picture ico' filetype='"
+            + list['ext'] + "'><img data-original='" + thumbPath + "'/></div>";
+        html += "<div id='" + list['name'] + "' class='titleBox'><span class='title' title='" + LNG.double_click_rename
+            + "'>" + list['name'] + "</span></div></div>";
+        return html;
+    }
+
+    //列表样式，APP模版填充
+    this._getAppBoxList = function (list) {
+        var html = "";
+        var filePath = core.path2url(G.this_path + list['name']);
+        var thumbPath = 'index.php?explorer/image&path=' + urlEncode(G.this_path + list['name']);
+        html += "<div picasa='" + filePath + "' thumb='" + thumbPath + "' class='picasaImage file fileBox menufile' data-name='"
+            + list.name + "' title='" + LNG.name + ':' + list.name + "&#10;" + LNG.size + ':' + list.size_friendly + "&#10;"
+            + LNG.modify_time + ':' + list.mtime + "'>";
+
+        html += "	<div class='" + list['ext'] + " ico' filetype='" + list['ext'] + "'></div>";
+        html += "	<div id='" + list['name'] + "' class='titleBox'><span class='title' title='" + LNG.double_click_rename + "'>" + list['name'] + "</span></div>";
+        html += "	<div class='filetype'>" + list['ext'] + "  " + LNG.file + "</div>";
+        html += "	<div class='filesize'>" + list['size_friendly'] + "</div>";
+        html += "	<div class='filetime'>" + list['mtime'] + "</div>";
+        html += "	<div style='clear:both'></div>";
+        html += "</div>";
+        return html;
+    };
+    /*****************************************************************************************************************
+     *  added by ken li End
+     **************************************************************************************************************/
+
     return{
         f5: _f5,
         f5_callback: _f5_callback,

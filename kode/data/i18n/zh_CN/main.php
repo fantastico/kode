@@ -358,5 +358,10 @@
         "button_del" => "删除",
         "button_save_edit" => "保存修改",
         "button_save_submit" => "保存提交",
-        "button_select_all" => "全选/反选"
+        "button_select_all" => "全选/反选",
+
+        // tree menu
+        "apps" => "App应用",
+        "images" => "图片",
+        "repos" => "仓库"
     );

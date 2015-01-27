@@ -1,10 +1,4 @@
 <?php
-    /*
-    * @link http://www.kalcaddle.com/
-    * @author warlee | e-mail:kalcaddle@qq.com
-    * @copyright warlee 2014.(Shanghai)Co.,Ltd
-    * @license http://kalcaddle.com/tools/licenses/license.txt
-    */
 
     date_default_timezone_set('PRC');
     @ini_set('session.cache_expire', 600);
@@ -38,9 +32,6 @@
     define('STATIC_PATH', "./static/"); //静态文件目录
     define('STATIC_LESS', 'css');
 //define('STATIC_PATH','http://static.kalcaddle.com/static/');
-
-    define('REPO_PATH', '/home/public/users/lijiyang/appstore/repo/repo/'); //Repo路径
-    define('ICON_PATH', "${REPO_PATH}icons/"); //APP图标路径
 
 
     include(FUNCTION_DIR . 'web.function.php');

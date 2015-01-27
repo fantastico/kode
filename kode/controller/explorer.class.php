@@ -190,9 +190,9 @@
                 );
             }
 
-            $list_root = $this->path(_DIR(MYHOME), $check_file, true);
-            $list_share = $this->path(_DIR(PUBLIC_PATH), $check_file, true);
             if ($check_file) { //编辑器
+                $list_root = $this->path(_DIR(MYHOME), $check_file, true);
+                $list_share = $this->path(_DIR(PUBLIC_PATH), $check_file, true);
                 $root = array_merge($list_root['folderlist'], $list_root['filelist']);
                 $share = array_merge($list_share['folderlist'], $list_share['filelist']);
                 $root_isparent = count($root) > 0 ? true : false;
@@ -207,17 +207,17 @@
                         'iconSkin' => "lib", 'open' => true, 'this_path' => PUBLIC_PATH, 'isParent' => $share_isparent)
                 );
             } else { //文件管理器
-                $root = $list_root['folderlist'];
-                $share = $list_share['folderlist'];
-                $root_isparent = count($root) > 0 ? true : false;
-                $share_isparent = count($share) > 0 ? true : false;
+                $list_apps = $this->path(_DIR(REPO_PATH), $check_file, true);
+                $list_repos = $this->path(_DIR(PUBLIC_PATH), $check_file, true);
+                $folder_apps = $list_apps['folderlist'];
+                $folder_repos = $list_repos['folderlist'];
                 $tree_data = array(
-                    array('name' => $this->L['fav'], 'ext' => '__fav__', 'iconSkin' => "fav",
-                        'open' => true, 'children' => $fav),
-                    array('name' => $this->L['root_path'], 'ext' => '__root__', 'children' => $root,
-                        'iconSkin' => "my", 'open' => true, 'this_path' => MYHOME, 'isParent' => $root_isparent),
-                    array('name' => $this->L['public_path'], 'ext' => '__root__', 'children' => $share,
-                        'iconSkin' => "lib", 'open' => true, 'this_path' => PUBLIC_PATH, 'isParent' => $share_isparent)
+                    array('name' => $this->L['apps'], 'ext' => '__root__', 'children' => $folder_apps,
+                        'iconSkin' => "my", 'open' => true, 'this_path' => REPO_PATH, 'isParent' => false),
+                    array('name' => $this->L['repos'], 'ext' => '__root__', 'children' => $folder_repos,
+                        'iconSkin' => "lib", 'open' => true, 'this_path' => PUBLIC_PATH, 'isParent' => false),
+                    array('name' => $this->L['images'], 'ext' => '__fav__', 'iconSkin' => "fav",
+                        'open' => false, 'children' => $fav)
                 );
             }
             show_json($tree_data);
@@ -628,9 +628,11 @@
         //获取文件列表&哦exe文件json解析
         private function path($dir, $list_file = true, $check_children = false)
         {
-            //apk模式下，只显示apk文件
-            if(isset($this->in['apkMode'])){
-                $list = app_list();
+            //只显示apk文件
+            if(REPO_PATH === rtrim($dir,'/')){
+          ///  if(true){
+                $instance = Database::getInstance();
+                $list = $instance->repo_list();
                 return $list;
             }
 

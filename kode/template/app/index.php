@@ -41,7 +41,7 @@
 		web_root 	: "<?php echo $GLOBALS['web_root'];?>",
 		web_host 	: "<?php echo HOST;?>",
 		static_path : "<?php echo STATIC_PATH;?>",
-        basic_path  : "<?php echo BASIC_PATH;?>",
+        basic_path  : "<?php echo BASIC_PATH;?>"
     };
 	seajs.config({
 		base: "<?php echo STATIC_PATH;?>js/",

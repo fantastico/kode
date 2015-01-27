@@ -15,11 +15,7 @@ define(function (require, exports, module) {
 
         pageApp: "explorer",
         treeAjaxURL: "index.php?explorer/treeList&app=explorer",//树目录请求
-        AnimateTime: 200,             // 动画时间设定
-
-        ApkMode: false,               // Apk模式
-        REPO_PATH: '/home/public/users/lijiyang/appstore/repo/repo/', //Repo路径
-        ICON_PATH: '/home/public/users/lijiyang/appstore/repo/repo/icons/' //APP图标路径
+        AnimateTime: 200             // 动画时间设定
     };
     Global = {
         fileListAll: '',             // 当前路径下文件对象集合,缓存起来便于全局使用
@@ -65,7 +61,7 @@ define(function (require, exports, module) {
         ui.init();
         ui.tree.init();
         TaskTap.init();
-        core.update();
+    //    core.update();
         core.upload_init();
         fileSelect.init();
         rightMenu.initExplorer();
