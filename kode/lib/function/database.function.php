@@ -33,15 +33,18 @@
             return self::$instance;
         }
 
-        public function app_list()
+        public function app_list($reponame)
         {
-            $cursor = $this->apps->find();
+            $repo = $this->repo->findOne(array('_id' => $reponame), array('apps' => 1));
+            $test = $repo['apps'];
+            $cursor = $this->apps->find(array('_id' => array('$in' => $repo['apps']) ));
             $app_list = array();
             foreach ($cursor as $app) {
+                $app['icon'] = ICON_PATH.'/'.$app['icon'];
                 $app_list[] = $app;
             }
-            $apps = array('applist' => $app_list);
-            return $apps;
+            $app_list = array('type' => 'app', 'applist' => $app_list);
+            return $app_list;
         }
 
         public function repo_list()
@@ -54,6 +57,26 @@
             }
             $repo_list = array('type' => 'repo', 'repolist' => $repo_list);
             return $repo_list;
+        }
+
+        public function doesRepoExist($reponame)
+        {
+            $repo = $this->repo->findOne(array('_id' => $reponame), array('_id' => 1));
+            if(count($repo) == 0){
+                return false;
+            }
+            return true;
+        }
+
+        public function deleteApp($appId, $reponame)
+        {
+            $this->repo->update(array('_id' => $reponame), array('$pull' => array('apps' => $appId)));
+            $repo = $this->repo->findOne(array('apps' => array('$elemMatch' => array('$eq' => $appId))), array('_id' => 1));
+            if(count($repo) == 0){
+                $app = $this->apps->findOne(array('_id' => $appId));
+                return $app;
+            }
+            return null;
         }
     }
 

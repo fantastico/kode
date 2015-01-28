@@ -134,7 +134,8 @@ define(function (require, exports) {
             if (Global.fileListSelect.length == 0) return list;
             Global.fileListSelect.each(function (index) {
                 var path = G.this_path + fileLight.name($(this));
-                var type = fileLight.type($(this)) == 'folder' ? 'folder' : 'file';
+                var type = fileLight.type($(this));
+                // var type = fileLight.type($(this)) == 'folder' ? 'folder' : 'file';
                 list.push({path: path, type: type});
             });
             return list;

@@ -473,7 +473,11 @@ define(function (require, exports) {
         _jsonSortTitle();//更新列表排序方式dom
         if (!is_data_server) {//采用当前数据刷新,用于显示模式更换
             var select_arr = fileLight.getAllName();//获取选中的文件名
-            _mainSetData(is_animate);
+            if(G.json_data.type){
+                _mainSetAppData(is_animate);
+            }else{
+                _mainSetData(is_animate);
+            }
             ui.path.setSelectByFilename(select_arr);//不刷新数据的话，保持上次选中
         } else {//获取服务器数据
             $.ajax({
@@ -610,10 +614,10 @@ define(function (require, exports) {
             + LNG.modify_time + ':' + list.mtime + "'>";
 
         if(list.icon){
-            html += "<div picasa='" + list.icon + "' thumb='" + list.icon + "' class='picasaImage picture ico' filetype='"
-                + list['ext'] + "'><img data-original='" + list.icon + "'/></div>";
+            html += "<div picasa='" + list.icon + "' thumb='" + list.icon + "' class='picasaImage picture ico' filetype='repo'"
+                + list['ext'] + "><img data-original='" + list.icon + "'/></div>";
         }else{
-            html += "<div class='folder ico' filetype='folder'></div>";
+            html += "<div class='folder ico' filetype='repo'></div>";
         }
         html += "<div id='" + list['_id'] + "' class='titleBox'><span class='title' title='" + LNG.double_click_rename
             + "'>" + list['_id'] + "</span></div></div>";
@@ -642,14 +646,11 @@ define(function (require, exports) {
     //图标样式，APP模版填充
     this._getAppBox = function (list) {
         var html = "";
-        //如果是图片，则显示缩略图
-        var filePath = core.path2url(G.this_path + list['name']);
-        var thumbPath = 'index.php?explorer/image&path=' + urlEncode(G.this_path + 'icons' + list['icon']);
-        html += "<div class='file fileBox menufile' data-name='" + list.name + "' title='"
-            + LNG.name + ':' + list.name + "&#10;" + LNG.size + ':' + list.size_friendly + "&#10;"
+        html += "<div class='file fileBox menufile' data-name='" + list['name'] + "' title='"
+            + LNG.name + ':' + list['name'] + "&#10;" + LNG.size + ':' + list.size_friendly + "&#10;"
             + LNG.modify_time + ':' + list.mtime + "'>";
-        html += "<div picasa='" + filePath + "' thumb='" + thumbPath + "' class='picasaImage picture ico' filetype='"
-            + list['ext'] + "'><img data-original='" + thumbPath + "'/></div>";
+        html += "<div picasa='" + list['icon'] + "' thumb='" + list['icon'] + "' class='picasaImage picture ico' filetype='app'"
+                + " index='" + list['_id'] + "' " + list['ext'] + "><img data-original='" + list['icon'] + "'/></div>";
         html += "<div id='" + list['name'] + "' class='titleBox'><span class='title' title='" + LNG.double_click_rename
             + "'>" + list['name'] + "</span></div></div>";
         return html;

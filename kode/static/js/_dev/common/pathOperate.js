@@ -23,7 +23,11 @@ define(function (require, exports) {
     var _json = function (json) {
         var send = 'list=[';
         for (var i in json) {
-            send += '{"type":"' + json[i].type + '","path":"' + urlEncode2(json[i].path) + '"}';
+            if(json[i].id){
+                send += '{"type":"' + json[i].type + '","path":"' + urlEncode2(json[i].path) + '","id":"' + json[i].id + '"}';
+            }else{
+                send += '{"type":"' + json[i].type + '","path":"' + urlEncode2(json[i].path) + '"}';
+            }
             if (i != json.length - 1) send += ',';
         }
         ;
@@ -105,7 +109,13 @@ define(function (require, exports) {
         if (name.length > 20) {
             name = '...' + name.substr(-20);
         }
-        ;
+
+        param.forEach(function(elem){
+            if(elem['type'] == 'app'){
+                var selectObj = Global.fileListSelect;
+                elem['id'] = fileLight.getId(selectObj);
+            }
+        });
 
         $.dialog({
             id: 'dialog_path_remove',

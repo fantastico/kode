@@ -5,6 +5,14 @@ define(function (require, exports) {
         if (path == undefined) return;
         if (ext == undefined) ext = core.pathExt(path);//没有扩展名则自动解析
         ext = ext.toLowerCase();
+        if (ext == 'repo') {
+            if (Config.pageApp == 'explorer') {
+                ui.path.list(path + '/');//更新文件列表
+            } else {
+                core.explorer(path);
+            }
+            return;
+        }
         if (ext == 'folder') {
             if (Config.pageApp == 'explorer') {
                 ui.path.list(path + '/');//更新文件列表

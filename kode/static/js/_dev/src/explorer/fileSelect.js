@@ -511,6 +511,9 @@ define(function (require, exports) {
         type: function ($obj) {
             return $obj.find(".ico").attr("filetype");
         },
+        getId: function ($obj) {
+            return $obj.find(".ico").attr("index");
+        },
         //已有的情况下，选择则标记右键菜单标记
         setMenu: function ($obj) {
             $obj.removeClass("menufile menufolder menuApp")

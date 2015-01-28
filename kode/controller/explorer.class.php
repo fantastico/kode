@@ -268,10 +268,26 @@
             $error = 0;
             foreach ($list as $val) {
                 $path_full = _DIR($val['path']);
+                if($val['type'] === 'app' && strncmp(REPO_PATH, $path_full, REPO_PATH_LENGTH) == 0){
+                    // 删除APP
+                    $appId = $val['id'];
+                    $reponame = explode('/', trim(substr($path_full, REPO_PATH_LENGTH), '/'));
+                    $reponame = $reponame[0];
+                    $instance = Database::getInstance();
+                    $app = $instance->deleteApp($appId, $reponame);
+                    if($app != null){
+                        foreach($app['apks'] as $apk){
+                            $filename = REPO_PATH.'/repo/'.$apk['apkname'];
+                            if (del_file($filename)) $success++;
+                            else $error++;
+                        }
+                    }
+                }
                 if ($val['type'] == 'folder') {
                     if (del_dir($path_full)) $success++;
                     else $error++;
-                } else {
+                }
+                if ($val['type'] == 'file') {
                     if (del_file($path_full)) $success++;
                     else $error++;
                 }
@@ -611,6 +627,44 @@
          */
         public function fileUpload()
         {
+            //上传apk文件
+            if(strncmp(REPO_PATH, $this->path, REPO_PATH_LENGTH) == 0){
+                $reponame = trim(substr($this->path, REPO_PATH_LENGTH), '/');
+                $instance = Database::getInstance();
+                if( !$instance->doesRepoExist($reponame)){
+                    show_json($this->L['upload_repo_not_exist'], false);
+                }
+                $save_path = REPO_PATH.'/repo/';
+
+                //保存文件
+                if (!is_writeable($save_path)) show_json('path is not writeable', false);
+                if (strlen($this->in['fullPath']) > 1) { //folder drag upload
+                    $full_path = _DIR_CLEAR(rawurldecode($this->in['fullPath']));
+                    $full_path = get_path_father($full_path);
+                    $full_path = iconv_system($full_path);
+                    if (mk_dir($save_path . $full_path)) {
+                        $save_path = $save_path . $full_path;
+                    }
+                }
+
+                global $config, $L;
+                $file = $_FILES['file'];
+                if (!isset($file)) show_json($L['upload_error_null'], false);
+                $ext = substr($file['name'], strrpos($file['name'], '.')+1);
+                if($ext !== 'apk'){
+                    show_json($this->L['upload_not_apk'], false);
+                }
+
+                $file_name = iconv_system($file['name']);
+                $info = _upload($file['tmp_name'], $file['size'], $save_path . $file_name);
+
+                //froid update
+                $output = array();
+                $result = exec('fdroid sen5_update --apkFile=',$output);
+
+                show_json($info['data'], $info['code'], $info['path']);
+            }
+
             $save_path = $this->path;
             if (!is_writeable($save_path)) show_json('path is not writeable', false);
             if ($save_path == '') show_json($this->L['upload_error_big'], false);
@@ -629,11 +683,22 @@
         private function path($dir, $list_file = true, $check_children = false)
         {
             //只显示apk文件
-            if(REPO_PATH === rtrim($dir,'/')){
-          ///  if(true){
-                $instance = Database::getInstance();
-                $list = $instance->repo_list();
-                return $list;
+            if(strncmp(REPO_PATH,$dir,REPO_PATH_LENGTH) == 0){
+                $subpath = trim(substr($dir, REPO_PATH_LENGTH), '/');
+                $names = explode('/',$subpath);
+
+                if(count($names) == 1){
+                    $instance = Database::getInstance();
+                    if($names[0] === ""){
+                        //显示repo
+                        $list = $instance->repo_list();
+                        return $list;
+                    }
+
+                    //显示app
+                    $list = $instance->app_list($names[0]);
+                    return $list;
+                }
             }
 
             $list = path_list($dir, $list_file, $check_children);

@@ -363,5 +363,8 @@
         // tree menu
         "apps" => "App应用",
         "images" => "图片",
-        "repos" => "仓库"
+        "repos" => "仓库",
+
+        'upload_repo_not_exist' => '仓库不存在',
+        'upload_not_apk' => '这不是APK文件'
     );
