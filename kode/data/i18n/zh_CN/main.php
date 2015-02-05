@@ -31,8 +31,8 @@
         "dialog_close_all" => "关闭所有窗口",
 
         //网站描述
-        "title" => "KODExplorer-芒果云•资源管理器",
-        "title_name" => "芒果云•资源管理器",
+        "title" => "Sen5 App Store",
+        "title_name" => "App Store",
 
         //通用
         "open" => "打开",
@@ -366,5 +366,6 @@
         "repos" => "仓库",
 
         'upload_repo_not_exist' => '仓库不存在',
-        'upload_not_apk' => '这不是APK文件'
+        'upload_not_apk' => '这不是APK文件',
+        'app_not_found' => '找不到APP'
     );

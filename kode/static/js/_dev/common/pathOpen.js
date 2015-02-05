@@ -119,6 +119,23 @@ define(function (require, exports) {
     };
     var _openEditor = function (path) {
         if (!path) return;
+
+        var selectObj = Global.fileListSelect;
+        var appid = fileLight.getId(selectObj);
+        if(appid != undefined){
+            //显示App属性
+            var appId = core.pathThis(path);
+            if (window.top.frames["OpenopenEditor"] == undefined) {
+                var url = './index.php?editor/appInfo&appId=' + appId;//3次
+                var title = filename + ' ——' + LNG.edit;
+                _openWindow(url, core.ico('edit'), title.substring(title.length - 50), 'openEditor');
+            } else {
+                if ($.dialog.list['openEditor']) $.dialog.list['openEditor'].display(true);
+            }
+            return;
+
+        }
+
         var ext = core.pathExt(path);
         var filename = core.pathThis(path);
         if (inArray(core.filetype['bindary'], ext) ||

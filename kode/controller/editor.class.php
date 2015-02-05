@@ -27,14 +27,29 @@
             $this->display('edit.php');
         }
 
+        // APP信息编辑
+        public function appInfo()
+        {
+            $this->display('appInfo.php');
+        }
+
         // 获取文件数据
         public function fileGet()
         {
             $filename = _DIR($this->in['filename']);
-            if (!is_readable($filename)) show_json($this->L['no_permission'], false);
-            if (filesize($filename) >= 1024 * 1024 * 20) show_json($this->L['edit_too_big'], false);
+            $getQuery = explode('/',$filename);
+            if(count($getQuery) == 2 && $getQuery[0] === 'appInfo'){
+                $appId = $getQuery[1];
+                $instance = Database::getInstance();
+                $app = $instance->findOneApp($appId);
+                if ($app==null) show_json($this->L['app_not_found'].' 【ID:'+$appId+']', false);
+                $filecontents = json_encode($app);
+            }else{
+                if (!is_readable($filename)) show_json($this->L['no_permission'], false);
+                if (filesize($filename) >= 1024 * 1024 * 20) show_json($this->L['edit_too_big'], false);
+                $filecontents = file_get_contents($filename); //文件内容
+            }
 
-            $filecontents = file_get_contents($filename); //文件内容
             $charset = $this->_get_charset($filecontents);
             if ($charset != '' || $charset != 'utf-8') {
                 $filecontents = mb_convert_encoding($filecontents, 'utf-8', $charset);

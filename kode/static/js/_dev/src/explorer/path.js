@@ -542,7 +542,15 @@ define(function (require, exports) {
             });
         },
         info: function () {
-            pathOperate.info(_param(true));
+            var param = _param(true)
+            if(param.length == 1 && param[0].type== 'app'){
+                //APP属性
+                var selectObj = Global.fileListSelect;
+                var appId = fileLight.getId(selectObj);
+                pathOpen.openEditor(appId);
+                return;
+            }
+            pathOperate.info(param);
         },
         past: function () {
             fileLight.clear();

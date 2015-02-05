@@ -46,6 +46,7 @@
             foreach ($info_list as &$val) {
                 $val['path'] = _DIR($val['path']);
             }
+
             $data = path_info_muti($info_list, $this->L['time_type_info']);
             show_json($data);
         }

@@ -78,6 +78,11 @@
             }
             return null;
         }
+
+        public function findOneApp($appId)
+        {
+            return $this->apps->findOne(array('_id' => $appId));
+        }
     }
 
 
