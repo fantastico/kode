@@ -630,6 +630,7 @@
         {
             //上传apk文件
             if(strncmp(REPO_PATH, $this->path, REPO_PATH_LENGTH) == 0){
+
                 $reponame = trim(substr($this->path, REPO_PATH_LENGTH), '/');
                 $instance = Database::getInstance();
                 if( !$instance->doesRepoExist($reponame)){
@@ -661,10 +662,13 @@
 
                 //froid update
                 $output = array();
-                $result = exec('fdroid sen5_update --apkFile=',$output);
+                $file_name = substr($file_name, 0, -4);
+                $result = exec('fdroid 2>&1 sen5_update --apkFile='.$file_name, $output);
 
+                $info['data'] = $result;
                 show_json($info['data'], $info['code'], $info['path']);
             }
+
 
             $save_path = $this->path;
             if (!is_writeable($save_path)) show_json('path is not writeable', false);

@@ -12,22 +12,15 @@ define(function (require, exports, module) {
     preview = Toolbar.preview;
 
     Global = {
-        topbar_height: 40,           // 头部高度
+        topbar_height: 10,           // 头部高度
         isIE: !-[1, ]                // 是否ie
     };
 
     $(document).ready(function () {
         Tap.init();
-        Toolbar.init();
         if (G.frist_file != '') {
-            Editor.add(G.frist_file);
+            Editor.sen5_add(G.frist_file);
         }
-        window.onbeforeunload = function () {//关闭窗口编辑器保存提示
-            if (Editor.hasFileSave()) {
-                return LNG.if_save_file;
-            } else {
-                return undefined;
-            }
-        }
+
     });
 });

@@ -646,7 +646,7 @@ define(function (require, exports) {
     //图标样式，APP模版填充
     this._getAppBox = function (list) {
         var html = "";
-        html += "<div class='file fileBox menufile' data-name='" + list['name'] + "' title='"
+        html += "<div class='file fileBox menuSen5App' data-name='" + list['name'] + "' title='"
             + LNG.name + ':' + list['name'] + "&#10;" + LNG.size + ':' + list.size_friendly + "&#10;"
             + LNG.modify_time + ':' + list.mtime + "'>";
         html += "<div picasa='" + list['icon'] + "' thumb='" + list['icon'] + "' class='picasaImage picture ico' filetype='app'"

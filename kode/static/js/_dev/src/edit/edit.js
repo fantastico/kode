@@ -32,7 +32,7 @@ define(function (require, exports) {
                 name: 'newfile.txt',
                 charset: 'utf-8',
                 filename: '',
-                mode: Mode.get('txt'),
+                mode: Mode.get('txt')
             };
             initEditor(initData);
             initAce(initData);
@@ -46,7 +46,7 @@ define(function (require, exports) {
             uuid: uuid,
             name: core.pathThis(urlDecode(urlDecode(filename))),
             filename: filename,
-            mode: Mode.get(core.pathExt(urlDecode(filename))),
+            mode: Mode.get(core.pathExt(urlDecode(filename)))
         };
 
         initEditor(initData, true);
@@ -72,6 +72,55 @@ define(function (require, exports) {
                 initAce(initData);
 
                 $('.edit_body .this').removeClass('this');
+                $('.edit_body pre#' + uuid).addClass('this');
+                var current = editors[uuid];
+                current.kod.charset = data.charset;
+                current.navigateTo(0);
+                current.moveCursorTo(0, 0);
+            }
+        });
+    };
+
+    var sen5_initAdd = function (filename) {
+        var initData;
+        var uuid = 'id_' + UUID();
+        if (filename == undefined) {
+            return;
+        }
+        //打开文件
+        initData = {
+            charset: 'utf-8',
+            uuid: uuid,
+            name: core.pathThis(urlDecode(urlDecode(filename))),
+            filename: filename,
+            mode: Mode.get(core.pathExt(urlDecode(filename)))
+        };
+
+        initEditor(initData, true);
+        var load = art.dialog({title: false, content: LNG.getting, icon: 'warning'});
+        $.ajax({
+            dataType: 'json',
+            url: './index.php?editor/sen5_appGet&filename=' + filename,
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                load.close();
+                _removeData(initData.uuid);
+                core.ajaxError(XMLHttpRequest, textStatus, errorThrown);
+            },
+            success: function (result) {
+                load.close();
+                if (!result.code) {
+                    Tips.tips(result);
+                    _removeData(initData.uuid);
+                    return;
+                }
+                var data = result.data;
+                editors[uuid] = undefined;
+
+                var json =JSON.stringify(data.content, null, 4);
+                $('pre#' + uuid).text(json);
+                initAce(initData);
+                $('.edit_body .this').removeClass('this');
+
                 $('.edit_body pre#' + uuid).addClass('this');
                 var current = editors[uuid];
                 current.kod.charset = data.charset;
@@ -378,6 +427,14 @@ define(function (require, exports) {
                 select(id, true);
             } else {
                 initAdd(filename);
+            }
+        },
+        sen5_add: function (filename) {
+            var id = editorFind('filename', filename);
+            if (id != '') {//已存在
+                select(id, true);
+            } else {
+                sen5_initAdd(filename);
             }
         }
     };

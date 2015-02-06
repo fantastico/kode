@@ -10,12 +10,16 @@ define(function (require, exports) {
     var selectTreeSelectorFolder = ".menuTreeFolder";
     var selectTreeSelectorFile = ".menuTreeFile";
 
+    var appMenuSelector = ".menuSen5App";
+
     var _init_explorer = function () {
         $('<div id="rightMenu" class="hidden"></div>').appendTo('body');
         $('.context-menu-list').die("click").live("click", function (e) {
             stopPP(e);
             return false;//屏蔽html点击隐藏
         });
+
+        _bindSen5App();
 
         _bindBody_explorer();
         _bindFolder();
@@ -456,6 +460,12 @@ define(function (require, exports) {
             case 'info':
                 ui.path.info();
                 break;
+
+
+            //sen5
+            case 'sen5_show_info':
+                ui.path.sen5_show_info();
+                break;//显示sen5 app信息
             default:
                 break;
         }
@@ -743,6 +753,43 @@ define(function (require, exports) {
         }
     };
     //=============================tree end==========================
+
+    var _bindSen5App = function () {
+        $('<i class="' + appMenuSelector.substr(1) + '"></i>').appendTo('#rightMenu');
+        $.contextMenu({
+            zIndex: 9999,
+            selector: appMenuSelector,
+            className: folderMenuSelector,
+            callback: function (key, options) {
+                _menuPath(key);
+            },
+            items: {
+                "open": {name: LNG.open, className: "open", icon: "external-link", accesskey: "o"},
+                "open_text": {name: LNG.edit, className: "open_text", icon: "edit", accesskey: "e"},
+                "open_ie": {name: LNG.open_ie, className: "open_ie", icon: "globe", accesskey: "b"},
+                "newfileOther": {
+                    name: LNG.open_with,
+                    accesskey: 'h',
+                    items: {
+                        "open_text": {name: LNG.edit, className: "open_text", icon: "edit"},
+                        "open_kindedit": {name: LNG.others, className: "open_kindedit", icon: "edit"}
+                    }
+                },
+                "sep1": "--------",
+                "copy": {name: LNG.copy, className: "copy", icon: "copy", accesskey: "c"},
+                "cute": {name: LNG.cute, className: "cute", icon: "cut", accesskey: "k"},
+                "remove": {name: LNG.remove, className: "remove", icon: "trash", accesskey: "d"},
+                "rname": {name: LNG.rename, className: "rname", icon: "pencil", accesskey: "r"},
+                "sep2": "--------",
+                "zip": {name: LNG.zip, className: "zip", icon: "folder-close", accesskey: "z"},
+                "unzip": {name: LNG.unzip, className: "unzip", icon: "folder-open-alt", accesskey: "u"},
+                "down": {name: LNG.download, className: "down", icon: "download", accesskey: "x"},
+                "sep3": "--------",
+                "sen5_edit_info": {name: LNG.edit_info, className: "info", icon: "info", accesskey: "e"},
+                "sen5_show_info": {name: LNG.show_info, className: "info", icon: "info", accesskey: "i"}
+            }
+        });
+    };
 
     return{
         initDesktop: _init_desktop,

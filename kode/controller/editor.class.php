@@ -64,6 +64,22 @@
             show_json($data);
         }
 
+        public function sen5_appGet()
+        {
+            $filename = _DIR($this->in['filename']);
+            $getQuery = explode('/',$filename);
+            $appId = $getQuery[1];
+            $instance = Database::getInstance();
+            $app = $instance->findOneApp($appId);
+            if ($app==null) show_json($this->L['app_not_found'].' 【ID:'+$appId+']', false);
+
+            $data = array(
+                'charset' => 'utf-8',
+                'content' => $app
+            );
+            show_json($data);
+        }
+
         public function fileSave()
         {
             $filestr = rawurldecode($this->in['filestr']);

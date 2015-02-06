@@ -581,6 +581,7 @@ define(function (require, exports) {
 
         past: past,
         clipboard: clipboard,
-        fav: fav
+        fav: fav,
+
     }
 });

@@ -367,5 +367,9 @@
 
         'upload_repo_not_exist' => '仓库不存在',
         'upload_not_apk' => '这不是APK文件',
-        'app_not_found' => '找不到APP'
+        'app_not_found' => '找不到APP',
+
+        //right menu
+        'edit_info' => '修改信息',
+        'show_info' => '详细信息'
     );

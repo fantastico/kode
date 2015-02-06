@@ -14,15 +14,11 @@
 	<?php }else{//less_compare_online ?>
 	<link rel="stylesheet/less" type="text/css
     " href="<?php echo STATIC_PATH;?>style/skin/<?php echo $config['user']['theme'];?>app_code_edit.less"/>
-	<script src="<?php echo STATIC_PATH;?>js/lib/less-1.4.2.min.js"></script>	
-	<?php } ?>
+	<script src="<?php echo STATIC_PATH;?>js/lib/less-1.4.2.min.js"></script>
+    <?php } ?>
   </head>
   <body>
 	<div class="edit_main" style="height: 100%;" oncontextmenu="return core.contextmenu();">
-		<ul id="fontsize" class="dropdown-menu dropbox" role="menu" aria-labelledby="drop_fontsize">
-			<li>12px</li><li>13px</li><li class="this">14px</li><li>16px</li>
-			<li>18px</li><li>24px</li><li>28px</li><li>32px</li>
-		</ul>
 		<ul id="codetheme"  class="dropdown-menu dropbox" role="menu" aria-labelledby="drop_codetheme">
 		<?php
 $tpl = "<li class='{this} list' theme='{0}'>{0}</li>\n";
@@ -40,24 +36,7 @@ echo getTplList(',', ':', $config['setting_all']['codethemeall'], $tpl, $config[
 				<div class="tabs"></div>
 			</div>
 		</div>
-		<!-- 预览 -->
-		<div class="frame_right">
-			<div class="resize"></div>
-			<div class="preview_tool">
-				<input type="text" value="" />
-				<div class="box">
-					<a action="refresh" href="javascript:preview.refresh();" title="<?php echo $L['refresh'];?>
-    "><i class="font-icon icon-refresh"></i></a>
-					<a action="open_ie" href="" target="_blank" title="<?php echo $L['open_ie'];?>
-    "><i class="font-icon icon-globe"></i></a>
-					<a action="close_preview" href="javascript:preview.close();" title="<?php echo $L['close'];?>
-    "><i class="font-icon icon-remove"></i></a>
-				</div>
-			</div>
-			<div class="preview_frame">
-				<iframe src="" style="width:100%;height:100%;border:0;"></iframe>
-			</div>
-		</div>
+
 	</div>
 
 
@@ -84,7 +63,7 @@ echo getTplList(',', ':', $config['setting_all']['codethemeall'], $tpl, $config[
 		base: "<?php echo STATIC_PATH;?>js/",
 		preload: ["lib/jquery-1.8.0.min"]
 	});
-	seajs.use("<?php echo STATIC_JS;?>/src/edit/main");
+	seajs.use("<?php echo STATIC_JS;?>/src/edit/appInfo_main");
     </script>
 </body>
 </html>

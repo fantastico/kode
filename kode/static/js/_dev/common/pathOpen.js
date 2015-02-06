@@ -116,25 +116,10 @@ define(function (require, exports) {
             content: html,
             resize: true
         });
-    };
+    }
+
     var _openEditor = function (path) {
         if (!path) return;
-
-        var selectObj = Global.fileListSelect;
-        var appid = fileLight.getId(selectObj);
-        if(appid != undefined){
-            //显示App属性
-            var appId = core.pathThis(path);
-            if (window.top.frames["OpenopenEditor"] == undefined) {
-                var url = './index.php?editor/appInfo&appId=' + appId;//3次
-                var title = filename + ' ——' + LNG.edit;
-                _openWindow(url, core.ico('edit'), title.substring(title.length - 50), 'openEditor');
-            } else {
-                if ($.dialog.list['openEditor']) $.dialog.list['openEditor'].display(true);
-            }
-            return;
-
-        }
 
         var ext = core.pathExt(path);
         var filename = core.pathThis(path);
@@ -157,6 +142,41 @@ define(function (require, exports) {
             FrameCall.top('OpenopenEditor', 'Editor.add', '"' + urlEncode2(path) + '"');//2次
         }
     };
+
+    var _sen5_OpenEditor = function (path) {
+        if (!path) return;
+        var selectObj = Global.fileListSelect;
+        var appid = fileLight.getId(selectObj);
+        if(appid == undefined) return;
+
+        //显示App属性
+        if (window.top.frames["OpenopenEditor"] == undefined) {
+            var url = './index.php?editor/appInfo&appId=' + appid;//3次
+            var title = appid + ' ——' + LNG.edit;
+            _sen5_OpenWindow(url, core.ico('edit'), title.substring(title.length - 50), 'openEditor');
+        } else {
+            if ($.dialog.list['openEditor']) $.dialog.list['openEditor'].display(true);
+        }
+    };
+
+    var _sen5_OpenWindow = function (url, ico, title, name) {
+        if (!url) return;
+        if (name == undefined) name = 'openWindow' + UUID();
+
+        var html = "<iframe frameborder='0' name='Open" + name + "' src='" + url +
+            "' style='width:100%;height:100%;border:0;'></iframe>";
+        art.dialog.through({
+            id: name,
+            title: title,
+            ico: ico,
+            width: '70%',
+            height: '65%',
+            padding: 0,
+            content: html,
+            resize: true
+        });
+    }
+
     var _openOffice = function (url, ext) {
         var app_url, temp_url, frame, ico;
         switch (ext) {
@@ -207,6 +227,7 @@ define(function (require, exports) {
         open: _open,
         play: _player,
         openEditor: _openEditor,
+        sen5_OpenEditor: _sen5_OpenEditor,
         openIE: _openIE,
         download: _download
     }

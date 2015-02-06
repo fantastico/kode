@@ -543,14 +543,16 @@ define(function (require, exports) {
         },
         info: function () {
             var param = _param(true)
+            pathOperate.info(param);
+        },
+        sen5_show_info: function () {
+            var param = _param(true)
             if(param.length == 1 && param[0].type== 'app'){
                 //APP属性
                 var selectObj = Global.fileListSelect;
                 var appId = fileLight.getId(selectObj);
-                pathOpen.openEditor(appId);
-                return;
+                pathOpen.sen5_OpenEditor(appId);
             }
-            pathOperate.info(param);
         },
         past: function () {
             fileLight.clear();

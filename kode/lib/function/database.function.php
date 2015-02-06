@@ -70,10 +70,13 @@
 
         public function deleteApp($appId, $reponame)
         {
+            //删除repo里的app记录
             $this->repo->update(array('_id' => $reponame), array('$pull' => array('apps' => $appId)));
             $repo = $this->repo->findOne(array('apps' => array('$elemMatch' => array('$eq' => $appId))), array('_id' => 1));
+            //如果app没有在任何仓库中
             if(count($repo) == 0){
                 $app = $this->apps->findOne(array('_id' => $appId));
+                $this->apps->remove(array('_id' => $appId));
                 return $app;
             }
             return null;
