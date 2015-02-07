@@ -674,12 +674,33 @@ define(function (require, exports) {
         html += "</div>";
         return html;
     };
+
+    var _f5_search = function (data) {
+        $('.tools-left .msg').fadeOut(100);
+        if (!data.code) {
+            core.tips.tips(data);
+            $(Config.FileBoxSelector).html('');
+            return false;
+        }
+        G.json_data = data.data;
+        Global.historyStatus = G.json_data['history_status'];
+        if(data.data.type == 'app'){
+            _mainSetAppData(false);
+        }
+        ui.header.updateHistoryStatus();
+        ui.header.addressSet();//header地址栏更新
+
+        if (typeof(callback) == 'function') {
+            callback(data);
+        }
+    };
     /*****************************************************************************************************************
      *  added by ken li End
      **************************************************************************************************************/
 
     return{
         f5: _f5,
+        f5_search: _f5_search,
         f5_callback: _f5_callback,
         picasa: MyPicasa,
         setListSort: _setListSort,
@@ -822,7 +843,7 @@ define(function (require, exports) {
                 // 头部功能绑定
                 //enter搜索
                 $('.header-right input').keyEnter(function (e) {
-                    core.search($('.header-right input').val(), G.this_path);
+                    core.sen5_app_search($('.header-right input').val(), G.this_path);
                 });
                 $('.header-content a,.header-content button').click(function (e) {
                     var action = $(this).attr('id');
@@ -854,7 +875,7 @@ define(function (require, exports) {
                             core.setting();
                             break;
                         case 'search':
-                            core.search($('.header-right input').val(), G.this_path);
+                            core.sen5_app_search($('.header-right input').val(), G.this_path);
                             break;
                         default:
                             break;

@@ -142,6 +142,58 @@
             show_json($list);
         }
 
+        public function search_app()
+        {
+            if (!isset($this->in['search'])) show_json($this->L['please_inpute_search_words'], false);
+            $is_content = false;
+            $is_case = false;
+            $ext = '';
+            if (isset($this->in['is_content'])) $is_content = true;
+            if (isset($this->in['is_case'])) $is_case = true;
+            if (isset($this->in['ext'])) $ext = str_replace(' ', '', $this->in['ext']);
+
+            load_class('history');
+            session_start(); //re start
+            $session = isset($_SESSION['history']) ? $_SESSION['history'] : false;
+            $user_path = $this->in['path'];
+
+            if (is_array($session)) {
+                $hi = new history($session);
+                if ($user_path == "") {
+                    $user_path = $hi->getFirst();
+                } else {
+                    $hi->add($user_path);
+                    $_SESSION['history'] = $hi->getHistory();
+                }
+            } else {
+                $hi = new history(array(), 20);
+                if ($user_path == "") $user_path = '/';
+                $hi->add($user_path);
+                $_SESSION['history'] = $hi->getHistory();
+            }
+            $_SESSION['this_path'] = $user_path;
+            //搜索app
+            if(strncmp(REPO_PATH, $user_path, REPO_PATH_LENGTH) == 0){
+                $subpath = trim(substr($user_path, REPO_PATH_LENGTH), '/');
+                $names = explode('/',$subpath);
+
+                if(count($names) == 1){
+                    $instance = Database::getInstance();
+                    $reponame = $names[0];
+                    if($names[0] === ""){
+                        //显示repo
+                        $list = $instance->repo_list();
+                        return $list;
+                    }
+
+                    //显示app
+                    $list = $instance->search_app($this->in['search'], $reponame);
+                }
+            }
+            $list['history_status'] = array('back' => $hi->isback(), 'next' => $hi->isnext());
+            show_json($list);
+        }
+
         public function treeList()
         { //树结构
             $app = $this->in['app']; //是否获取文件 传folder|file

@@ -33,11 +33,27 @@
             return self::$instance;
         }
 
+        //查找仓库名为{$reponame}的所有app
         public function app_list($reponame)
         {
             $repo = $this->repo->findOne(array('_id' => $reponame), array('apps' => 1));
-            $test = $repo['apps'];
             $cursor = $this->apps->find(array('_id' => array('$in' => $repo['apps']) ));
+            $app_list = array();
+            foreach ($cursor as $app) {
+                $app['icon'] = ICON_PATH.'/'.$app['icon'];
+                $app_list[] = $app;
+            }
+            $app_list = array('type' => 'app', 'applist' => $app_list);
+            return $app_list;
+        }
+
+        //查找仓库名为{$reponame}的所有app
+        public function search_app($search, $reponame)
+        {
+            $repo = $this->repo->findOne(array('_id' => $reponame), array('apps' => 1));
+            $regex = new MongoRegex("/$search/");
+            $test = array(array('_id' => $regex), array('name' => $regex));
+            $cursor = $this->apps->find(array('$or' => $test));
             $app_list = array();
             foreach ($cursor as $app) {
                 $app['icon'] = ICON_PATH.'/'.$app['icon'];

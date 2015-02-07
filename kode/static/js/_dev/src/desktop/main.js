@@ -50,7 +50,7 @@ define(function (require, exports, module) {
     $(document).ready(function () {
         ui.init();
         TaskTap.init();
-        core.update();
+     //   core.update();
         core.upload_init();
         fileSelect.init();
         rightMenu.initDesktop();

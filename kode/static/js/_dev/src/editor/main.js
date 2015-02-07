@@ -25,7 +25,7 @@ define(function (require, exports, module) {
     $(document).ready(function () {
         ui.init();
         TaskTap.init();
-        core.update();
+     //   core.update();
         rightMenu.initEditor();
         $('.init_loading').fadeOut(450).addClass('pop_fadeout');
     });

@@ -357,6 +357,28 @@ define(function (require, exports) {
             __init();
         },
 
+        //搜索模块
+        sen5_app_search: function (search, path) {
+            var param = {search: search, path: path, is_content: undefined, is_case: undefined, ext: '', LNG: LNG};
+            $.ajax({
+                url: 'index.php?explorer/search_app',
+                dataType: 'json',
+                type: 'POST',
+                data: param,
+                beforeSend: function () {
+                    $('.tools-left .msg').stop(true, true).fadeIn(100);
+                },
+                success: function (data) {
+                    ui.f5_search(data);
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    $('.tools-left .msg').fadeOut(100);
+                    $(Config.FileBoxSelector).html('');
+                    core.ajaxError(XMLHttpRequest, textStatus, errorThrown);
+                }
+            });
+        },
+
         upload: function () {
             G.upload_path = G.this_path;
             var upload_path = urlDecode(G.upload_path);
