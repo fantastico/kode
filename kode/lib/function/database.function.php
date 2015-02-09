@@ -47,13 +47,13 @@
             return $app_list;
         }
 
-        //查找仓库名为{$reponame}的所有app
+        //按$search搜索仓库{$reponame}的所有应用
         public function search_app($search, $reponame)
         {
             $repo = $this->repo->findOne(array('_id' => $reponame), array('apps' => 1));
             $regex = new MongoRegex("/$search/");
-            $test = array(array('_id' => $regex), array('name' => $regex));
-            $cursor = $this->apps->find(array('$or' => $test));
+            $or = array(array('_id' => $regex), array('name' => $regex));
+            $cursor = $this->apps->find(array('$and' => array(array('$or' => $or), array('_id' => array('$in' => $repo['apps'])))));
             $app_list = array();
             foreach ($cursor as $app) {
                 $app['icon'] = ICON_PATH.'/'.$app['icon'];
@@ -68,7 +68,6 @@
             $cursor = $this->repo->find(array(),array("apps" => 0));
             $repo_list = array();
             foreach ($cursor as $repo) {
-                //$repo[] = array($repo)
                 $repo_list[] = $repo;
             }
             $repo_list = array('type' => 'repo', 'repolist' => $repo_list);
@@ -78,10 +77,13 @@
         public function doesRepoExist($reponame)
         {
             $repo = $this->repo->findOne(array('_id' => $reponame), array('_id' => 1));
-            if(count($repo) == 0){
-                return false;
-            }
-            return true;
+            return count($repo) > 0 ? true : false;
+        }
+
+        public function doesAppExist($appid)
+        {
+            $app = $this->apps->findOne(array('_id' => $appid), array('_id' => 1));
+            return count($app) > 0 ? true : false;
         }
 
         public function deleteApp($appId, $reponame)
@@ -101,6 +103,13 @@
         public function findOneApp($appId)
         {
             return $this->apps->findOne(array('_id' => $appId));
+        }
+
+        //向仓库$reponame粘贴应用$appid
+        public function pasteApp($appid, $reponame)
+        {
+            if(!$this->doesAppExist($appid)){ return; }
+            $this->repo->update(array('_id' => $reponame), array('$push' => array('apps' => $appid)));
         }
     }
 

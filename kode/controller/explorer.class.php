@@ -321,6 +321,10 @@
             $error = 0;
             foreach ($list as $val) {
                 $path_full = _DIR($val['path']);
+
+                /********************************************************************************************************************
+                 **  如果是在仓库目录下，进行app删除处理  START
+                 ********************************************************************************************************************/
                 if($val['type'] === 'app' && strncmp(REPO_PATH, $path_full, REPO_PATH_LENGTH) == 0){
                     // 删除APP
                     $appId = $val['id'];
@@ -335,7 +339,12 @@
                             else $error++;
                         }
                     }
+                    $success++;
                 }
+                /********************************************************************************************************************
+                 **  如果是在仓库目录下，进行app删除处理  END
+                 ********************************************************************************************************************/
+
                 if ($val['type'] == 'folder') {
                     if (del_dir($path_full)) $success++;
                     else $error++;
@@ -465,16 +474,64 @@
 
         public function pathPast()
         {
+            $data = array();
             if (!isset($_SESSION['path_copy'])) {
                 show_json($data, false, $this->L['clipboard_null']);
             }
 
             session_start(); //re start
             $error = '';
-            $data = array();
             $clipboard = json_decode($_SESSION['path_copy'], true);
             $copy_type = $_SESSION['path_copy_type'];
             $path_past = $this->path;
+
+            /********************************************************************************************************************
+             **  如果是在仓库目录下，进行app复制处理  START
+             ********************************************************************************************************************/
+            if(strncmp(REPO_PATH, $path_past, REPO_PATH_LENGTH) == 0){
+                $subpath = trim(substr($path_past, REPO_PATH_LENGTH), '/');
+                $names = explode('/',$subpath);
+                if(count($names) == 1){
+                    $instance = Database::getInstance();
+                    $reponame = $names[0];
+                    $list_num = count($clipboard);
+                    if ($list_num == 0) {
+                        show_json($data, false, $this->L['clipboard_null']);
+                    }
+                    for ($i = 0; $i < $list_num; $i++) {
+                        $path_copy = _DIR($clipboard[$i]['path']);
+                        $appid = get_path_this($path_copy);
+                        $appid_out = iconv_app($appid);
+
+                        if ($clipboard[$i]['type'] == 'app') {
+                            if ($path_copy == substr($path_past, 0, strlen($path_copy))) {
+                                $error .= "<li style='color:#f33;'>{$appid_out}'.$this->L['current_has_parent'].'</li>";
+                                continue;
+                            }
+                        }
+
+                        if ($copy_type == 'copy') {
+                            $instance->pasteApp($appid, $reponame);
+                        } else {
+                          //  rename($path_copy, $auto_path);
+                        }
+                        $data[] = $appid_out;
+                    }
+                    if ($copy_type == 'copy') {
+                        $info = $this->L['past_success'] . $error;
+                    } else {
+                        $_SESSION['path_copy'] = json_encode(array());
+                        $_SESSION['path_copy_type'] = '';
+                        $info = $this->L['cute_past_success'] . $error;
+                    }
+                    $state = ($error == '' ? true : false);
+                    show_json($data, $state, $info);
+                }
+            }
+            /********************************************************************************************************************
+             **  如果是在仓库目录下，进行app复制处理  END
+             ********************************************************************************************************************/
+
             if (!is_writable($path_past)) show_json($data, false, $this->L['no_permission_write']);
 
             $list_num = count($clipboard);
