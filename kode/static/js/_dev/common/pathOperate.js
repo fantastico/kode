@@ -559,7 +559,131 @@ define(function (require, exports) {
             }
         });
     };
+    /********************************************************************************************************************
+     **  Added by ken li,  START
+     ********************************************************************************************************************/
+    var sen5_app_info = function (appid) {
+        var data =  'data=' + urlEncode2(json_encode({'appid': appid}));
+        $.ajax({
+            url: 'index.php?explorer/sen5ShowAppInfo',
+            type: 'POST',
+            dataType: 'json',
+            data: 'appid='+appid,
+            beforeSend: function () {
+                core.tips.loading(LNG.getting);
+            },
+            error: core.ajaxError,
+            success: function (data) {
+                if (!data.code) {
+                    core.tips.close(data);
+                    return;
+                }
+                core.tips.close(LNG.get_success, true);
+                var tpl_file = require('../tpl/edit_app');
+                var title = LNG.app_info;
+                var render = template.compile(tpl_file.html);
+                var dialog_id = UUID();
+                data.data.LNG = LNG;//模板中的多语言注入
+                data.data.onsubmit = '_updateSubmit';
+                data.data.formid = 'appform';
+                data.data.action = 'index.php?explorer/sen5UpdateAppInfo';
+                var dialog = $.dialog({
+                    id: dialog_id,
+                    padding: 5,
+                    ico: core.ico('info'),
+                    fixed: true,//不跟随页面滚动
+                    title: title,
+                    content: render(data.data),
+                    width: '350px',
+                    cancel: true,
+                    ok: function(){
+                        $('#btn_submit').click();
+                        if($('#'+data.data.formid)[0].checkValidity()){
+                            $.ajax({
+                                url: 'index.php?explorer/sen5UpdateAppInfo',
+                                type: 'POST',
+                                data: $('#appform').serialize(),
+                                error: core.ajaxError,
+                                success: function (data) {
+                                    if (data.code) {
+                                        core.tips.close(data);
+                                    } else {
+                                        core.tips.close(data.info, false);
+                                    }
+                                    dialog.close();
+                                }
+                            });
+                        }
+                        return false;
+                    }
+                });
+             //   _updateSubmit(dialog_id, param);
+            }
+        });
+    };
 
+    var sen5_repo_info = function (appid) {
+        var data =  'data=' + urlEncode2(json_encode({'appid': appid}));
+        $.ajax({
+            url: 'index.php?explorer/sen5ShowAppInfo',
+            type: 'POST',
+            dataType: 'json',
+            data: 'appid='+appid,
+            beforeSend: function () {
+                core.tips.loading(LNG.getting);
+            },
+            error: core.ajaxError,
+            success: function (data) {
+                if (!data.code) {
+                    core.tips.close(data);
+                    return;
+                }
+                core.tips.close(LNG.get_success, true);
+                var tpl_file = require('../tpl/edit_app');
+                var title = LNG.app_info;
+                var render = template.compile(tpl_file.html);
+                var dialog_id = UUID();
+                data.data.LNG = LNG;//模板中的多语言注入
+                data.data.onsubmit = '_updateSubmit';
+                data.data.formid = 'appform';
+                data.data.action = 'index.php?explorer/sen5UpdateAppInfo';
+                var dialog = $.dialog({
+                    id: dialog_id,
+                    padding: 5,
+                    ico: core.ico('info'),
+                    fixed: true,//不跟随页面滚动
+                    title: title,
+                    content: render(data.data),
+                    width: '350px',
+                    cancel: true,
+                    ok: function(){
+                        $('#btn_submit').click();
+                        if($('#'+data.data.formid)[0].checkValidity()){
+                            $.ajax({
+                                url: 'index.php?explorer/sen5UpdateAppInfo',
+                                type: 'POST',
+                                data: $('#appform').serialize(),
+                                error: core.ajaxError,
+                                success: function (data) {
+                                    if (data.code) {
+                                        core.tips.close(data);
+                                    } else {
+                                        core.tips.close(data.info, false);
+                                    }
+                                    dialog.close();
+                                }
+                            });
+                        }
+                        return false;
+                    }
+                });
+                //   _updateSubmit(dialog_id, param);
+            }
+        });
+    };
+    /********************************************************************************************************************
+     **  Added by ken li,  END
+     ********************************************************************************************************************/
     return{
         appEdit: appEdit,
         appList: appList,
@@ -575,13 +699,15 @@ define(function (require, exports) {
         copy: copy,
         cute: cute,
         info: info,
+        sen5_app_info: sen5_app_info,
+        sen5_repo_info: sen5_repo_info,
         remove: remove,
         cuteDrag: cuteDrag,
         copyDrag: copyDrag,
 
         past: past,
         clipboard: clipboard,
-        fav: fav,
+        fav: fav
 
     }
 });

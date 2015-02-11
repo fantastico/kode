@@ -81,7 +81,7 @@ define(function (require, exports) {
         });
     };
 
-    var sen5_initAdd = function (filename) {
+    var sen5_initAdd = function (filename, isrepo) {
         var initData;
         var uuid = 'id_' + UUID();
         if (filename == undefined) {
@@ -97,10 +97,14 @@ define(function (require, exports) {
         };
 
         initEditor(initData, true);
+        var url = './index.php?editor/sen5_appGet&filename=' + filename;
+        if(isrepo){
+            url = './index.php?editor/sen5_repoGet&filename=' + filename;
+        }
         var load = art.dialog({title: false, content: LNG.getting, icon: 'warning'});
         $.ajax({
             dataType: 'json',
-            url: './index.php?editor/sen5_appGet&filename=' + filename,
+            url: url,
             error: function (XMLHttpRequest, textStatus, errorThrown) {
                 load.close();
                 _removeData(initData.uuid);
@@ -435,6 +439,14 @@ define(function (require, exports) {
                 select(id, true);
             } else {
                 sen5_initAdd(filename);
+            }
+        },
+        sen5_repo_add: function (filename) {
+            var id = editorFind('filename', filename);
+            if (id != '') {//已存在
+                select(id, true);
+            } else {
+                sen5_initAdd(filename, true);
             }
         }
     };

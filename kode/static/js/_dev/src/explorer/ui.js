@@ -553,7 +553,7 @@ define(function (require, exports) {
 
     /*****************************************************************************************************************
      *  added by ken li START
-     **************************************************************************************************************/
+     *****************************************************************************************************************/
     //文件列表数据填充
     var _mainSetAppData = function (isFade) {
         var html = "";//填充的数据
@@ -609,15 +609,15 @@ define(function (require, exports) {
     //图标样式，REPO模版填充
     this._getRepoBox = function (list) {
         var html = "";
-        html += "<div class='file fileBox menufile' data-name='" + list['_id'] + "' title='"
+        html += "<div class='file fileBox menuSen5Repo' data-name='" + list['_id'] + "' title='"
             + LNG.name + ':' + list['_id'] + "&#10;" + LNG.size + ':' + list.size_friendly + "&#10;"
             + LNG.modify_time + ':' + list.mtime + "'>";
 
         if(list.icon){
             html += "<div picasa='" + list.icon + "' thumb='" + list.icon + "' class='picasaImage picture ico' filetype='repo'"
-                + list['ext'] + "><img data-original='" + list.icon + "'/></div>";
+                + list['ext'] + "' index='" + list['_id'] + "'><img data-original='" + list.icon + "'/></div>";
         }else{
-            html += "<div class='folder ico' filetype='repo'></div>";
+            html += "<div class='folder ico' filetype='repo' index='" + list['_id'] + "'></div>";
         }
         html += "<div id='" + list['_id'] + "' class='titleBox'><span class='title' title='" + LNG.double_click_rename
             + "'>" + list['_id'] + "</span></div></div>";

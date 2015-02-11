@@ -77,13 +77,13 @@
         public function doesRepoExist($reponame)
         {
             $repo = $this->repo->findOne(array('_id' => $reponame), array('_id' => 1));
-            return count($repo) > 0 ? true : false;
+            return !empty($repo);
         }
 
         public function doesAppExist($appid)
         {
             $app = $this->apps->findOne(array('_id' => $appid), array('_id' => 1));
-            return count($app) > 0 ? true : false;
+            return !empty($app);
         }
 
         public function deleteApp($appId, $reponame)
@@ -92,7 +92,7 @@
             $this->repo->update(array('_id' => $reponame), array('$pull' => array('apps' => $appId)));
             $repo = $this->repo->findOne(array('apps' => array('$elemMatch' => array('$eq' => $appId))), array('_id' => 1));
             //如果app没有在任何仓库中
-            if(count($repo) == 0){
+            if(empty($repo)){
                 $app = $this->apps->findOne(array('_id' => $appId));
                 $this->apps->remove(array('_id' => $appId));
                 return $app;
@@ -105,11 +105,51 @@
             return $this->apps->findOne(array('_id' => $appId));
         }
 
+        public function findOneRepo($repo)
+        {
+            return $this->repo->findOne(array('_id' => $repo));
+        }
+
+
         //向仓库$reponame粘贴应用$appid
         public function pasteApp($appid, $reponame)
         {
             if(!$this->doesAppExist($appid)){ return; }
             $this->repo->update(array('_id' => $reponame), array('$push' => array('apps' => $appid)));
+        }
+
+        //跟新App信息
+        public function updateApp($appid, $name, $categories, $downloads, $score, $summary, $description)
+        {
+            if(!$this->doesAppExist($appid)){ return; }
+            $update = array();
+            if(!empty($name)){
+                $update['name'] = $name;
+            }
+            if(!empty($categories)){
+                $update['categories'] = $categories;
+            }
+            if(!empty($downloads)){
+                $downloads_int = intval($downloads);
+                if(is_int($downloads_int)){
+                    $update['downloads'] = $downloads_int;
+                }
+            }
+            if(!empty($score)){
+                $score_int = intval($score);
+                if(is_int($score_int)){
+                    $update['score'] = $score_int;
+                }
+            }
+            if(!empty($summary)){
+                $update['summary'] = $summary;
+            }
+            if(!empty($description)){
+                $update['description'] = $description;
+            }
+            if(!empty($update)){
+                $this->apps->update(array('_id' => $appid), array('$set' => $update));
+            }
         }
     }
 

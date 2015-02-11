@@ -145,12 +145,6 @@
         public function search_app()
         {
             if (!isset($this->in['search'])) show_json($this->L['please_inpute_search_words'], false);
-            $is_content = false;
-            $is_case = false;
-            $ext = '';
-            if (isset($this->in['is_content'])) $is_content = true;
-            if (isset($this->in['is_case'])) $is_case = true;
-            if (isset($this->in['ext'])) $ext = str_replace(' ', '', $this->in['ext']);
 
             load_class('history');
             session_start(); //re start
@@ -332,7 +326,7 @@
                     $reponame = $reponame[0];
                     $instance = Database::getInstance();
                     $app = $instance->deleteApp($appId, $reponame);
-                    if($app != null){
+                    if(isset($app)){
                         foreach($app['apks'] as $apk){
                             $filename = REPO_PATH.'/repo/'.$apk['apkname'];
                             if (del_file($filename)) $success++;
@@ -826,4 +820,34 @@
             _DIR_OUT($list);
             return $list;
         }
+
+        /********************************************************************************************************************
+         **  Added by ken li,  START
+         ********************************************************************************************************************/
+        public function sen5ShowAppInfo(){
+            $appid = $_POST['appid'];
+            global $L;
+            $instance = Database::getInstance();
+            $app = $instance->findOneApp($appid);
+            if($app == null){show_json($L['app_not_found'], false);}
+            $app['ICON_PATH'] = ICON_PATH;
+            show_json($app);
+        }
+        public function sen5UpdateAppInfo(){
+            $appid = $_POST['appid'];
+            $name = $_POST['name'];
+            $categories = $_POST['categories'];
+            $downloads = $_POST['downloads'];
+            $score = $_POST['score'];
+            $summary = $_POST['summary'];
+            $description = $_POST['description'];
+
+            $instance = Database::getInstance();
+            $instance->updateApp($appid, $name, $categories, $downloads, $score, $summary, $description);
+            global $L;
+            show_json($L['save_success']);
+        }
+        /********************************************************************************************************************
+         **  Added by ken li,  START
+         ********************************************************************************************************************/
     }

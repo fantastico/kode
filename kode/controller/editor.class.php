@@ -27,12 +27,6 @@
             $this->display('edit.php');
         }
 
-        // APP信息编辑
-        public function appInfo()
-        {
-            $this->display('appInfo.php');
-        }
-
         // 获取文件数据
         public function fileGet()
         {
@@ -64,6 +58,9 @@
             show_json($data);
         }
 
+        /*****************************************************************************************************************
+         *  added by ken li START
+         *****************************************************************************************************************/
         public function sen5_appGet()
         {
             $filename = _DIR($this->in['filename']);
@@ -79,6 +76,36 @@
             );
             show_json($data);
         }
+
+        public function sen5_repoGet()
+        {
+            $filename = _DIR($this->in['filename']);
+            $getQuery = explode('/',$filename);
+            $repoid = $getQuery[1];
+            $instance = Database::getInstance();
+            $repo= $instance->findOneRepo($repoid);
+            if ($repo==null) show_json($this->L['repo_not_found'].' 【ID:'+$repoid+']', false);
+
+            $data = array(
+                'charset' => 'utf-8',
+                'content' => $repo
+            );
+            show_json($data);
+        }
+
+        // APP信息编辑
+        public function appInfo()
+        {
+            $this->display('appInfo.php');
+        }
+
+        public function repoInfo()
+        {
+            $this->display('repoInfo.php');
+        }
+        /*****************************************************************************************************************
+         *  added by ken li END
+         *****************************************************************************************************************/
 
         public function fileSave()
         {

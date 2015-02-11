@@ -143,16 +143,26 @@ define(function (require, exports) {
         }
     };
 
-    var _sen5_OpenEditor = function (path) {
-        if (!path) return;
-        var selectObj = Global.fileListSelect;
-        var appid = fileLight.getId(selectObj);
-        if(appid == undefined) return;
+    var _sen5_OpenAppEditor = function (appid) {
+        if (!appid) return;
 
         //显示App属性
         if (window.top.frames["OpenopenEditor"] == undefined) {
             var url = './index.php?editor/appInfo&appId=' + appid;//3次
             var title = appid + ' ——' + LNG.edit;
+            _sen5_OpenWindow(url, core.ico('edit'), title.substring(title.length - 50), 'openEditor');
+        } else {
+            if ($.dialog.list['openEditor']) $.dialog.list['openEditor'].display(true);
+        }
+    };
+
+    var _sen5_OpenRepoEditor = function (repo) {
+        if (!repo) return;
+
+        //显示App属性
+        if (window.top.frames["OpenopenEditor"] == undefined) {
+            var url = './index.php?editor/repoInfo&repo=' + repo;//3次
+            var title = repo + ' ——' + LNG.edit;
             _sen5_OpenWindow(url, core.ico('edit'), title.substring(title.length - 50), 'openEditor');
         } else {
             if ($.dialog.list['openEditor']) $.dialog.list['openEditor'].display(true);
@@ -227,7 +237,8 @@ define(function (require, exports) {
         open: _open,
         play: _player,
         openEditor: _openEditor,
-        sen5_OpenEditor: _sen5_OpenEditor,
+        sen5_OpenAppEditor: _sen5_OpenAppEditor,
+        sen5_OpenRepoEditor: _sen5_OpenRepoEditor,
         openIE: _openIE,
         download: _download
     }

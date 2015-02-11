@@ -545,13 +545,40 @@ define(function (require, exports) {
             var param = _param(true)
             pathOperate.info(param);
         },
+        sen5_app_info: function () {
+            var param = _param(true)
+            if(param.length == 1 && param[0].type== 'app'){
+                //APP属性
+                var selectObj = Global.fileListSelect;
+                var appId = fileLight.getId(selectObj);
+                pathOperate.sen5_app_info(appId);
+            }
+        },
         sen5_show_info: function () {
             var param = _param(true)
             if(param.length == 1 && param[0].type== 'app'){
                 //APP属性
                 var selectObj = Global.fileListSelect;
                 var appId = fileLight.getId(selectObj);
-                pathOpen.sen5_OpenEditor(appId);
+                pathOpen.sen5_OpenAppEditor(appId);
+            }
+        },
+        sen5_repo_info: function () {
+            var param = _param(true)
+            if(param.length == 1 && param[0].type== 'repo'){
+                //APP属性
+                var selectObj = Global.fileListSelect;
+                var repo = fileLight.getId(selectObj);
+                pathOperate.sen5_repo_info(repo);
+            }
+        },
+        sen5_show_repoinfo: function () {
+            var param = _param(true)
+            if(param.length == 1 && param[0].type== 'repo'){
+                //APP属性
+                var selectObj = Global.fileListSelect;
+                var repo = fileLight.getId(selectObj);
+                pathOpen.sen5_OpenRepoEditor(repo);
             }
         },
         past: function () {

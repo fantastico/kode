@@ -245,7 +245,6 @@ define(function (require, exports) {
         },
         //搜索模块
         search: function (search, path) {
-            var result = {};
             var tpl = require('../tpl/search');
             var dialog;
             var param;
