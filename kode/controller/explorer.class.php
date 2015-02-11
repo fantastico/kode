@@ -335,6 +335,23 @@
                     }
                     $success++;
                 }
+                if($val['type'] === 'repo' && strncmp(REPO_PATH, $path_full, REPO_PATH_LENGTH) == 0){
+                    // 删除APP
+                    $reponame = explode('/', trim(substr($path_full, REPO_PATH_LENGTH), '/'));
+                    $repoId = $reponame[0];
+                    $instance = Database::getInstance();
+                    $apps = $instance->removeRepo($repoId);
+                    if(isset($apps)){
+                        foreach($apps as $app){
+                            foreach($app['apks'] as $apk){
+                                $filename = REPO_PATH.'/repo/'.$apk['apkname'];
+                                if (del_file($filename)) $success++;
+                                else $error++;
+                            }
+                        }
+                    }
+                    $success++;
+                }
                 /********************************************************************************************************************
                  **  如果是在仓库目录下，进行app删除处理  END
                  ********************************************************************************************************************/

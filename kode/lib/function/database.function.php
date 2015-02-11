@@ -188,6 +188,31 @@
             $repo['version'] = 0;
             $this->repo->insert($repo);
         }
+
+        //删除Repo
+        public function removeRepo($repoId)
+        {
+            $applist = $this->app_list($repoId);
+            $applist = $applist['applist'];
+            $count = count($applist);
+            $cursor = $this->repo->find();
+            $repo_list = array();
+            foreach ($cursor as $repo) {
+                $repo_list[] = $repo;
+            }
+            foreach($repo_list as $repo){
+                if(!isset($repo['apps'])){continue;}
+                foreach($repo['apps'] as $appid){
+                    for($i=0;$i<$count;$i++){
+                        if($applist[$i]['_id'] == $appid){
+                            unset($applist[$i]);
+                        }
+                    }
+                }
+            }
+            $this->repo->remove(array('_id' => $repoId));
+            return $applist;
+        }
     }
 
 

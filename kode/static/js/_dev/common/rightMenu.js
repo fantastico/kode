@@ -87,7 +87,7 @@ define(function (require, exports) {
             },
             items: {
                 "refresh": {name: LNG.refresh, className: "refresh", icon: "refresh", accesskey: "e"},
-                "upload": {name: LNG.upload, className: "upload", icon: "upload", accesskey: "u"},
+                //"upload": {name: LNG.upload, className: "upload", icon: "upload", accesskey: "u"},
                 "past": {name: LNG.past, className: "past", icon: "paste", accesskey: "p"},
                 "copy_see": {name: LNG.clipboard, className: "copy_see", icon: "eye", accesskey: "b"},
                 "sep1": "--------",
@@ -114,21 +114,6 @@ define(function (require, exports) {
                     }
                 },
                 "sep2": "--------",
-                "app_install": {name: LNG.app_store, className: "app_install", icon: "tasks", accesskey: "a"},
-                "app_create": {name: LNG.app_create, className: "app_create", icon: "puzzle-piece", accesskey: "k"},
-                "sep3": "--------",
-                "newfolder": {name: LNG.newfolder, className: "newfolder", icon: "folder-close-alt", accesskey: "n"},
-                "newfile": {name: LNG.newfile, className: "newfile", icon: "file-alt", accesskey: "j"},
-                "newfileOther": {
-                    name: LNG.newothers,
-                    items: {
-                        "newfile_html": {name: "html " + LNG.file},
-                        "newfile_php": {name: "php " + LNG.file},
-                        "newfile_js": {name: "js " + LNG.file},
-                        "newfile_css": {name: "css " + LNG.file}
-                    }
-                },
-                "sep3": "--------",
                 "info": {name: LNG.info, className: "info", icon: "info", accesskey: "i"}
             }
         });
@@ -801,6 +786,8 @@ define(function (require, exports) {
             },
             items: {
                 "open": {name: LNG.open, className: "open", icon: "external-link", accesskey: "o"},
+                "sep2": "--------",
+                "remove": {name: LNG.remove, className: "remove", icon: "trash", accesskey: "d"},
                 "sep1": "--------",
                 "sen5_edit_repoinfo": {name: LNG.edit_info, className: "info", icon: "edit", accesskey: "e"},
                 "sen5_show_repoinfo": {name: LNG.show_info, className: "info", icon: "info", accesskey: "i"}
