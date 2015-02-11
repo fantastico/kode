@@ -779,24 +779,11 @@ define(function (require, exports) {
             },
             items: {
                 "open": {name: LNG.open, className: "open", icon: "external-link", accesskey: "o"},
-                "open_text": {name: LNG.edit, className: "open_text", icon: "edit", accesskey: "e"},
-                "open_ie": {name: LNG.open_ie, className: "open_ie", icon: "globe", accesskey: "b"},
-                "newfileOther": {
-                    name: LNG.open_with,
-                    accesskey: 'h',
-                    items: {
-                        "open_text": {name: LNG.edit, className: "open_text", icon: "edit"},
-                        "open_kindedit": {name: LNG.others, className: "open_kindedit", icon: "edit"}
-                    }
-                },
                 "sep1": "--------",
                 "copy": {name: LNG.copy, className: "copy", icon: "copy", accesskey: "c"},
                 "cute": {name: LNG.cute, className: "cute", icon: "cut", accesskey: "k"},
                 "remove": {name: LNG.remove, className: "remove", icon: "trash", accesskey: "d"},
-                "rname": {name: LNG.rename, className: "rname", icon: "pencil", accesskey: "r"},
                 "sep2": "--------",
-                "zip": {name: LNG.zip, className: "zip", icon: "folder-close", accesskey: "z"},
-                "unzip": {name: LNG.unzip, className: "unzip", icon: "folder-open-alt", accesskey: "u"},
                 "down": {name: LNG.download, className: "down", icon: "download", accesskey: "x"},
                 "sep3": "--------",
                 "sen5_edit_info": {name: LNG.edit_info, className: "info", icon: "edit", accesskey: "e"},
@@ -814,26 +801,7 @@ define(function (require, exports) {
             },
             items: {
                 "open": {name: LNG.open, className: "open", icon: "external-link", accesskey: "o"},
-                "open_text": {name: LNG.edit, className: "open_text", icon: "edit", accesskey: "e"},
-                "open_ie": {name: LNG.open_ie, className: "open_ie", icon: "globe", accesskey: "b"},
-                "newfileOther": {
-                    name: LNG.open_with,
-                    accesskey: 'h',
-                    items: {
-                        "open_text": {name: LNG.edit, className: "open_text", icon: "edit"},
-                        "open_kindedit": {name: LNG.others, className: "open_kindedit", icon: "edit"}
-                    }
-                },
                 "sep1": "--------",
-                "copy": {name: LNG.copy, className: "copy", icon: "copy", accesskey: "c"},
-                "cute": {name: LNG.cute, className: "cute", icon: "cut", accesskey: "k"},
-                "remove": {name: LNG.remove, className: "remove", icon: "trash", accesskey: "d"},
-                "rname": {name: LNG.rename, className: "rname", icon: "pencil", accesskey: "r"},
-                "sep2": "--------",
-                "zip": {name: LNG.zip, className: "zip", icon: "folder-close", accesskey: "z"},
-                "unzip": {name: LNG.unzip, className: "unzip", icon: "folder-open-alt", accesskey: "u"},
-                "down": {name: LNG.download, className: "down", icon: "download", accesskey: "x"},
-                "sep3": "--------",
                 "sen5_edit_repoinfo": {name: LNG.edit_info, className: "info", icon: "edit", accesskey: "e"},
                 "sen5_show_repoinfo": {name: LNG.show_info, className: "info", icon: "info", accesskey: "i"}
             }

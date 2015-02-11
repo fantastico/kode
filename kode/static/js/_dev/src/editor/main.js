@@ -9,7 +9,7 @@ define(function (require, exports, module) {
         topbar_height: 40,			// 头部高度
         frameLeftWidth: 200,			// 左边树目录宽度
         treeSpaceWide: 15,			// 树目录层级相差宽度
-        isIE: !-[1, ],				// 是否ie
+        isIE: !-[1, ]				// 是否ie
     };
     require('lib/jquery-lib');
     require('lib/util');

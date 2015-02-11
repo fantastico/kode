@@ -90,15 +90,18 @@
             <div class="tools">
                 <div class="tools-left">
                     <div class="btn-group btn-group-sm">
-                        <button id='newfolder' class="btn btn-default" type="button">
-                            <i class="font-icon icon-folder-close-alt"></i><?php echo $L['newfolder']; ?>
+                        <button id='newrepo' class="btn btn-default" type="button">
+                            <i class="font-icon icon-folder-close-alt"></i><?php echo $L['newrepo']; ?>
+                        </button>
+                        <!--<button id='newfolder' class="btn btn-default" type="button">
+                            <i class="font-icon icon-folder-close-alt"></i><?php /*echo $L['newfolder']; */?>
                         </button>
                         <button id='newfile' class="btn btn-default" type="button">
-                            <i class="font-icon icon-file-alt"></i><?php echo $L['newfile']; ?>
+                            <i class="font-icon icon-file-alt"></i><?php /*echo $L['newfile']; */?>
                         </button>
                         <button id='upload' class="btn btn-default" type="button">
                             <i class="font-icon icon-cloud-upload"></i><?php echo $L['upload']; ?>
-                        </button>
+                        </button>-->
 
                         <div class="btn-group btn-group-sm">
                             <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">

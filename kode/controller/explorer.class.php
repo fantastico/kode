@@ -259,12 +259,12 @@
                 $folder_apps = $list_apps['folderlist'];
                 $folder_repos = $list_repos['folderlist'];
                 $tree_data = array(
-                    array('name' => $this->L['apps'], 'ext' => '__root__', 'children' => $folder_apps,
+                    array('name' => $this->L['repos'], 'ext' => '__root__', 'children' => $folder_apps,
                         'iconSkin' => "my", 'open' => true, 'this_path' => REPO_PATH, 'isParent' => false),
-                    array('name' => $this->L['repos'], 'ext' => '__root__', 'children' => $folder_repos,
+                  /*  array('name' => $this->L['repos'], 'ext' => '__root__', 'children' => $folder_repos,
                         'iconSkin' => "lib", 'open' => true, 'this_path' => PUBLIC_PATH, 'isParent' => false),
                     array('name' => $this->L['images'], 'ext' => '__fav__', 'iconSkin' => "fav",
-                        'open' => false, 'children' => $fav)
+                        'open' => false, 'children' => $fav)*/
                 );
             }
             show_json($tree_data);
@@ -844,6 +844,35 @@
 
             $instance = Database::getInstance();
             $instance->updateApp($appid, $name, $categories, $downloads, $score, $summary, $description);
+            global $L;
+            show_json($L['save_success']);
+        }
+        public function sen5ShowRepoInfo(){
+            $repoid = $_POST['repoid'];
+            global $L;
+            $instance = Database::getInstance();
+            $repo = $instance->findOneRepo($repoid);
+            if($repo == null){show_json($L['repo_not_found'], false);}
+            $repo['ICON_PATH'] = ICON_PATH;
+            show_json($repo);
+        }
+        public function sen5UpdateRepoInfo(){
+            $repoId = $_POST['repoId'];
+            $customerName = $_POST['customerName'];
+            $customerId = $_POST['customerId'];
+
+            $instance = Database::getInstance();
+            $instance->updateRepo($repoId, $customerName, $customerId);
+            global $L;
+            show_json($L['save_success']);
+        }
+        public function sen5AddApp(){
+            $repoId = $_POST['repoId'];
+            $customerName = $_POST['customerName'];
+            $customerId = $_POST['customerId'];
+
+            $instance = Database::getInstance();
+            $instance->addRepo($repoId, $customerName, $customerId);
             global $L;
             show_json($L['save_success']);
         }

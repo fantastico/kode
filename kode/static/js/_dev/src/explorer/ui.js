@@ -528,6 +528,9 @@ define(function (require, exports) {
             case 'newfolder':
                 ui.path.newFolder();
                 break;
+            case 'newrepo':
+                ui.path.newRepo();
+                break;
             case 'upload':
                 core.upload();
                 break;

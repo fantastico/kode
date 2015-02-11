@@ -584,7 +584,6 @@ define(function (require, exports) {
                 var render = template.compile(tpl_file.html);
                 var dialog_id = UUID();
                 data.data.LNG = LNG;//模板中的多语言注入
-                data.data.onsubmit = '_updateSubmit';
                 data.data.formid = 'appform';
                 data.data.action = 'index.php?explorer/sen5UpdateAppInfo';
                 var dialog = $.dialog({
@@ -600,9 +599,9 @@ define(function (require, exports) {
                         $('#btn_submit').click();
                         if($('#'+data.data.formid)[0].checkValidity()){
                             $.ajax({
-                                url: 'index.php?explorer/sen5UpdateAppInfo',
+                                url: data.data.action,
                                 type: 'POST',
-                                data: $('#appform').serialize(),
+                                data: $('#'+data.data.formid).serialize(),
                                 error: core.ajaxError,
                                 success: function (data) {
                                     if (data.code) {
@@ -617,18 +616,17 @@ define(function (require, exports) {
                         return false;
                     }
                 });
-             //   _updateSubmit(dialog_id, param);
             }
         });
     };
 
-    var sen5_repo_info = function (appid) {
-        var data =  'data=' + urlEncode2(json_encode({'appid': appid}));
+    var sen5_repo_info = function (repoid) {
+        var data =  'data=' + urlEncode2(json_encode({'appid': repoid}));
         $.ajax({
-            url: 'index.php?explorer/sen5ShowAppInfo',
+            url: 'index.php?explorer/sen5ShowRepoInfo',
             type: 'POST',
             dataType: 'json',
-            data: 'appid='+appid,
+            data: 'repoid='+repoid,
             beforeSend: function () {
                 core.tips.loading(LNG.getting);
             },
@@ -639,14 +637,20 @@ define(function (require, exports) {
                     return;
                 }
                 core.tips.close(LNG.get_success, true);
-                var tpl_file = require('../tpl/edit_app');
-                var title = LNG.app_info;
-                var render = template.compile(tpl_file.html);
+                var tpl_file = require('../tpl/edit_repo');
+                var title = LNG.repo_info;
+                var render;
+                if(data.data.icon){
+                    render = template.compile(tpl_file.html_hasIcon);
+                }else{
+                    render = template.compile(tpl_file.html_noIcon);
+                }
                 var dialog_id = UUID();
                 data.data.LNG = LNG;//模板中的多语言注入
-                data.data.onsubmit = '_updateSubmit';
-                data.data.formid = 'appform';
-                data.data.action = 'index.php?explorer/sen5UpdateAppInfo';
+                data.data.formid = 'repoform';
+                data.data.action = 'index.php?explorer/sen5UpdateRepoInfo';
+                data.data.customerName = data.data.conditions['customerName'];
+                data.data.customerId = data.data.conditions['customerId'];
                 var dialog = $.dialog({
                     id: dialog_id,
                     padding: 5,
@@ -660,9 +664,9 @@ define(function (require, exports) {
                         $('#btn_submit').click();
                         if($('#'+data.data.formid)[0].checkValidity()){
                             $.ajax({
-                                url: 'index.php?explorer/sen5UpdateAppInfo',
+                                url: data.data.action,
                                 type: 'POST',
-                                data: $('#appform').serialize(),
+                                data: $('#'+data.data.formid).serialize(),
                                 error: core.ajaxError,
                                 success: function (data) {
                                     if (data.code) {
@@ -677,7 +681,6 @@ define(function (require, exports) {
                         return false;
                     }
                 });
-                //   _updateSubmit(dialog_id, param);
             }
         });
     };

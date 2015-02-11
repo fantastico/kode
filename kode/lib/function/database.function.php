@@ -118,7 +118,7 @@
             $this->repo->update(array('_id' => $reponame), array('$push' => array('apps' => $appid)));
         }
 
-        //跟新App信息
+        //更新App信息
         public function updateApp($appid, $name, $categories, $downloads, $score, $summary, $description)
         {
             if(!$this->doesAppExist($appid)){ return; }
@@ -150,6 +150,43 @@
             if(!empty($update)){
                 $this->apps->update(array('_id' => $appid), array('$set' => $update));
             }
+        }
+
+        //更新Repo信息
+        public function updateRepo($repoId, $customerName, $customerId)
+        {
+            if(!$this->doesRepoExist($repoId)){ return; }
+            $update = array();
+            if(empty($customerName)){
+                $customerName = '';
+            }
+            if(empty($customerId)){
+                $customerId = '';
+            }
+            $update['conditions.customerId'] = $customerId;
+            $update['conditions.customerName'] = $customerName;
+            if(!empty($update)){
+                $this->repo->update(array('_id' => $repoId), array('$set' => $update));
+            }
+        }
+
+        //新增Repo
+        public function addRepo($repoId, $customerName, $customerId)
+        {
+            global $L;
+            if($this->doesRepoExist($repoId)){ show_json($L['repo_exist'], false);return; }
+            if(empty($customerName)){
+                $customerName = '';
+            }
+            if(empty($customerId)){
+                $customerId = '';
+            }
+            $repo = array();
+            $repo['_id'] = $repoId;
+            $repo['apps'] = array();
+            $repo['conditions'] = array('customerId'  => $customerId, 'customerName' => $customerName);
+            $repo['version'] = 0;
+            $this->repo->insert($repo);
         }
     }
 

@@ -435,6 +435,58 @@ define(function (require, exports) {
             ui.tree.checkIfChange(G.this_path);
         }
     };
+
+    /********************************************************************************************************************
+     **  Added by ken li,  START
+     ********************************************************************************************************************/
+    //新建仓库
+    var newRepo = function () {
+        var tpl_file = require('../../tpl/add_repo');
+        var data = {};
+        data.LNG = LNG;//模板中的多语言注入
+        data.formid = 'addRepoform';
+        data.action = 'index.php?explorer/sen5AddApp';
+        var title = LNG.add_repo;
+        var render = template.compile(tpl_file.html);
+        var dialog_id = UUID();
+
+        var dialog = $.dialog({
+            id: dialog_id,
+            padding: 5,
+            ico: core.ico('info'),
+            fixed: true,//不跟随页面滚动
+            title: title,
+            content: render(data),
+            width: '350px',
+            cancel: true,
+            ok: function(){
+                $('#btn_submit').click();
+                if($('#'+data.formid)[0].checkValidity()){
+                    $.ajax({
+                        url: data.action,
+                        type: 'POST',
+                        data: $('#'+data.formid).serialize(),
+                        error: core.ajaxError,
+                        success: function (data) {
+                            if (data.code) {
+                                core.tips.close(data);
+                            } else {
+                                core.tips.close(data.info, false);
+                            }
+                            dialog.close();
+                            ui.f5_callback();
+                        }
+                    });
+                }
+                return false;
+            }
+        });
+
+    };
+    /********************************************************************************************************************
+     **  Added by ken li,  END
+     ********************************************************************************************************************/
+
     return {
         //app
         appEdit: function (create) {
@@ -599,6 +651,7 @@ define(function (require, exports) {
         list: list,
         newFile: newFile,
         newFolder: newFolder,
+        newRepo: newRepo,
         rname: rname,
         setSelectByChar: _setSelectByChar,
         setSelectByFilename: _setSelectByFilename,
