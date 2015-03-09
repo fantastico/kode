@@ -22,12 +22,12 @@ define(function (require, exports) {
                 <div class='line'></div>\
                 <div class='p'>\
                     <div class='title'>{{LNG.downloads}}:</div>\
-                    <div class='content'><input name='downloads' value='{{downloads}}' type='number' min='1' max='100' required/></div>\
+                    <div class='content'><input name='downloads' value='{{downloads}}' type='number' min='0'/></div>\
                     <div style='clear:both'></div>\
                 </div>\
                 <div class='p'>\
                     <div class='title'>{{LNG.score}}:</div>\
-                    <div class='content'><input name='score' value='{{score}}' type='number' min='1' max='100' required/></div>\
+                    <div class='content'><input name='score' value='{{score}}' type='number' min='0' max='100'/></div>\
                     <div style='clear:both'></div>\
                 </div>\
                 <div class='line'></div>\

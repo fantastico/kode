@@ -13,6 +13,15 @@ define(function (require, exports) {
             }
             return;
         }
+        if (ext == 'app') {
+            return;
+            if (Config.pageApp == 'explorer') {
+                ui.path.list_photo(path + '/');//更新文件列表
+            } else {
+                core.explorer(path);
+            }
+            return;
+        }
         if (ext == 'folder') {
             if (Config.pageApp == 'explorer') {
                 ui.path.list(path + '/');//更新文件列表

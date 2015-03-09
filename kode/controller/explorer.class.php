@@ -750,45 +750,81 @@
         {
             //上传apk文件
             if(strncmp(REPO_PATH, $this->path, REPO_PATH_LENGTH) == 0){
+                $subpath = trim(substr($this->path, REPO_PATH_LENGTH), '/');
+                $names = explode('/',$subpath);
 
-                $reponame = trim(substr($this->path, REPO_PATH_LENGTH), '/');
-                $instance = Database::getInstance();
-                if( !$instance->doesRepoExist($reponame)){
-                    show_json($this->L['upload_repo_not_exist'], false);
-                }
-                $save_path = REPO_PATH.'/repo/';
-
-                //保存文件
-                if (!is_writeable($save_path)) show_json('path is not writeable', false);
-                if (strlen($this->in['fullPath']) > 1) { //folder drag upload
-                    $full_path = _DIR_CLEAR(rawurldecode($this->in['fullPath']));
-                    $full_path = get_path_father($full_path);
-                    $full_path = iconv_system($full_path);
-                    if (mk_dir($save_path . $full_path)) {
-                        $save_path = $save_path . $full_path;
+                //上传APP
+                if(count($names) == 1){
+                    $reponame = $names[0];
+                    $instance = Database::getInstance();
+                    if( !$instance->doesRepoExist($reponame)){
+                        show_json($this->L['upload_repo_not_exist'], false);
                     }
+                    $save_path = REPO_PATH.'/repo/';
+
+                    //保存文件
+                    if (!is_writeable($save_path)) show_json('path is not writeable', false);
+                    if (strlen($this->in['fullPath']) > 1) { //folder drag upload
+                        $full_path = _DIR_CLEAR(rawurldecode($this->in['fullPath']));
+                        $full_path = get_path_father($full_path);
+                        $full_path = iconv_system($full_path);
+                        if (mk_dir($save_path . $full_path)) {
+                            $save_path = $save_path . $full_path;
+                        }
+                    }
+
+                    global $config, $L;
+                    $file = $_FILES['file'];
+                    if (!isset($file)) show_json($L['upload_error_null'], false);
+                    $ext = substr($file['name'], strrpos($file['name'], '.')+1);
+                    if($ext !== 'apk'){
+                        show_json($this->L['upload_not_apk'], false);
+                    }
+
+                    $file_name = iconv_system($file['name']);
+                    $info = _upload($file['tmp_name'], $file['size'], $save_path . $file_name);
+
+                    //froid update
+                    $output = array();
+                    $file_name = substr($file_name, 0, -4);
+                    $result = exec('fdroid 2>&1 sen5_update --apkFile='.$file_name.' --repo='.$reponame, $output);
+
+                    $info['data'] = $result;
+                    show_json($info['data'], $info['code'], $info['path']);
                 }
 
-                global $config, $L;
-                $file = $_FILES['file'];
-                if (!isset($file)) show_json($L['upload_error_null'], false);
-                $ext = substr($file['name'], strrpos($file['name'], '.')+1);
-                if($ext !== 'apk'){
-                    show_json($this->L['upload_not_apk'], false);
+                //上传APP图片
+                if(count($names) == 2){
+                    $appId = $this->in['appId'];
+                    $instance = Database::getInstance();
+                    if( empty($appId) || !$instance->doesAppExist($appId)){
+                        show_json($this->L['upload_app_not_exist'], false);
+                    }
+                    $save_path = REPO_PATH.'/repo/photo/'.$appId.'/';
+
+                    //保存文件
+                    if (!is_writeable($save_path)) {
+                        if (!mk_dir($save_path)) {
+                            show_json('path is not writeable', false);
+                        }
+                    }
+                    $file_name = iconv_system($file['name']);
+                    if (file_exists ($save_path . $file_name)) {
+                        show_json($this->L['file_exist'], false);
+                    }
+
+                    global $config, $L;
+                    $file = $_FILES['file'];
+                    if (!isset($file)) show_json($L['upload_error_null'], false);
+
+                    $info = _upload($file['tmp_name'], $file['size'], $save_path . $file_name);
+
+                    //database update
+                    $instance->addPhoto($appId, REPO_URL.'/photo/'.$appId.'/'. $file_name);
+                    $info['data'] = 'Success';
+                    show_json($info['data'], $info['code'], $info['path']);
                 }
-
-                $file_name = iconv_system($file['name']);
-                $info = _upload($file['tmp_name'], $file['size'], $save_path . $file_name);
-
-                //froid update
-                $output = array();
-                $file_name = substr($file_name, 0, -4);
-                $result = exec('fdroid 2>&1 sen5_update --apkFile='.$file_name, $output);
-
-                $info['data'] = $result;
-                show_json($info['data'], $info['code'], $info['path']);
             }
-
 
             $save_path = $this->path;
             if (!is_writeable($save_path)) show_json('path is not writeable', false);
@@ -807,11 +843,12 @@
         //获取文件列表&哦exe文件json解析
         private function path($dir, $list_file = true, $check_children = false)
         {
-            //只显示apk文件
+            //只显示app文件
             if(strncmp(REPO_PATH,$dir,REPO_PATH_LENGTH) == 0){
                 $subpath = trim(substr($dir, REPO_PATH_LENGTH), '/');
                 $names = explode('/',$subpath);
 
+                //显示APP
                 if(count($names) == 1){
                     $instance = Database::getInstance();
                     if($names[0] === ""){
@@ -822,6 +859,15 @@
 
                     //显示app
                     $list = $instance->app_list($names[0]);
+                    return $list;
+                }
+
+                //显示APP图片
+                if(count($names) == 2){
+                    $appId = $_POST['appId'];
+                    //显示photo
+                    $instance = Database::getInstance();
+                    $list = $instance->findOneApp($appId);
                     return $list;
                 }
             }

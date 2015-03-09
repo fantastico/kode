@@ -162,6 +162,19 @@ define(function (require, exports) {
         }
         ui.f5();
     };
+    var list_photo = function (path, tips) {//
+        if (path == G.this_path) {
+            if (tips != undefined) core.tips.tips(LNG.path_is_current, 'info');
+            return; //如果相同，则不加载。
+        }
+        //统一处理地址
+        G.this_path = path.replace(/\\/g, '/');
+        G.this_path = path.replace(/\/+/g, '/');
+        if (G.this_path.substr(G.this_path.length - 1) != '/') {
+            G.this_path += '/';
+        }
+        ui.f5_photo();
+    };
     var back = function () {//后退操作
         $.ajax({
             dataType: 'json',
@@ -649,6 +662,7 @@ define(function (require, exports) {
         next: next,
         //内部特有的
         list: list,
+        list_photo: list_photo,
         newFile: newFile,
         newFolder: newFolder,
         newRepo: newRepo,

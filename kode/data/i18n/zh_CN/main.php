@@ -364,15 +364,18 @@
         "apps" => "App应用",
         "images" => "图片",
         "repos" => "AppStore应用仓库",
+        "repo" => "仓库",
         "app_info" => "App信息",
         "repo_info" => "Repo信息",
         "add_repo" => "新增仓库",
 
         'upload_repo_not_exist' => '仓库不存在',
+        'upload_app_not_exist' => 'APP不存在',
         'upload_not_apk' => '这不是APK文件',
         'app_not_found' => '找不到APP',
         'repo_not_found' => '找不到仓库',
         'repo_exist' => '仓库已经存在',
+        'file_exist' => '文件名冲突',
 
         //right menu
         'edit_info' => '修改信息',
@@ -386,5 +389,7 @@
         'score' => '评分',
         'summary' => '简介',
         'description' => '描述',
-        'conditions' => '条件'
+        'conditions' => '条件',
+        'latestversion' => '版本',
+
     );

@@ -572,7 +572,16 @@
      */
     function file_download($file)
     {
-        if (!file_exists($file)) show_json('file not exists');
+        if(strncmp(REPO_PATH,$file,REPO_PATH_LENGTH) != 0){
+            show_json('app not exists');
+        }
+        $subpath = trim(substr($file, REPO_PATH_LENGTH), '/');
+        $names = explode('/',$subpath);
+        if(count($names) != 2){
+            show_json('app not exists');
+        }
+
+        $appId = $names[1];
         if (isset($_SERVER['HTTP_RANGE']) && ($_SERVER['HTTP_RANGE'] != "") &&
             preg_match("/^bytes=([0-9]+)-$/i", $_SERVER['HTTP_RANGE'], $match) && ($match[1] < $fsize)
         ) {
@@ -581,6 +590,14 @@
             $start = 0;
         }
 
+        $instance = Database::getInstance();
+        $app = $instance->findOneApp($appId);
+        $apks = $app['apks'];
+        if(!is_array($apks) || count($apks) <= 0){
+            show_json('apk not exists');
+        }
+
+        $file = REPO_PATH.'/repo/'.$apks[0]['apkname'];
         $size = filesize($file);
         header("Cache-Control: public");
         header("Content-Type: application/octet-stream");

@@ -87,7 +87,7 @@ define(function (require, exports) {
             },
             items: {
                 "refresh": {name: LNG.refresh, className: "refresh", icon: "refresh", accesskey: "e"},
-                //"upload": {name: LNG.upload, className: "upload", icon: "upload", accesskey: "u"},
+                "upload": {name: LNG.upload, className: "upload", icon: "upload", accesskey: "u"},
                 "past": {name: LNG.past, className: "past", icon: "paste", accesskey: "p"},
                 "copy_see": {name: LNG.clipboard, className: "copy_see", icon: "eye", accesskey: "b"},
                 "sep1": "--------",

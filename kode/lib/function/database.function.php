@@ -86,11 +86,22 @@
             return !empty($app);
         }
 
+        public function incRepoVersion($repo)
+        {
+            $this->repo->update(array('_id' => $repo), array('$inc' => array( 'version' => 1)));
+        }
+
+        public function incRepoVersionByAppId($appId)
+        {
+            $this->repo->update(array('apps' => $appId), array('$inc' => array( 'version' => 1)), array('multi'=>true));
+        }
+
         public function deleteApp($appId, $reponame)
         {
             //删除repo里的app记录
             $this->repo->update(array('_id' => $reponame), array('$pull' => array('apps' => $appId)));
             $repo = $this->repo->findOne(array('apps' => array('$elemMatch' => array('$eq' => $appId))), array('_id' => 1));
+            $this->incRepoVersion($reponame);
             //如果app没有在任何仓库中
             if(empty($repo)){
                 $app = $this->apps->findOne(array('_id' => $appId));
@@ -116,6 +127,7 @@
         {
             if(!$this->doesAppExist($appid)){ return; }
             $this->repo->update(array('_id' => $reponame), array('$push' => array('apps' => $appid)));
+            $this->incRepoVersion($reponame);
         }
 
         //更新App信息
@@ -149,6 +161,7 @@
             }
             if(!empty($update)){
                 $this->apps->update(array('_id' => $appid), array('$set' => $update));
+                $this->incRepoVersionByAppId($appid);
             }
         }
 
@@ -212,6 +225,13 @@
             }
             $this->repo->remove(array('_id' => $repoId));
             return $applist;
+        }
+
+        //添加photo
+        public function addPhoto($appId, $url)
+        {
+            if(empty($url)){return;}
+            $this->apps->update(array('_id' => $appId), array('$push' => array('pictures' => $url)));
         }
     }
 

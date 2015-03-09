@@ -29,7 +29,7 @@ define(function (require, exports) {
                 '<div id="main_title">' +
                     '<div class="filename" field="name">' + LNG.name + '<span></span></div>' +
                     '<div class="filetype" field="ext">' + LNG.type + '<span></span></div>' +
-                    '<div class="filesize" field="size">' + LNG.size + '<span></span></div>' +
+                    '<div class="filesize" field="size">' + LNG.latestversion + '<span></span></div>' +
                     '<div class="filetime" field="mtime">' + LNG.modify_time + '<span></span></div>' +
                     '<div style="clear:both"></div>' +
                     '</div>'
@@ -557,6 +557,88 @@ define(function (require, exports) {
     /*****************************************************************************************************************
      *  added by ken li START
      *****************************************************************************************************************/
+    var _f5_photo = function () {
+        _jsonSortTitle();//更新列表排序方式dom
+        var selectObj = Global.fileListSelect;
+        var appId = fileLight.getId(selectObj);
+        $.ajax({
+            url: 'index.php?explorer/pathList&path=' + urlEncode(G.this_path),
+            type: 'POST',
+            dataType: 'json',
+            data: 'appId='+appId,
+            beforeSend: function () {
+                $('.tools-left .msg').stop(true, true).fadeIn(100);
+            },
+            success: function (data) {
+                $('.tools-left .msg').fadeOut(100);
+                if (!data.code) {
+                    core.tips.tips(data);
+                    $(Config.FileBoxSelector).html('');
+                    return false;
+                }
+                G.json_data = data.data;
+                Global.historyStatus = G.json_data['history_status'];
+                _mainSetPhotoData(true);
+                ui.header.updateHistoryStatus();
+                ui.header.addressSet();//header地址栏更新
+
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                $('.tools-left .msg').fadeOut(100);
+                $(Config.FileBoxSelector).html('');
+                core.ajaxError(XMLHttpRequest, textStatus, errorThrown);
+            }
+        });
+    };
+
+    //Photo列表数据填充
+    var _mainSetPhotoData = function (isFade) {
+        var html = "";//填充的数据
+        var piclist = G.json_data['pictures'];
+        piclist = piclist.sort(_sortBy(G.sort_field, G.sort_order));
+        var repo_function = '_getPhotoBox', repo_html = '';
+        if (G.list_type == 'list') {
+            repo_function = '_getRepoBoxList';
+        }
+        for (var i in piclist) {
+            var pic = {};
+            pic['url'] = piclist[i];
+            pic['_id'] = G.json_data['_id'];
+            repo_html += this[repo_function](pic);
+        }
+        //end排序方式重组json数据------
+        html = repo_html;
+        if (html == '') html = '<div style="text-align:center;color:#aaa;">' + LNG.path_null + '</div>'
+        html += "<div style='clear:both'></div>";
+
+        //填充到dom中-----------------------------------
+        if (isFade) {//动画显示,
+            $(Config.FileBoxSelector)
+                .hide()
+                .html(html)
+                .fadeIn(Config.AnimateTime);
+        } else {
+            $(Config.FileBoxSelector).html(html);
+        }
+        if (G.list_type == 'list') {//列表奇偶行css设置
+            $(Config.FileBoxSelector + " .file:nth-child(2n)").addClass('file2');
+        }
+        _ajaxLive();
+    };
+
+    //图标样式，REPO模版填充
+    this._getPhotoBox = function (pic) {
+        var html = "";
+        html += "<div class='file fileBox menuSen5Photo' data-name='" + pic['_id'] + "' title='"
+            + LNG.name + ':' + pic['url'] + "&#10;";
+
+        html += "<div picasa='" + pic['url'] + "' thumb='" + pic['url'] + "' class='picasaImage picture ico' filetype='photo'"
+            + "' index='" + pic['_id'] + "'><img src='" + pic['url'] + "'/></div>";
+        html += "<div id='" + pic['_id'] + "' class='titleBox'><span class='title' title='" + LNG.double_click_rename
+            + "'>" + pic['_id'] + "</span></div></div>";
+        return html;
+    }
+
     //文件列表数据填充
     var _mainSetAppData = function (isFade) {
         var html = "";//填充的数据
@@ -630,16 +712,14 @@ define(function (require, exports) {
     //列表样式，APP模版填充
     this._getRepoBoxList = function (list) {
         var html = "";
-        var filePath = core.path2url(G.this_path + list['name']);
-        var thumbPath = 'index.php?explorer/image&path=' + urlEncode(G.this_path + list['name']);
-        html += "<div picasa='" + filePath + "' thumb='" + thumbPath + "' class='picasaImage file fileBox menufile' data-name='"
-            + list.name + "' title='" + LNG.name + ':' + list.name + "&#10;" + LNG.size + ':' + list.size_friendly + "&#10;"
+        html += "<div picasa='" + list['icon'] + "' thumb='" + list['icon'] + "' class='picasaImage picture ico file fileBox menuSen5Repo' data-name='"
+            + list['_id'] + "' title='" + LNG.name + ':' + list['_id'] + "&#10;" + LNG.size + ':' + list.size_friendly + "&#10;"
             + LNG.modify_time + ':' + list.mtime + "'>";
 
-        html += "	<div class='" + list['ext'] + " ico' filetype='" + list['ext'] + "'></div>";
-        html += "	<div id='" + list['name'] + "' class='titleBox'><span class='title' title='" + LNG.double_click_rename + "'>" + list['name'] + "</span></div>";
-        html += "	<div class='filetype'>" + list['ext'] + "  " + LNG.file + "</div>";
-        html += "	<div class='filesize'>" + list['size_friendly'] + "</div>";
+        html += "	<div class='" + list['ext'] + " ico' filetype='repo'></div>";
+        html += "	<div id='" + list['_id'] + "' class='titleBox'><span class='title' title='" + LNG.double_click_rename + "'>" + list['_id'] + "</span></div>";
+        html += "	<div class='filetype'>" + LNG.repo + "</div>";
+        html += "	<div class='filesize'>" + list['version'] + "</div>";
         html += "	<div class='filetime'>" + list['mtime'] + "</div>";
         html += "	<div style='clear:both'></div>";
         html += "</div>";
@@ -651,7 +731,7 @@ define(function (require, exports) {
         var html = "";
         html += "<div class='file fileBox menuSen5App' data-name='" + list['name'] + "' title='"
             + LNG.name + ':' + list['name'] + "&#10;" + LNG.size + ':' + list.size_friendly + "&#10;"
-            + LNG.modify_time + ':' + list.mtime + "'>";
+            + LNG.modify_time + ':' + list['lastupdated'] + "'>";
         html += "<div picasa='" + list['icon'] + "' thumb='" + list['icon'] + "' class='picasaImage picture ico' filetype='app'"
                 + " index='" + list['_id'] + "' " + list['ext'] + "><img data-original='" + list['icon'] + "'/></div>";
         html += "<div id='" + list['name'] + "' class='titleBox'><span class='title' title='" + LNG.double_click_rename
@@ -662,17 +742,15 @@ define(function (require, exports) {
     //列表样式，APP模版填充
     this._getAppBoxList = function (list) {
         var html = "";
-        var filePath = core.path2url(G.this_path + list['name']);
-        var thumbPath = 'index.php?explorer/image&path=' + urlEncode(G.this_path + list['name']);
-        html += "<div picasa='" + filePath + "' thumb='" + thumbPath + "' class='picasaImage file fileBox menufile' data-name='"
-            + list.name + "' title='" + LNG.name + ':' + list.name + "&#10;" + LNG.size + ':' + list.size_friendly + "&#10;"
-            + LNG.modify_time + ':' + list.mtime + "'>";
+        html += "<div picasa='" + list['icon'] + "' thumb='" + list['icon'] + "' class='picasaImage picture ico file fileBox menuSen5App' data-name='"
+            + list.name + "' index='" + list['_id'] + "' title='" + LNG.name + ":" + list.name + "&#10;" + LNG.size + ':' + list.size_friendly + "&#10;"
+            + LNG.modify_time + ':' + list['lastupdated'] + "'>";
 
-        html += "	<div class='" + list['ext'] + " ico' filetype='" + list['ext'] + "'></div>";
+        html += "	<div class='" + list['ext'] + " ico' filetype='app'></div>";
         html += "	<div id='" + list['name'] + "' class='titleBox'><span class='title' title='" + LNG.double_click_rename + "'>" + list['name'] + "</span></div>";
-        html += "	<div class='filetype'>" + list['ext'] + "  " + LNG.file + "</div>";
-        html += "	<div class='filesize'>" + list['size_friendly'] + "</div>";
-        html += "	<div class='filetime'>" + list['mtime'] + "</div>";
+        html += "	<div class='filetype'>" + list['categories'] +  "</div>";
+        html += "	<div class='filesize'>" + list['latestversion'] + "</div>";
+        html += "	<div class='filetime'>" + list['lastupdated'] + "</div>";
         html += "	<div style='clear:both'></div>";
         html += "</div>";
         return html;
@@ -703,6 +781,7 @@ define(function (require, exports) {
 
     return{
         f5: _f5,
+        f5_photo: _f5_photo,
         f5_search: _f5_search,
         f5_callback: _f5_callback,
         picasa: MyPicasa,
