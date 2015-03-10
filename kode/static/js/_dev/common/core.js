@@ -381,7 +381,12 @@ define(function (require, exports) {
         upload: function () {
             G.upload_path = G.this_path;
             var upload_path = urlDecode(G.upload_path);
-            var appId = G.json_data['_id'];
+            var appId;
+            if(G.json_data.type == 'photo'){
+                var appId = G.json_data.app['_id'];
+            }else{
+                var appId = G.json_data['_id'];
+            }
             uploader.option('server', 'index.php?explorer/fileUpload&appId='+appId+'&path=' + G.upload_path);
             var display = (upload_path.length <= 30 ? upload_path : '...' + upload_path.substr(upload_path.length - 30));
             if ($('.dialog_file_upload').length != 0) {//有对话框则返回

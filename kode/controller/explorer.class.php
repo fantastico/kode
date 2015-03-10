@@ -352,6 +352,22 @@
                     }
                     $success++;
                 }
+                if($val['type'] === 'photo' && strncmp(REPO_PATH, $path_full, REPO_PATH_LENGTH) == 0){
+                    // 删除APP
+                    $appId = $val['id'];
+                    $reponame = explode('/', trim(substr($path_full, REPO_PATH_LENGTH), '/'));
+                    $reponame = $reponame[0];
+                    $instance = Database::getInstance();
+                    $app = $instance->deleteApp($appId, $reponame);
+                    if(isset($app)){
+                        foreach($app['apks'] as $apk){
+                            $filename = REPO_PATH.'/repo/'.$apk['apkname'];
+                            if (del_file($filename)) $success++;
+                            else $error++;
+                        }
+                    }
+                    $success++;
+                }
                 /********************************************************************************************************************
                  **  如果是在仓库目录下，进行app删除处理  END
                  ********************************************************************************************************************/
@@ -808,13 +824,14 @@
                             show_json('path is not writeable', false);
                         }
                     }
+
+                    $file = $_FILES['file'];
                     $file_name = iconv_system($file['name']);
                     if (file_exists ($save_path . $file_name)) {
                         show_json($this->L['file_exist'], false);
                     }
 
                     global $config, $L;
-                    $file = $_FILES['file'];
                     if (!isset($file)) show_json($L['upload_error_null'], false);
 
                     $info = _upload($file['tmp_name'], $file['size'], $save_path . $file_name);
@@ -864,11 +881,8 @@
 
                 //显示APP图片
                 if(count($names) == 2){
-                    $appId = $_POST['appId'];
-                    //显示photo
                     $instance = Database::getInstance();
-                    $list = $instance->findOneApp($appId);
-                    return $list;
+                    return $instance->photo_list($names[1]);
                 }
             }
 

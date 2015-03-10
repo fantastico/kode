@@ -74,6 +74,13 @@
             return $repo_list;
         }
 
+        public function photo_list($appId)
+        {
+            $photo_list = $this->findOneApp($appId);
+            $photo_list = array('type' => 'photo', 'app' => $photo_list);
+            return $photo_list;
+        }
+
         public function doesRepoExist($reponame)
         {
             $repo = $this->repo->findOne(array('_id' => $reponame), array('_id' => 1));

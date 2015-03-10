@@ -473,8 +473,10 @@ define(function (require, exports) {
         _jsonSortTitle();//更新列表排序方式dom
         if (!is_data_server) {//采用当前数据刷新,用于显示模式更换
             var select_arr = fileLight.getAllName();//获取选中的文件名
-            if(G.json_data.type){
-                _mainSetAppData(is_animate);
+            if(G.json_data.type != undefined){
+                if(G.json_data.type == 'app' || G.json_data.type == 'repo'){
+                    _mainSetAppData(is_animate);
+                }
             }else{
                 _mainSetData(is_animate);
             }
@@ -495,9 +497,22 @@ define(function (require, exports) {
                     }
                     G.json_data = data.data;
                     Global.historyStatus = G.json_data['history_status'];
-                    if(data.data.type){
+                    var filter = true;
+                    if(data.data.type == 'repo'){
                         _mainSetAppData(is_animate);
-                    }else{
+                        filter = false;
+                    }
+                    if(data.data.type == 'app'){
+                        _mainSetAppData(is_animate);
+                        filter = false;
+                    }
+                    if(data.data.type == 'photo'){
+                        if(typeof(data.data.error) == "undefined"){
+                            _mainSetPhotoData(is_animate);
+                        }
+                        filter = false;
+                    }
+                    if(filter){
                         _mainSetData(is_animate);
                     }
                     ui.header.updateHistoryStatus();
@@ -506,6 +521,7 @@ define(function (require, exports) {
                     if (typeof(callback) == 'function') {
                         callback(data);
                     }
+
                 },
                 error: function (XMLHttpRequest, textStatus, errorThrown) {
                     $('.tools-left .msg').fadeOut(100);
@@ -557,44 +573,9 @@ define(function (require, exports) {
     /*****************************************************************************************************************
      *  added by ken li START
      *****************************************************************************************************************/
-    var _f5_photo = function () {
-        _jsonSortTitle();//更新列表排序方式dom
-        var selectObj = Global.fileListSelect;
-        var appId = fileLight.getId(selectObj);
-        $.ajax({
-            url: 'index.php?explorer/pathList&path=' + urlEncode(G.this_path),
-            type: 'POST',
-            dataType: 'json',
-            data: 'appId='+appId,
-            beforeSend: function () {
-                $('.tools-left .msg').stop(true, true).fadeIn(100);
-            },
-            success: function (data) {
-                $('.tools-left .msg').fadeOut(100);
-                if (!data.code) {
-                    core.tips.tips(data);
-                    $(Config.FileBoxSelector).html('');
-                    return false;
-                }
-                G.json_data = data.data;
-                Global.historyStatus = G.json_data['history_status'];
-                _mainSetPhotoData(true);
-                ui.header.updateHistoryStatus();
-                ui.header.addressSet();//header地址栏更新
-
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                $('.tools-left .msg').fadeOut(100);
-                $(Config.FileBoxSelector).html('');
-                core.ajaxError(XMLHttpRequest, textStatus, errorThrown);
-            }
-        });
-    };
-
     //Photo列表数据填充
     var _mainSetPhotoData = function (isFade) {
-        var html = "";//填充的数据
-        var piclist = G.json_data['pictures'];
+        var piclist = G.json_data.app['pictures'];
         piclist = piclist.sort(_sortBy(G.sort_field, G.sort_order));
         var repo_function = '_getPhotoBox', repo_html = '';
         if (G.list_type == 'list') {
@@ -603,11 +584,12 @@ define(function (require, exports) {
         for (var i in piclist) {
             var pic = {};
             pic['url'] = piclist[i];
-            pic['_id'] = G.json_data['_id'];
+            pic['filename'] = pic['url'].substr(pic['url'].lastIndexOf('/') + 1);
+            pic['_id'] = G.json_data.app['_id'];
             repo_html += this[repo_function](pic);
         }
         //end排序方式重组json数据------
-        html = repo_html;
+        var html = repo_html;
         if (html == '') html = '<div style="text-align:center;color:#aaa;">' + LNG.path_null + '</div>'
         html += "<div style='clear:both'></div>";
 
@@ -630,12 +612,12 @@ define(function (require, exports) {
     this._getPhotoBox = function (pic) {
         var html = "";
         html += "<div class='file fileBox menuSen5Photo' data-name='" + pic['_id'] + "' title='"
-            + LNG.name + ':' + pic['url'] + "&#10;";
+            + LNG.name + ':' + pic['filename'] + "&#10;' >";
 
         html += "<div picasa='" + pic['url'] + "' thumb='" + pic['url'] + "' class='picasaImage picture ico' filetype='photo'"
             + "' index='" + pic['_id'] + "'><img src='" + pic['url'] + "'/></div>";
         html += "<div id='" + pic['_id'] + "' class='titleBox'><span class='title' title='" + LNG.double_click_rename
-            + "'>" + pic['_id'] + "</span></div></div>";
+            + "'>" + pic['filename'] + "</span></div></div>";
         return html;
     }
 
@@ -729,7 +711,7 @@ define(function (require, exports) {
     //图标样式，APP模版填充
     this._getAppBox = function (list) {
         var html = "";
-        html += "<div class='file fileBox menuSen5App' data-name='" + list['name'] + "' title='"
+        html += "<div class='file fileBox menuSen5App' data-name='" + list['_id'] + "' title='"
             + LNG.name + ':' + list['name'] + "&#10;" + LNG.size + ':' + list.size_friendly + "&#10;"
             + LNG.modify_time + ':' + list['lastupdated'] + "'>";
         html += "<div picasa='" + list['icon'] + "' thumb='" + list['icon'] + "' class='picasaImage picture ico' filetype='app'"
@@ -743,7 +725,7 @@ define(function (require, exports) {
     this._getAppBoxList = function (list) {
         var html = "";
         html += "<div picasa='" + list['icon'] + "' thumb='" + list['icon'] + "' class='picasaImage picture ico file fileBox menuSen5App' data-name='"
-            + list.name + "' index='" + list['_id'] + "' title='" + LNG.name + ":" + list.name + "&#10;" + LNG.size + ':' + list.size_friendly + "&#10;"
+            + list['_id'] + "' index='" + list['_id'] + "' title='" + LNG.name + ":" + list.name + "&#10;" + LNG.size + ':' + list.size_friendly + "&#10;"
             + LNG.modify_time + ':' + list['lastupdated'] + "'>";
 
         html += "	<div class='" + list['ext'] + " ico' filetype='app'></div>";
@@ -781,7 +763,6 @@ define(function (require, exports) {
 
     return{
         f5: _f5,
-        f5_photo: _f5_photo,
         f5_search: _f5_search,
         f5_callback: _f5_callback,
         picasa: MyPicasa,

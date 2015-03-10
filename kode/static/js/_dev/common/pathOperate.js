@@ -115,6 +115,10 @@ define(function (require, exports) {
                 var selectObj = Global.fileListSelect;
                 elem['id'] = fileLight.getId(selectObj);
             }
+            if(elem['type'] == 'photo'){
+                var selectObj = Global.fileListSelect;
+                elem['id'] = fileLight.getId(selectObj);
+            }
         });
 
         $.dialog({

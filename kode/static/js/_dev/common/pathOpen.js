@@ -14,9 +14,8 @@ define(function (require, exports) {
             return;
         }
         if (ext == 'app') {
-            return;
             if (Config.pageApp == 'explorer') {
-                ui.path.list_photo(path + '/');//更新文件列表
+                ui.path.list(path + '/');//更新文件列表
             } else {
                 core.explorer(path);
             }

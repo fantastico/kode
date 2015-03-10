@@ -12,6 +12,7 @@ define(function (require, exports) {
 
     var appMenuSelector = ".menuSen5App";
     var repoMenuSelector = ".menuSen5Repo";
+    var picMenuSelector = ".menuSen5Photo";
 
     var _init_explorer = function () {
         $('<div id="rightMenu" class="hidden"></div>').appendTo('body');
@@ -791,6 +792,27 @@ define(function (require, exports) {
                 "sep1": "--------",
                 "sen5_edit_repoinfo": {name: LNG.edit_info, className: "info", icon: "edit", accesskey: "e"},
                 "sen5_show_repoinfo": {name: LNG.show_info, className: "info", icon: "info", accesskey: "i"}
+            }
+        });
+
+        $('<i class="' + picMenuSelector.substr(1) + '"></i>').appendTo('#rightMenu');
+        $.contextMenu({
+            zIndex: 9999,
+            selector: picMenuSelector,
+            className: folderMenuSelector,
+            callback: function (key, options) {
+                _menuPath(key);
+            },
+            items: {
+                "open": {name: LNG.open, className: "open", icon: "external-link", accesskey: "o"},
+                "sep1": "--------",
+                "copy": {name: LNG.copy, className: "copy", icon: "copy", accesskey: "c"},
+                "cute": {name: LNG.cute, className: "cute", icon: "cut", accesskey: "k"},
+                "remove": {name: LNG.remove, className: "remove", icon: "trash", accesskey: "d"},
+                "sep2": "--------",
+                "down": {name: LNG.download, className: "down", icon: "download", accesskey: "x"},
+                "sep3": "--------",
+                "sen5_show_info": {name: LNG.show_info, className: "info", icon: "info", accesskey: "i"}
             }
         });
     };

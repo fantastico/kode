@@ -4,7 +4,8 @@
 <div class="topbar">
     <div class="content">
         <div class="top_left">
-            <a href="./" class="title"><i class="icon-cloud"></i>App Explorer</a>
+            <a  class="title"><i class="icon-cloud"></i>App Explorer</a>
+            <!--
             <?php
 			$tpl="<a class='{this}' href='./index.php?{0}' tartet='_self'><i class='icon-{2}'></i>{1}</a>\n";
             $menu
@@ -12,6 +13,13 @@
             echo getTplList(',',':',$menu,$tpl,ST);
             ?>
             <a href='./lib/plugins/adminer/' target="_blank"><i class='icon-inbox'></i><?php echo $L['adminer'];?></a>
+            -->
+            <?php
+            $tpl="<a class='{this}' href='./index.php?{0}' tartet='_self'><i class='icon-{2}'></i>{1}</a>\n";
+            $menu
+            ='explorer:'.$L['ui_filemanage'];
+            echo getTplList(',',':',$menu,$tpl,ST);
+            ?>
         </div>
         <div class="top_right">
             <div>
