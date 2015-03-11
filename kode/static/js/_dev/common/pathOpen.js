@@ -21,6 +21,14 @@ define(function (require, exports) {
             }
             return;
         }
+        if (ext == 'photo') {
+            var url = urlDecode(path);
+            if (path.indexOf('http:') == -1) {
+                url = core.path2url(url);
+            }
+            MaskView.image(url);
+            return;
+        }
         if (ext == 'folder') {
             if (Config.pageApp == 'explorer') {
                 ui.path.list(path + '/');//更新文件列表

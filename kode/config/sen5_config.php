@@ -28,6 +28,7 @@
     define('REPO_URL', 'http://192.168.0.8/appstore'); //APP图标路径
 
     define('REPO_PATH_LENGTH', strlen(REPO_PATH)); //APP图标路径
+    define('PHOTO_PATH', REPO_PATH.'/repo/photo');
     //数据库配置
     define('DATABASE_IP', 'mongodb://192.168.0.8:27017');
     define('DATABASE_NAME', 'sen5_app_store');

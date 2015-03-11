@@ -633,6 +633,11 @@
      */
     function file_proxy_out($file)
     {
+        if(strncmp(REPO_PATH, $file, REPO_PATH_LENGTH) == 0){
+            $subpath = trim(substr($file, REPO_PATH_LENGTH), '/');
+            $names = explode('/',$subpath);
+            $file = REPO_PATH.'/repo/photo/'.$names[1];
+        }
         if (!file_exists($file)) show_json('file not exists', false);
         $mime = get_file_mime(get_path_ext($file));
         header("Cache-Control:public");

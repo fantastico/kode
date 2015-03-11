@@ -507,9 +507,7 @@ define(function (require, exports) {
                         filter = false;
                     }
                     if(data.data.type == 'photo'){
-                        if(typeof(data.data.error) == "undefined"){
-                            _mainSetPhotoData(is_animate);
-                        }
+                        _mainSetPhotoData(is_animate);
                         filter = false;
                     }
                     if(filter){
@@ -577,16 +575,16 @@ define(function (require, exports) {
     var _mainSetPhotoData = function (isFade) {
         var piclist = G.json_data.app['pictures'];
         piclist = piclist.sort(_sortBy(G.sort_field, G.sort_order));
-        var repo_function = '_getPhotoBox', repo_html = '';
+        var photo_function = '_getPhotoBox', repo_html = '';
         if (G.list_type == 'list') {
-            repo_function = '_getRepoBoxList';
+            photo_function = '_getRepoBoxList';
         }
         for (var i in piclist) {
             var pic = {};
             pic['url'] = piclist[i];
             pic['filename'] = pic['url'].substr(pic['url'].lastIndexOf('/') + 1);
             pic['_id'] = G.json_data.app['_id'];
-            repo_html += this[repo_function](pic);
+            repo_html += this[photo_function](pic);
         }
         //end排序方式重组json数据------
         var html = repo_html;

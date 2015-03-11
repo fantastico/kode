@@ -68,6 +68,7 @@
         "time_type" => "Y/m/d H:i",
         "time_type_info" => "Y年m月d日 H:i:s",
         "public_path" => "公共目录",
+        "photo" => "图片",
 
         //右键
         "file" => "文件",

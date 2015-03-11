@@ -98,6 +98,7 @@
             $this->repo->update(array('_id' => $repo), array('$inc' => array( 'version' => 1)));
         }
 
+        //含$appId应用的所有仓库版本+1
         public function incRepoVersionByAppId($appId)
         {
             $this->repo->update(array('apps' => $appId), array('$inc' => array( 'version' => 1)), array('multi'=>true));
@@ -239,6 +240,15 @@
         {
             if(empty($url)){return;}
             $this->apps->update(array('_id' => $appId), array('$push' => array('pictures' => $url)));
+            $this->incRepoVersionByAppId($appId);
+        }
+
+        //删除photo
+        public function deletePhoto($appId, $photoUrl)
+        {
+            if(empty($appId) || empty($photoUrl)){return;}
+            $this->apps->update(array('_id' => $appId), array('$pull' => array('pictures' => $photoUrl)));
+            $this->incRepoVersionByAppId($appId);
         }
     }
 

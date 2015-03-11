@@ -136,6 +136,17 @@ define(function (require, exports) {
                 var path = G.this_path + fileLight.name($(this));
                 var type = fileLight.type($(this));
                 // var type = fileLight.type($(this)) == 'folder' ? 'folder' : 'file';
+                if(type == 'app'){
+                    var id = fileLight.getId($(this));
+                    list.push({path: path, type: type, id:id});
+                    return;
+                }
+                if(type == 'photo'){
+                    var appId = fileLight.getId($(this));
+                    var photoUrl = fileLight.getUrl($(this));
+                    list.push({path: path, type: type, appId:appId, photoUrl:photoUrl});
+                    return;
+                }
                 list.push({path: path, type: type});
             });
             return list;
@@ -144,8 +155,18 @@ define(function (require, exports) {
             var selectObj = Global.fileListSelect;
             var path = G.this_path + fileLight.name(selectObj);
             var type = fileLight.type(selectObj);
+            if(type == 'app'){
+                var id = fileLight.getId(selectObj);
+                return {path: path, type: type, id:id};
+            }
+            if(type == 'photo'){
+                var appId = fileLight.getId(selectObj);
+                var photoUrl = fileLight.getUrl(selectObj);
+                return {path: path, type: type, appId:appId, photoUrl:photoUrl};
+            }
             return {path: path, type: type};
         }
+
     };
 
     //打开目录。更新文件列表，ajax方式
@@ -516,6 +537,10 @@ define(function (require, exports) {
         download: function () {
             pathOpen.download(_param().path);
         },
+        photo: function(){
+            var param = _param();
+            pathOpen.open(param.path, param.type);
+        },
         open: function (path) {
             if (path != undefined) {
                 pathOpen.open(path);
@@ -530,6 +555,17 @@ define(function (require, exports) {
                 } else {
                     ui.picasa.play($(selectObj));
                 }
+                return;
+            }
+            if (param.type == 'photo') {
+                if (G.list_type == 'icon') {
+                    ui.picasa.play($(selectObj).find('.ico'));
+                } else {
+                    ui.picasa.play($(selectObj));
+                }
+                return;
+            }
+            if (param.type == 'app') {
                 return;
             }
             //oexe 的打开

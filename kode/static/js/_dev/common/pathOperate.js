@@ -110,17 +110,6 @@ define(function (require, exports) {
             name = '...' + name.substr(-20);
         }
 
-        param.forEach(function(elem){
-            if(elem['type'] == 'app'){
-                var selectObj = Global.fileListSelect;
-                elem['id'] = fileLight.getId(selectObj);
-            }
-            if(elem['type'] == 'photo'){
-                var selectObj = Global.fileListSelect;
-                elem['id'] = fileLight.getId(selectObj);
-            }
-        });
-
         $.dialog({
             id: 'dialog_path_remove',
             fixed: true,//不跟随页面滚动
@@ -136,7 +125,7 @@ define(function (require, exports) {
                     url: 'index.php?explorer/pathDelete',
                     type: 'POST',
                     dataType: 'json',
-                    data: _json(param),
+                    data: 'list=' + JSON.stringify(param),
                     beforeSend: function () {
                         core.tips.loading();
                     },

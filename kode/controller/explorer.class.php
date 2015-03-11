@@ -354,17 +354,11 @@
                 }
                 if($val['type'] === 'photo' && strncmp(REPO_PATH, $path_full, REPO_PATH_LENGTH) == 0){
                     // 删除APP
-                    $appId = $val['id'];
-                    $reponame = explode('/', trim(substr($path_full, REPO_PATH_LENGTH), '/'));
-                    $reponame = $reponame[0];
                     $instance = Database::getInstance();
-                    $app = $instance->deleteApp($appId, $reponame);
-                    if(isset($app)){
-                        foreach($app['apks'] as $apk){
-                            $filename = REPO_PATH.'/repo/'.$apk['apkname'];
-                            if (del_file($filename)) $success++;
-                            else $error++;
-                        }
+                    $app = $instance->deletePhoto($val['appId'], $val['photoUrl']);
+                    $filename = PHOTO_PATH.'/'.$val['appId'].'/'.substr($val['photoUrl'],strrpos($val['photoUrl'], '/')+1);
+                    if (file_exists($filename)){
+                        del_file($filename);
                     }
                     $success++;
                 }
@@ -816,7 +810,7 @@
                     if( empty($appId) || !$instance->doesAppExist($appId)){
                         show_json($this->L['upload_app_not_exist'], false);
                     }
-                    $save_path = REPO_PATH.'/repo/photo/'.$appId.'/';
+                    $save_path = PHOTO_PATH.'/'.$appId.'/';
 
                     //保存文件
                     if (!is_writeable($save_path)) {

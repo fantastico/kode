@@ -450,6 +450,9 @@ define(function (require, exports) {
 
 
             //sen5
+            case 'photo':
+                ui.path.photo();
+                break;
             case 'sen5_edit_info':
                 ui.path.sen5_app_info();
                 break;//修改sen5 app信息
@@ -764,7 +767,7 @@ define(function (require, exports) {
                 _menuPath(key);
             },
             items: {
-                "open": {name: LNG.open, className: "open", icon: "external-link", accesskey: "o"},
+                "photo": {name: LNG.photo, className: "open", icon: "external-link", accesskey: "p"},
                 "sep1": "--------",
                 "copy": {name: LNG.copy, className: "copy", icon: "copy", accesskey: "c"},
                 "cute": {name: LNG.cute, className: "cute", icon: "cut", accesskey: "k"},
