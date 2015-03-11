@@ -558,11 +558,6 @@ define(function (require, exports) {
                     _setListType('list');
                 }
                 break;
-            case 'set_apk':
-                if (!$('#set_apk').hasClass('active')) {
-                    _setListType('apk');
-                }
-                break;
             default:
                 break;
         }
