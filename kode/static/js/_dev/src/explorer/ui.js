@@ -604,7 +604,7 @@ define(function (require, exports) {
     //图标样式，REPO模版填充
     this._getPhotoBox = function (pic) {
         var html = "";
-        html += "<div class='file fileBox menuSen5Photo' data-name='" + pic['_id'] + "' title='"
+        html += "<div class='file fileBox menuSen5Photo' data-name='" + pic['filename'] + "' title='"
             + LNG.name + ':' + pic['filename'] + "&#10;' >";
 
         html += "<div picasa='" + pic['url'] + "' thumb='" + pic['url'] + "' class='picasaImage picture ico' filetype='photo'"

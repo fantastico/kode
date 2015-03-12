@@ -575,29 +575,28 @@
         if(strncmp(REPO_PATH,$file,REPO_PATH_LENGTH) != 0){
             show_json('app not exists');
         }
-        $subpath = trim(substr($file, REPO_PATH_LENGTH), '/');
-        $names = explode('/',$subpath);
-        if(count($names) != 2){
-            show_json('app not exists');
+        $names = explode('/',trim(substr($file, REPO_PATH_LENGTH), '/'));
+
+        //下载apk文件
+        if(count($names) == 2){
+            $appId = $names[1];
+
+            $instance = Database::getInstance();
+            $app = $instance->findOneApp($appId);
+            $apks = $app['apks'];
+            if(!is_array($apks) || count($apks) <= 0){
+                show_json('apk not exists');
+            }
+
+            $file = REPO_PATH.'/repo/'.$apks[0]['apkname'];
         }
 
-        $appId = $names[1];
-        if (isset($_SERVER['HTTP_RANGE']) && ($_SERVER['HTTP_RANGE'] != "") &&
-            preg_match("/^bytes=([0-9]+)-$/i", $_SERVER['HTTP_RANGE'], $match) && ($match[1] < $fsize)
-        ) {
-            $start = $match[1];
-        } else {
-            $start = 0;
+        //下载photo文件
+        if(count($names) == 3){
+            $file = PHOTO_PATH.'/'.$names[1].'/'.$names[2];
         }
 
-        $instance = Database::getInstance();
-        $app = $instance->findOneApp($appId);
-        $apks = $app['apks'];
-        if(!is_array($apks) || count($apks) <= 0){
-            show_json('apk not exists');
-        }
-
-        $file = REPO_PATH.'/repo/'.$apks[0]['apkname'];
+        if (!isset($file) || !file_exists($file)) show_json('file not exists', false);
         $size = filesize($file);
         header("Cache-Control: public");
         header("Content-Type: application/octet-stream");
@@ -607,6 +606,13 @@
         }
         header("Content-Disposition: attachment;filename=" . get_path_this($file));
 
+        if (isset($_SERVER['HTTP_RANGE']) && ($_SERVER['HTTP_RANGE'] != "") &&
+            preg_match("/^bytes=([0-9]+)-$/i", $_SERVER['HTTP_RANGE'], $match) && ($match[1] < $fsize)
+        ) {
+            $start = $match[1];
+        } else {
+            $start = 0;
+        }
         if ($start > 0) {
             header("HTTP/1.1 206 Partial Content");
             header("Content-Length: " . ($size - $start));
