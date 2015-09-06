@@ -31,6 +31,8 @@
     define('STATIC_JS', '_dev'); //_dev app  js编译||开发状态
     define('STATIC_PATH', "./static/"); //静态文件目录
     define('STATIC_LESS', 'css');
+
+    define('APPSTORE_ROOT', '/appstore/');
 //define('STATIC_PATH','http://static.kalcaddle.com/static/');
 
 

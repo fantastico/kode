@@ -740,7 +740,7 @@ define(function (require, exports) {
         }
         G.json_data = data.data;
         Global.historyStatus = G.json_data['history_status'];
-        if(data.data.type == 'app'){
+        if(data.data.type == 'app' || data.data.type == 'repo'){
             _mainSetAppData(false);
         }
         ui.header.updateHistoryStatus();

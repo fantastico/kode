@@ -63,6 +63,20 @@
             return $app_list;
         }
 
+        //按$search搜索仓库
+        public function search_repo($search)
+        {
+            $regex = new MongoRegex("/$search/");
+            $or = array(array('_id' => $regex), array('apps' => $regex), array('conditions.customerId' => $regex), array('conditions.customerName' => $regex));
+            $cursor = $this->repo->find(array('$or' => $or));
+            $repo_list = array();
+            foreach ($cursor as $repo) {
+                $repo_list[] = $repo;
+            }
+            $repo_list = array('type' => 'repo', 'repolist' => $repo_list);
+            return $repo_list;
+        }
+
         public function repo_list()
         {
             $cursor = $this->repo->find(array(),array("apps" => 0));
@@ -132,6 +146,14 @@
 
         //向仓库$reponame粘贴应用$appid
         public function pasteApp($appid, $reponame)
+        {
+            if(!$this->doesAppExist($appid)){ return; }
+            $this->repo->update(array('_id' => $reponame), array('$push' => array('apps' => $appid)));
+            $this->incRepoVersion($reponame);
+        }
+
+        //向应用$appid粘贴应用$appid
+        public function pastePhoto($appid, $reponame)
         {
             if(!$this->doesAppExist($appid)){ return; }
             $this->repo->update(array('_id' => $reponame), array('$push' => array('apps' => $appid)));

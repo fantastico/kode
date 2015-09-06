@@ -146,7 +146,7 @@ define(function (require, exports) {
             url: 'index.php?explorer/pathCopy',
             type: 'POST',
             dataType: 'json',
-            data: _json(param),
+            data: 'list='+JSON.stringify(param),
             error: core.ajaxError,
             success: function (data) {
                 core.tips.tips(data);

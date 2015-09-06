@@ -142,7 +142,7 @@
                 <div class="tools-right">
                     <div class="btn-group btn-group-sm">
                         <button id='set_icon' title="<?php echo $L['list_icon']; ?>" type="button"
-                                class="btn btn-default">
+                                class="btn btn-default active">
                             <i class="font-icon icon-th"></i>
                         </button>
                         <button id='set_list' title="<?php echo $L['list_list']; ?>" type="button"
@@ -192,7 +192,7 @@
         version: "<?php echo KOD_VERSION;?>",
         app_host: "<?php echo APPHOST;?>",
 
-        this_path: "<?php echo $dir;?>",//当前绝对路径
+        this_path: "<?php echo strpos($dir, APPSTORE_ROOT)==0?$dir:APPSTORE_ROOT;?>",//当前绝对路径
         myhome: "<?php echo MYHOME;?>",//当前绝对路径
 
         json_data: "",//用于存储每次获取列表后的json数据值。

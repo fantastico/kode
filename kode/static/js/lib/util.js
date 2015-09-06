@@ -166,8 +166,8 @@ var tips = function(msg,code){
 	Tips.tips(msg,code);
 }
 var Tips =  (function(){
-	var in_time  = 400;
-	var delay = 500;
+	var in_time  = 600;
+	var delay = 1800;
 	var opacity  = 0.7;
 	var _init = function(msg,code){
 		var tipsIDname = "messageTips";
@@ -192,7 +192,7 @@ var Tips =  (function(){
 			case 'info':color = '#519AF6';icon = 'icon-info';break;
 			case 'warning':color = '#ed9c28';icon = 'icon-exclamation';break;
 			case false:
-			case 'error':delay = 1000;color = '#d9534f';icon = 'icon-remove';break;
+			case 'error':delay = 3000;color = '#d9534f';icon = 'icon-remove';break;
 			default:color = '';icon = '';break;
 		}
 

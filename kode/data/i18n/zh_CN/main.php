@@ -334,6 +334,8 @@
         "gotoline" => "跳转到行",
         "path_is_current" => "所打开路径和当前路径一样！",
         "path_exists" => "该名称已存在！",
+        "not_repo_path" => "此路径不是仓库",
+        "not_app_path" => "此路径不是APP",
 
         //编辑器
         "undo" => "撤销",

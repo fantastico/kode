@@ -167,22 +167,16 @@
             }
             $_SESSION['this_path'] = $user_path;
             //搜索app
-            if(strncmp(REPO_PATH, $user_path, REPO_PATH_LENGTH) == 0){
-                $subpath = trim(substr($user_path, REPO_PATH_LENGTH), '/');
-                $names = explode('/',$subpath);
-
-                if(count($names) == 1){
-                    $instance = Database::getInstance();
-                    $reponame = $names[0];
-                    if($names[0] === ""){
-                        //显示repo
-                        $list = $instance->repo_list();
-                        return $list;
-                    }
-
-                    //显示app
-                    $list = $instance->search_app($this->in['search'], $reponame);
-                }
+            $path = explode('/',trim($user_path, '/'));
+            if(count($path) == 1){
+                $instance = Database::getInstance();
+                $list = $instance->search_repo($this->in['search']);
+            }
+            //显示app
+            if(count($path) == 2){
+                $instance = Database::getInstance();
+                $reponame = $path[1];
+                $list = $instance->search_app($this->in['search'], $reponame);
             }
             $list['history_status'] = array('back' => $hi->isback(), 'next' => $hi->isnext());
             show_json($list);
@@ -256,11 +250,10 @@
             } else { //文件管理器
                 $list_apps = $this->path(_DIR(REPO_PATH), $check_file, true);
                 $list_repos = $this->path(_DIR(PUBLIC_PATH), $check_file, true);
-                $folder_apps = $list_apps['folderlist'];
-                $folder_repos = $list_repos['folderlist'];
+                $folder_apps = [];
                 $tree_data = array(
                     array('name' => $this->L['repos'], 'ext' => '__root__', 'children' => $folder_apps,
-                        'iconSkin' => "my", 'open' => true, 'this_path' => REPO_PATH, 'isParent' => false),
+                        'iconSkin' => "my", 'open' => true, 'this_path' => APPSTORE_ROOT, 'isParent' => false),
                   /*  array('name' => $this->L['repos'], 'ext' => '__root__', 'children' => $folder_repos,
                         'iconSkin' => "lib", 'open' => true, 'this_path' => PUBLIC_PATH, 'isParent' => false),
                     array('name' => $this->L['images'], 'ext' => '__fav__', 'iconSkin' => "fav",
@@ -319,28 +312,11 @@
                 /********************************************************************************************************************
                  **  如果是在仓库目录下，进行app删除处理  START
                  ********************************************************************************************************************/
-                if($val['type'] === 'app' && strncmp(REPO_PATH, $path_full, REPO_PATH_LENGTH) == 0){
-                    // 删除APP
-                    $appId = $val['id'];
-                    $reponame = explode('/', trim(substr($path_full, REPO_PATH_LENGTH), '/'));
-                    $reponame = $reponame[0];
+                $path = explode('/',trim($path_full, '/'));
+                // 删除repo
+                if($val['type'] === 'repo' && count($path) == 2){
                     $instance = Database::getInstance();
-                    $app = $instance->deleteApp($appId, $reponame);
-                    if(isset($app)){
-                        foreach($app['apks'] as $apk){
-                            $filename = REPO_PATH.'/repo/'.$apk['apkname'];
-                            if (del_file($filename)) $success++;
-                            else $error++;
-                        }
-                    }
-                    $success++;
-                }
-                if($val['type'] === 'repo' && strncmp(REPO_PATH, $path_full, REPO_PATH_LENGTH) == 0){
-                    // 删除APP
-                    $reponame = explode('/', trim(substr($path_full, REPO_PATH_LENGTH), '/'));
-                    $repoId = $reponame[0];
-                    $instance = Database::getInstance();
-                    $apps = $instance->removeRepo($repoId);
+                    $apps = $instance->removeRepo($path[1]);
                     if(isset($apps)){
                         foreach($apps as $app){
                             foreach($app['apks'] as $apk){
@@ -352,10 +328,23 @@
                     }
                     $success++;
                 }
-                if($val['type'] === 'photo' && strncmp(REPO_PATH, $path_full, REPO_PATH_LENGTH) == 0){
-                    // 删除APP
+                // 删除APP
+                if($val['type'] === 'app' && count($path) == 3){
                     $instance = Database::getInstance();
-                    $app = $instance->deletePhoto($val['appId'], $val['photoUrl']);
+                    $app = $instance->deleteApp($val['id'], $path[1]);
+                    if(isset($app)){
+                        foreach($app['apks'] as $apk){
+                            $filename = REPO_PATH.'/repo/'.$apk['apkname'];
+                            if (del_file($filename)) $success++;
+                            else $error++;
+                        }
+                    }
+                    $success++;
+                }
+                // 删除APP图片
+                if($val['type'] === 'photo'){
+                    $instance = Database::getInstance();
+                    $instance->deletePhoto($val['appId'], $val['photoUrl']);
                     $filename = PHOTO_PATH.'/'.$val['appId'].'/'.substr($val['photoUrl'],strrpos($val['photoUrl'], '/')+1);
                     if (file_exists($filename)){
                         del_file($filename);
@@ -509,56 +498,71 @@
             /********************************************************************************************************************
              **  如果是在仓库目录下，进行app复制处理  START
              ********************************************************************************************************************/
-            if(strncmp(REPO_PATH, $path_past, REPO_PATH_LENGTH) == 0){
-                $subpath = trim(substr($path_past, REPO_PATH_LENGTH), '/');
-                $names = explode('/',$subpath);
-                if(count($names) == 1){
-                    $instance = Database::getInstance();
-                    $reponame = $names[0];
-                    $list_num = count($clipboard);
-                    if ($list_num == 0) {
-                        show_json($data, false, $this->L['clipboard_null']);
-                    }
-                    for ($i = 0; $i < $list_num; $i++) {
-                        $path_copy = _DIR($clipboard[$i]['path']);
-                        $appid = get_path_this($path_copy);
-                        $appid_out = iconv_app($appid);
+            $path = explode('/',trim($path_past, '/'));
+            $list_num = count($clipboard);
+            if ($list_num == 0) {
+                show_json($data, false, $this->L['clipboard_null']);
+            }
+            for ($i = 0; $i < $list_num; $i++) {
+                $path_copy = _DIR($clipboard[$i]['path']);
+                if ($path_copy == substr($path_past, 0, strlen($path_copy))) {
+                    $error .= "<li style='color:#000000;'>".$this->L['current_has_parent']."</li>";
+                    continue;
+                }
 
-                        if ($clipboard[$i]['type'] == 'app') {
-                            if ($path_copy == substr($path_past, 0, strlen($path_copy))) {
-                                $error .= "<li style='color:#f33;'>{$appid_out}'.$this->L['current_has_parent'].'</li>";
-                                continue;
-                            }
-                        }
+                if ($path_past == get_path_father($path_copy)) {
+                    $error .= "<li style='color:#000000;'>".$this->L['path_is_current']."</li>";
+                    continue;
+                }
 
-                        if ($copy_type == 'copy') {
-                            $instance->pasteApp($appid, $reponame);
-                        } else {
-                          //  rename($path_copy, $auto_path);
-                        }
-                        $data[] = $appid_out;
+                if ($clipboard[$i]['type'] == 'app') {
+                    if(count($path) != 2){
+                        $error .= "<li style='color:#000000;'>".$this->L['not_repo_path']."</li>";
+                        continue;
                     }
+                    $reponame = $path[1];
+                    $appid = $clipboard[$i]['id'];
+
                     if ($copy_type == 'copy') {
-                        $info = $this->L['past_success'] . $error;
-                    } else {
-                        $_SESSION['path_copy'] = json_encode(array());
-                        $_SESSION['path_copy_type'] = '';
-                        $info = $this->L['cute_past_success'] . $error;
+                        $instance = Database::getInstance();
+                        $instance->pasteApp($appid, $reponame);
                     }
-                    $state = ($error == '' ? true : false);
-                    show_json($data, $state, $info);
+                    $data[] = $appid;
+                }
+
+                if ($clipboard[$i]['type'] == 'photo') {
+                    if(count($path) != 3){
+                        $error .= "<li style='color:#000000;'>".$this->L['not_app_path']."</li>";
+                        continue;
+                    }
+                    $appid = $path[2];
+                    if ($copy_type == 'copy') {
+                        $instance = Database::getInstance();
+                        $instance->pastePhoto($appid, $reponame);
+                    }
+                    $data[] = $appid;
                 }
             }
+            if ($copy_type == 'copy') {
+                $info = $this->L['past_success'] . $error;
+            } else {
+                $_SESSION['path_copy'] = json_encode(array());
+                $_SESSION['path_copy_type'] = '';
+                $info = $this->L['cute_past_success'] . $error;
+            }
+            $state = ($error == '' ? true : false);
+            show_json($data, $state, $info);
             /********************************************************************************************************************
              **  如果是在仓库目录下，进行app复制处理  END
              ********************************************************************************************************************/
-
             if (!is_writable($path_past)) show_json($data, false, $this->L['no_permission_write']);
 
             $list_num = count($clipboard);
             if ($list_num == 0) {
                 show_json($data, false, $this->L['clipboard_null']);
             }
+
+
             for ($i = 0; $i < $list_num; $i++) {
                 $path_copy = _DIR($clipboard[$i]['path']);
                 $filename = get_path_this($path_copy);
@@ -758,128 +762,104 @@
          */
         public function fileUpload()
         {
+            $path = explode('/',trim($this->path, '/'));
             //上传apk文件
-            if(strncmp(REPO_PATH, $this->path, REPO_PATH_LENGTH) == 0){
-                $subpath = trim(substr($this->path, REPO_PATH_LENGTH), '/');
-                $names = explode('/',$subpath);
+            if(count($path) == 2){
+                $reponame = $path[1];
+                $instance = Database::getInstance();
+                if( !$instance->doesRepoExist($reponame)){
+                    show_json($this->L['upload_repo_not_exist'], false);
+                }
+                $save_path = REPO_PATH.'/repo/';
 
-                //上传APP
-                if(count($names) == 1){
-                    $reponame = $names[0];
-                    $instance = Database::getInstance();
-                    if( !$instance->doesRepoExist($reponame)){
-                        show_json($this->L['upload_repo_not_exist'], false);
+                //保存文件
+                if (!is_writeable($save_path)) show_json('path is not writeable', false);
+                if (strlen($this->in['fullPath']) > 1) { //folder drag upload
+                    $full_path = _DIR_CLEAR(rawurldecode($this->in['fullPath']));
+                    $full_path = get_path_father($full_path);
+                    $full_path = iconv_system($full_path);
+                    if (mk_dir($save_path . $full_path)) {
+                        $save_path = $save_path . $full_path;
                     }
-                    $save_path = REPO_PATH.'/repo/';
-
-                    //保存文件
-                    if (!is_writeable($save_path)) show_json('path is not writeable', false);
-                    if (strlen($this->in['fullPath']) > 1) { //folder drag upload
-                        $full_path = _DIR_CLEAR(rawurldecode($this->in['fullPath']));
-                        $full_path = get_path_father($full_path);
-                        $full_path = iconv_system($full_path);
-                        if (mk_dir($save_path . $full_path)) {
-                            $save_path = $save_path . $full_path;
-                        }
-                    }
-
-                    global $config, $L;
-                    $file = $_FILES['file'];
-                    if (!isset($file)) show_json($L['upload_error_null'], false);
-                    $ext = substr($file['name'], strrpos($file['name'], '.')+1);
-                    if($ext !== 'apk'){
-                        show_json($this->L['upload_not_apk'], false);
-                    }
-
-                    $file_name = iconv_system($file['name']);
-                    $info = _upload($file['tmp_name'], $file['size'], $save_path . $file_name);
-
-                    //froid update
-                    $output = array();
-                    $file_name = substr($file_name, 0, -4);
-                    $result = exec('fdroid 2>&1 sen5_update --apkFile='.$file_name.' --repo='.$reponame, $output);
-
-                    $info['data'] = $result;
-                    show_json($info['data'], $info['code'], $info['path']);
                 }
 
-                //上传APP图片
-                if(count($names) == 2){
-                    $appId = $this->in['appId'];
-                    $instance = Database::getInstance();
-                    if( empty($appId) || !$instance->doesAppExist($appId)){
-                        show_json($this->L['upload_app_not_exist'], false);
-                    }
-                    $save_path = PHOTO_PATH.'/'.$appId.'/';
-
-                    //保存文件
-                    if (!is_writeable($save_path)) {
-                        if (!mk_dir($save_path)) {
-                            show_json('path is not writeable', false);
-                        }
-                    }
-
-                    $file = $_FILES['file'];
-                    $file_name = iconv_system($file['name']);
-                    if (file_exists ($save_path . $file_name)) {
-                        show_json($this->L['file_exist'], false);
-                    }
-
-                    global $config, $L;
-                    if (!isset($file)) show_json($L['upload_error_null'], false);
-
-                    $info = _upload($file['tmp_name'], $file['size'], $save_path . $file_name);
-
-                    //database update
-                    $instance->addPhoto($appId, REPO_URL.'/photo/'.$appId.'/'. $file_name);
-                    $info['data'] = 'Success';
-                    show_json($info['data'], $info['code'], $info['path']);
+                global $config, $L;
+                $file = $_FILES['file'];
+                if (!isset($file)) show_json($L['upload_error_null'], false);
+                $ext = substr($file['name'], strrpos($file['name'], '.')+1);
+                if($ext !== 'apk'){
+                    show_json($this->L['upload_not_apk'], false);
                 }
+
+                $file_name = iconv_system($file['name']);
+                $info = _upload($file['tmp_name'], $file['size'], $save_path . $file_name);
+
+                //froid update
+                $output = array();
+                $file_name = substr($file_name, 0, -4);
+                $result = exec('fdroid 2>&1 sen5_update --apkFile='.$file_name.' --repo='.$reponame, $output);
+
+                $info['data'] = $result;
+                show_json($info['data'], $info['code'], $info['path']);
             }
 
-            $save_path = $this->path;
-            if (!is_writeable($save_path)) show_json('path is not writeable', false);
-            if ($save_path == '') show_json($this->L['upload_error_big'], false);
-            if (strlen($this->in['fullPath']) > 1) { //folder drag upload
-                $full_path = _DIR_CLEAR(rawurldecode($this->in['fullPath']));
-                $full_path = get_path_father($full_path);
-                $full_path = iconv_system($full_path);
-                if (mk_dir($save_path . $full_path)) {
-                    $save_path = $save_path . $full_path;
+            //上传APP图片
+            if(count($path) == 3){
+                $appId = $this->in['appId'];
+                $instance = Database::getInstance();
+                if( empty($appId) || !$instance->doesAppExist($appId)){
+                    show_json($this->L['upload_app_not_exist'], false);
                 }
+                $save_path = PHOTO_PATH.'/'.$appId.'/';
+
+                //保存文件
+                if (!is_writeable($save_path)) {
+                    if (!mk_dir($save_path)) {
+                        show_json('path is not writeable', false);
+                    }
+                }
+
+                $file = $_FILES['file'];
+                $file_name = iconv_system($file['name']);
+                if (file_exists ($save_path . $file_name)) {
+                    show_json($this->L['file_exist'], false);
+                }
+
+                global $config, $L;
+                if (!isset($file)) show_json($L['upload_error_null'], false);
+
+                $info = _upload($file['tmp_name'], $file['size'], $save_path . $file_name);
+
+                //database update
+                $instance->addPhoto($appId, REPO_URL.'/photo/'.$appId.'/'. $file_name);
+                $info['data'] = 'Success';
+                show_json($info['data'], $info['code'], $info['path']);
             }
-            upload('file', $save_path);
         }
 
         //获取文件列表&哦exe文件json解析
         private function path($dir, $list_file = true, $check_children = false)
         {
-            //只显示app文件
-            if(strncmp(REPO_PATH,$dir,REPO_PATH_LENGTH) == 0){
-                $subpath = trim(substr($dir, REPO_PATH_LENGTH), '/');
-                $names = explode('/',$subpath);
-
-                //显示APP
-                if(count($names) == 1){
-                    $instance = Database::getInstance();
-                    if($names[0] === ""){
-                        //显示repo
-                        $list = $instance->repo_list();
-                        return $list;
-                    }
-
-                    //显示app
-                    $list = $instance->app_list($names[0]);
-                    return $list;
-                }
-
-                //显示APP图片
-                if(count($names) == 2){
-                    $instance = Database::getInstance();
-                    return $instance->photo_list($names[1]);
-                }
+            $path = explode('/',trim($dir, '/'));
+            //显示app
+            if(count($path) == 2){
+                $instance = Database::getInstance();
+                $list = $instance->app_list($path[1]);
+                return $list;
+            }
+            //显示APP图片
+            if(count($path) == 3){
+                $instance = Database::getInstance();
+                $list = $instance->photo_list($path[2]);
+                return $list;
             }
 
+            //显示repo
+            $instance = Database::getInstance();
+            $list = $instance->repo_list();
+            return $list;
+
+            /*
             $list = path_list($dir, $list_file, $check_children);
             foreach ($list['filelist'] as $key => &$val) {
                 if ($val['ext'] == 'oexe') {
@@ -890,6 +870,7 @@
             }
             _DIR_OUT($list);
             return $list;
+            */
         }
 
         /********************************************************************************************************************

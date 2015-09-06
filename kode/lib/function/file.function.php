@@ -572,14 +572,11 @@
      */
     function file_download($file)
     {
-        if(strncmp(REPO_PATH,$file,REPO_PATH_LENGTH) != 0){
-            show_json('app not exists');
-        }
-        $names = explode('/',trim(substr($file, REPO_PATH_LENGTH), '/'));
+        $path = explode('/',trim($file, '/'));
 
         //下载apk文件
-        if(count($names) == 2){
-            $appId = $names[1];
+        if(count($path) == 3){
+            $appId = $path[2];
 
             $instance = Database::getInstance();
             $app = $instance->findOneApp($appId);
@@ -592,8 +589,8 @@
         }
 
         //下载photo文件
-        if(count($names) == 3){
-            $file = PHOTO_PATH.'/'.$names[1].'/'.$names[2];
+        if(count($path) == 4){
+            $file = PHOTO_PATH.'/'.$path[2].'/'.$path[3];
         }
 
         if (!isset($file) || !file_exists($file)) show_json('file not exists', false);
@@ -639,10 +636,9 @@
      */
     function file_proxy_out($file)
     {
-        if(strncmp(REPO_PATH, $file, REPO_PATH_LENGTH) == 0){
-            $subpath = trim(substr($file, REPO_PATH_LENGTH), '/');
-            $names = explode('/',$subpath);
-            $file = REPO_PATH.'/repo/photo/'.$names[1];
+        $path = explode('/',trim($file, '/'));
+        if(count($path) == 4){
+            $file = REPO_PATH.'/repo/photo/'.$names[2];
         }
         if (!file_exists($file)) show_json('file not exists', false);
         $mime = get_file_mime(get_path_ext($file));
